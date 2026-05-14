@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk to Shakira | EBH Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1f393;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f4f0fa;
+  --panel: rgba(255, 255, 255, 0.84);
+  --panel-solid: #ffffff;
+  --text: #1a1020;
+  --text-secondary: #4a3a5c;
+  --muted: #7a6590;
+  --line: rgba(100, 50, 150, 0.10);
+  --accent: #7c3aed;
+  --accent-deep: #5b21b6;
+  --accent-light: rgba(124, 58, 237, 0.10);
+  --success: #2d7a50;
+  --success-light: rgba(45, 122, 80, 0.10);
+  --danger: #b5434b;
+  --danger-light: rgba(181, 67, 75, 0.08);
+  --shadow: 0 20px 50px rgba(80, 30, 120, 0.10);
+  --shadow-sm: 0 6px 16px rgba(80, 30, 120, 0.06);
+  --radius: 22px;
+  --radius-sm: 14px;
+  --font-display: 'Cormorant', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(124, 58, 237, 0.15), transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(100, 40, 200, 0.08), transparent 40%),
+    linear-gradient(180deg, #f8f5fd 0%, #ede6f7 100%);
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.site-header {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.site-header-inner {
+  width: min(1120px, calc(100vw - 28px));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.brand-tag {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.header-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-deep);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(91, 33, 182, 0.2);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.header-link:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+/* ── Screens ── */
+.screen {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.hidden { display: none !important; }
+
+/* ── Setup screen ── */
+.welcome-card {
+  width: min(480px, 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+  padding: 36px 28px;
+  text-align: center;
+}
+
+.welcome-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 28% 24%, #c4b5fd 0%, #7c3aed 65%, #5b21b6 100%);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.welcome-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 4px;
+}
+
+.welcome-subtitle {
+  font-size: 0.95rem;
+  color: var(--accent-deep);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.welcome-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  max-width: 36ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.welcome-features {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.feature-chip {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(91, 33, 182, 0.14);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.start-btn {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 24px;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.start-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(124, 58, 237, 0.32); }
+.start-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.welcome-note {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.welcome-note a {
+  color: var(--accent-deep);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ── Call screen ── */
+#call-screen {
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 14px;
+}
+
+.call-layout {
+  width: 100%;
+  height: calc(100vh - 84px);
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 14px;
+}
+
+.voice-panel, .conversation-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.voice-panel {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+.panel-sub {
+  font-size: 0.85rem;
+  color: var(--accent-deep);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* ── Orb ── */
+.orb-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 28px 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  animation: ring-pulse 2.4s ease-out infinite;
+  opacity: 0;
+}
+
+.ring.r1 { width: 140px; height: 140px; }
+.ring.r2 { width: 170px; height: 170px; animation-delay: 0.5s; }
+.ring.r3 { width: 200px; height: 200px; animation-delay: 1s; }
+
+@keyframes ring-pulse {
+  from { transform: scale(0.94); opacity: 0.5; }
+  to   { transform: scale(1.08); opacity: 0; }
+}
+
+.orb {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 28% 24%, #c4b5fd 0%, #7c3aed 65%, #5b21b6 100%);
+  box-shadow: 0 0 28px rgba(124, 58, 237, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.orb.listening { animation: orb-listen 1.4s ease-in-out infinite alternate; }
+.orb.speaking  { animation: orb-speak 0.65s ease-in-out infinite alternate; box-shadow: 0 0 50px rgba(124, 58, 237, 0.6); }
+.orb.thinking  { animation: orb-think 1.2s ease-in-out infinite alternate; box-shadow: 0 0 44px rgba(80, 60, 120, 0.35); }
+
+@keyframes orb-listen { from { transform: scale(0.99); } to { transform: scale(1.04); } }
+@keyframes orb-speak  { from { transform: scale(1); } to { transform: scale(1.1); } }
+@keyframes orb-think  { from { transform: scale(1); filter: saturate(96%); } to { transform: scale(1.05); filter: saturate(120%); } }
+
+/* ── Status pills ── */
+.status-stack {
+  width: 100%;
+  margin-top: 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.status-pill {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.status-pill.ok    { border-color: rgba(45, 122, 80, 0.35); background: var(--success-light); color: var(--success); }
+.status-pill.warn  { border-color: rgba(124, 58, 237, 0.35); background: var(--accent-light); color: var(--accent-deep); }
+.status-pill.err   { border-color: rgba(181, 67, 75, 0.35); background: var(--danger-light); color: var(--danger); }
+
+/* ── Action buttons ── */
+.actions { margin-top: auto; width: 100%; }
+
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mute-btn, .end-btn {
+  width: 100%;
+  border-radius: 14px;
+  padding: 13px 14px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.mute-btn {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-secondary);
+}
+
+.mute-btn:hover { background: rgba(255, 255, 255, 0.9); transform: translateY(-1px); }
+.mute-btn.active { border-color: rgba(124, 58, 237, 0.4); background: var(--accent-light); color: var(--accent-deep); }
+.mute-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.end-btn {
+  border: 1px solid rgba(181, 67, 75, 0.3);
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+.end-btn:hover { background: rgba(181, 67, 75, 0.14); transform: translateY(-1px); }
+
+/* ── Conversation panel ── */
+.conversation-panel {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  min-height: 0;
+}
+
+.conv-head {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 18px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.conv-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.conv-head span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.transcript-box {
+  overflow-y: auto;
+  padding: 14px 16px 6px;
+  min-height: 0;
+}
+
+.line {
+  margin-bottom: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 9px 12px;
+  line-height: 1.5;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.line .who { font-weight: 700; margin-right: 6px; }
+.line.user { border-color: rgba(45, 122, 80, 0.25); background: var(--success-light); }
+.line.agent  { border-color: rgba(124, 58, 237, 0.25); background: var(--accent-light); }
+.line.meta { border-color: var(--line); background: rgba(0, 0, 0, 0.02); color: var(--muted); font-size: 0.8rem; }
+.line.interim { border-style: dashed; opacity: 0.85; }
+
+.composer {
+  border-top: 1px solid var(--line);
+  padding: 12px 14px 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.composer input {
+  width: 100%;
+  background: var(--panel-solid);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 11px 14px;
+  font: inherit;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.composer input:focus {
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.10);
+}
+
+.composer input::placeholder { color: var(--muted); }
+
+.composer button {
+  border: none;
+  border-radius: 12px;
+  padding: 11px 16px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.composer button:hover { transform: translateY(-1px); }
+.composer button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.composer-note {
+  color: var(--muted);
+  font-size: 0.75rem;
+  padding: 8px 14px 14px;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 14px;
+  padding: 11px 16px;
+  font-size: 0.85rem;
+  z-index: 90;
+  max-width: min(92vw, 560px);
+  display: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.toast.error   { background: var(--danger-light); border: 1px solid rgba(181, 67, 75, 0.3); color: var(--danger); }
+.toast.warning { background: var(--accent-light); border: 1px solid rgba(124, 58, 237, 0.3); color: var(--accent-deep); }
+.toast.info    { background: var(--accent-light); border: 1px solid rgba(124, 58, 237, 0.3); color: var(--accent-deep); }
+
+audio.hidden-audio {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .screen { padding: 12px; }
+  .call-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: auto;
+    min-height: calc(100vh - 84px);
+  }
+  .voice-panel { min-height: 380px; }
+  .action-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .welcome-card { padding: 28px 20px; }
+  .welcome-title { font-size: 1.6rem; }
+  .welcome-features { gap: 8px; }
+  .feature-chip { font-size: 11.5px; padding: 6px 10px; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="https://ebhacademy.com" class="brand" target="_blank" rel="noopener">
+        <span class="brand-name">EBH Academy</span>
+        <span class="brand-tag">Professional Education</span>
+      </a>
+      <a href="https://ebhacademy.com" class="header-link" target="_blank">View Courses</a>
+    </div>
+  </header>
+
+  <div id="toast" class="toast info"></div>
+
+  <!-- WELCOME SCREEN -->
+  <div id="setup-screen" class="screen">
+    <div class="welcome-card">
+      <div class="welcome-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div class="welcome-title">Talk to Shakira</div>
+      <div class="welcome-subtitle">AI Academy Advisor</div>
+      <p class="welcome-desc">
+        Shakira can help you explore our courses, learn about certifications, discuss enrollment options, and answer your questions &mdash; right from your browser.
+      </p>
+      <div class="welcome-features">
+        <span class="feature-chip">Course information</span>
+        <span class="feature-chip">Enrollment inquiry</span>
+        <span class="feature-chip">Certifications & DHA</span>
+      </div>
+      <button id="connect-btn" class="start-btn" type="button">Start Call</button>
+      <p class="welcome-note">
+        Microphone access required. Or visit <a href="https://ebhacademy.com" target="_blank">ebhacademy.com</a> for details.
+      </p>
+    </div>
+  </div>
+
+  <!-- CALL SCREEN -->
+  <div id="call-screen" class="screen hidden">
+    <div class="call-layout">
+      <section class="voice-panel">
+        <h1 class="panel-title">EBH Academy</h1>
+        <div class="panel-sub">Shakira &mdash; AI Advisor</div>
+
+        <div class="orb-wrap">
+          <div class="ring r1"></div>
+          <div class="ring r2"></div>
+          <div class="ring r3"></div>
+          <div id="orb" class="orb"></div>
+        </div>
+
+        <div class="status-stack">
+          <div id="connection-status" class="status-pill">Connecting...</div>
+          <div id="speech-status" class="status-pill">Waiting...</div>
+        </div>
+
+        <div class="actions">
+          <div class="action-row">
+            <button id="mute-btn" class="mute-btn" type="button" disabled>Mute Mic</button>
+            <button id="end-btn" class="end-btn" type="button">End Call</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="conversation-panel">
+        <div class="conv-head">
+          <h2>Conversation</h2>
+          <span id="room-id"></span>
+        </div>
+
+        <div id="transcript-box" class="transcript-box">
+          <div class="line meta">Transcript will appear here when you start talking.</div>
+        </div>
+
+        <form id="chat-form" class="composer">
+          <input id="chat-input" type="text" placeholder="Type here if voice isn't picking up..." autocomplete="off" disabled>
+          <button id="send-btn" type="submit" disabled>Send</button>
+        </form>
+
+        <div class="composer-note">
+          Tip: if Shakira has trouble hearing you, type your message here.
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="/static/livekit-client.umd.min.js"></script>
+  <script>
+    const GATEWAY_URL = `${location.protocol}//${location.host}`;
+    const CONNECT_TIMEOUT_MS = 20000;
+    const AGENT_JOIN_TIMEOUT_MS = 18000;
+    const AGENT_AUDIO_TIMEOUT_MS = 15000;
+
+    const refs = {
+      setupScreen: document.getElementById('setup-screen'),
+      callScreen: document.getElementById('call-screen'),
+      connectBtn: document.getElementById('connect-btn'),
+      endBtn: document.getElementById('end-btn'),
+      muteBtn: document.getElementById('mute-btn'),
+      roomId: document.getElementById('room-id'),
+      connectionStatus: document.getElementById('connection-status'),
+      speechStatus: document.getElementById('speech-status'),
+      orb: document.getElementById('orb'),
+      transcriptBox: document.getElementById('transcript-box'),
+      chatForm: document.getElementById('chat-form'),
+      chatInput: document.getElementById('chat-input'),
+      sendBtn: document.getElementById('send-btn'),
+      toast: document.getElementById('toast')
+    };
+
+    const state = {
+      room: null,
+      connected: false,
+      agentIdentity: null,
+      activeRoomName: null,
+      localSpeaking: false,
+      agentSpeaking: false,
+      pendingAgentReply: false,
+      hasAgentAudioTrack: false,
+      joinWarningTimer: null,
+      audioWarningTimer: null,
+      toastTimer: null,
+      transcriptSeen: new Set(),
+      interimNode: null,
+      attachedAudioEls: [],
+      ending: false,
+      micMuted: false,
+      muteBusy: false
+    };
+
+    // ── Ring tone ──
+    let _ringCtx = null, _ringStop = false, _ringing = false;
+
+    function startRinging() {
+      if (_ringing) return;
+      _ringing = true;
+      _ringStop = false;
+      try {
+        _ringCtx = new (window.AudioContext || window.webkitAudioContext)();
+        (function loop() {
+          if (_ringStop || !_ringing) return;
+          [0, 0.45].forEach(function (offset) {
+            var g = _ringCtx.createGain();
+            g.gain.setValueAtTime(0.18, _ringCtx.currentTime + offset);
+            g.gain.setValueAtTime(0, _ringCtx.currentTime + offset + 0.38);
+            g.connect(_ringCtx.destination);
+            [440, 480].forEach(function (freq) {
+              var o = _ringCtx.createOscillator();
+              o.type = 'sine';
+              o.frequency.value = freq;
+              o.connect(g);
+              o.start(_ringCtx.currentTime + offset);
+              o.stop(_ringCtx.currentTime + offset + 0.38);
+            });
+          });
+          setTimeout(loop, 2600);
+        })();
+      } catch (e) { console.warn('Ring tone error:', e); }
+    }
+
+    function stopRinging() {
+      _ringStop = true;
+      _ringing = false;
+      if (_ringCtx) { try { _ringCtx.close(); } catch {} _ringCtx = null; }
+    }
+
+    // ── UI helpers ──
+    function setScreen(callMode) {
+      refs.setupScreen.classList.toggle('hidden', callMode);
+      refs.callScreen.classList.toggle('hidden', !callMode);
+    }
+
+    function setConnectionStatus(text, tone = '') {
+      refs.connectionStatus.textContent = text;
+      refs.connectionStatus.className = `status-pill ${tone}`;
+    }
+
+    function setSpeechStatus(text, orbMode = 'idle') {
+      refs.speechStatus.textContent = text;
+      refs.speechStatus.className = 'status-pill';
+      refs.orb.className = `orb ${orbMode === 'idle' ? '' : orbMode}`.trim();
+    }
+
+    function showToast(message, tone = 'error', duration = 8000) {
+      clearTimeout(state.toastTimer);
+      refs.toast.textContent = message;
+      refs.toast.className = `toast ${tone}`;
+      refs.toast.style.display = 'block';
+      state.toastTimer = setTimeout(() => { refs.toast.style.display = 'none'; }, duration);
+    }
+
+    function resetTranscript() {
+      refs.transcriptBox.innerHTML = '<div class="line meta">Transcript will appear here when you start talking.</div>';
+      state.interimNode = null;
+      state.transcriptSeen.clear();
+    }
+
+    function appendTranscript(speaker, text, extraClass = '') {
+      const trimmed = String(text || '').trim();
+      if (!trimmed) return;
+      const first = refs.transcriptBox.firstElementChild;
+      if (first && first.classList.contains('meta')) refs.transcriptBox.innerHTML = '';
+
+      const allLines = refs.transcriptBox.querySelectorAll('.line');
+      const lastLine = allLines.length ? allLines[allLines.length - 1] : null;
+      if (lastLine && !lastLine.classList.contains('meta') && lastLine.dataset.speaker === speaker && lastLine.dataset.text === trimmed) return;
+
+      const line = document.createElement('div');
+      const roleClass = speaker === 'Shakira' ? 'agent' : speaker === 'You' ? 'user' : 'meta';
+      line.className = `line ${roleClass} ${extraClass}`.trim();
+      line.dataset.speaker = speaker;
+      line.dataset.text = trimmed;
+      line.innerHTML = `<span class="who">${speaker}:</span>${escapeHtml(trimmed)}`;
+      refs.transcriptBox.appendChild(line);
+      refs.transcriptBox.scrollTop = refs.transcriptBox.scrollHeight;
+    }
+
+    function upsertInterim(speaker, text) {
+      const trimmed = String(text || '').trim();
+      if (!trimmed) return;
+      if (!state.interimNode) {
+        state.interimNode = document.createElement('div');
+        state.interimNode.className = 'line user interim';
+        refs.transcriptBox.appendChild(state.interimNode);
+      }
+      state.interimNode.innerHTML = `<span class="who">${speaker}:</span>${escapeHtml(trimmed)}`;
+      refs.transcriptBox.scrollTop = refs.transcriptBox.scrollHeight;
+    }
+
+    function clearInterim() {
+      if (!state.interimNode) return;
+      state.interimNode.remove();
+      state.interimNode = null;
+    }
+
+    function setComposerEnabled(enabled) {
+      refs.chatInput.disabled = !enabled;
+      refs.sendBtn.disabled = !enabled;
+    }
+
+    function refreshSpeechUi() {
+      if (!state.connected)        { setSpeechStatus('Idle', 'idle'); return; }
+      if (!state.agentIdentity)    { setSpeechStatus('Waiting for Shakira to join...', 'thinking'); return; }
+      if (state.agentSpeaking)     { setSpeechStatus('Shakira is speaking', 'speaking'); return; }
+      if (state.localSpeaking)     { setSpeechStatus('Listening to you', 'listening'); return; }
+      if (state.pendingAgentReply) { setSpeechStatus('Shakira is thinking...', 'thinking'); return; }
+      if (state.micMuted)          { setSpeechStatus('Microphone muted', 'thinking'); return; }
+      setSpeechStatus('Listening', 'listening');
+    }
+
+    // ── Agent detection ──
+    function isAgentParticipant(p) {
+      if (!p) return false;
+      const byId = String(p.identity || '').toLowerCase().includes('agent');
+      const agentKind = LivekitClient.ParticipantKind?.PARTICIPANT_KIND_AGENT;
+      return byId || (agentKind !== undefined && p.kind === agentKind);
+    }
+
+    function markAgentConnected(participant) {
+      if (!participant || !isAgentParticipant(participant)) return;
+      state.agentIdentity = participant.identity;
+      clearTimeout(state.joinWarningTimer);
+      setConnectionStatus('Connected', 'ok');
+      refreshSpeechUi();
+      clearTimeout(state.audioWarningTimer);
+      state.audioWarningTimer = setTimeout(() => {
+        if (state.connected && state.agentIdentity && !state.hasAgentAudioTrack) {
+          showToast('Shakira joined but no audio yet. If still silent, try reconnecting.', 'warning', 10000);
+        }
+      }, AGENT_AUDIO_TIMEOUT_MS);
+    }
+
+    function registerSpeakingEvents(room) {
+      if (!room?.localParticipant?.on) return;
+      room.localParticipant.on(LivekitClient.ParticipantEvent.IsSpeakingChanged, (isSpeaking) => {
+        state.localSpeaking = state.micMuted ? false : !!isSpeaking;
+        refreshSpeechUi();
+      });
+      room.localParticipant.on(LivekitClient.ParticipantEvent.MediaDevicesError, (err) => {
+        showToast(`Microphone error: ${err?.message || err}`, 'error');
+      });
+    }
+
+    function registerParticipantEvents(participant) {
+      if (!participant?.on) return;
+      if (isAgentParticipant(participant)) markAgentConnected(participant);
+
+      participant.on(LivekitClient.ParticipantEvent.IsSpeakingChanged, (isSpeaking) => {
+        if (participant.identity === state.agentIdentity) {
+          state.agentSpeaking = !!isSpeaking;
+          if (state.agentSpeaking) { state.pendingAgentReply = false; stopRinging(); }
+        }
+        refreshSpeechUi();
+      });
+
+      participant.on(LivekitClient.ParticipantEvent.TranscriptionReceived, (segments) => handleTranscription(segments, participant));
+    }
+
+    function handleTranscription(rawSegments, participant) {
+      const segments = Array.isArray(rawSegments) ? rawSegments : Array.isArray(rawSegments?.segments) ? rawSegments.segments : [];
+      if (!segments.length) return;
+      const speaker = participant?.identity === state.agentIdentity ? 'Shakira' : 'You';
+      for (const seg of segments) {
+        const text = String(seg?.text || '').trim();
+        if (!text) continue;
+        const isFinal = seg?.final !== false;
+        const segId = String(seg?.id || seg?.segmentId || '');
+        const dedupeKey = `${speaker}:${segId}:${text}`;
+        if (isFinal) {
+          if (!state.transcriptSeen.has(dedupeKey)) {
+            state.transcriptSeen.add(dedupeKey);
+            clearInterim();
+            appendTranscript(speaker, text);
+          }
+          state.pendingAgentReply = speaker === 'You';
+          refreshSpeechUi();
+        } else if (speaker === 'You') {
+          upsertInterim('You', text);
+        }
+      }
+    }
+
+    function handleDataMessage(packet, participant) {
+      let msg;
+      try { msg = JSON.parse(new TextDecoder().decode(packet)); } catch { return; }
+
+      if (msg?.type === 'transcript' && msg.text) {
+        const role = String(msg.role || '').trim().toLowerCase();
+        const speaker = (role === 'agent' || role === 'assistant' || participant?.identity === state.agentIdentity || isAgentParticipant(participant)) ? 'Shakira' : 'You';
+        appendTranscript(speaker, msg.text);
+        state.pendingAgentReply = speaker === 'You';
+        refreshSpeechUi();
+        return;
+      }
+
+      if (msg?.type === 'agent_state') {
+        if (msg.state === 'speaking')  { state.agentSpeaking = true; state.pendingAgentReply = false; stopRinging(); }
+        else if (msg.state === 'listening') { state.agentSpeaking = false; }
+        else if (msg.state === 'thinking') { state.pendingAgentReply = true; }
+        refreshSpeechUi();
+      }
+
+      if (msg?.type === 'error' && msg.message) showToast(`Error: ${msg.message}`, 'error');
+    }
+
+    function attachRemoteAudio(track, participant) {
+      if (track.kind !== LivekitClient.Track.Kind.Audio) return;
+      const el = track.attach();
+      el.autoplay = true; el.playsInline = true; el.muted = false; el.volume = 1.0;
+      el.className = 'hidden-audio';
+      document.body.appendChild(el);
+      state.attachedAudioEls.push(el);
+      const p = el.play?.();
+      if (p && typeof p.catch === 'function') p.catch(() => showToast('Browser blocked audio. Click anywhere then reconnect.', 'warning', 10000));
+      if (participant?.identity === state.agentIdentity || isAgentParticipant(participant)) {
+        state.hasAgentAudioTrack = true;
+        clearTimeout(state.audioWarningTimer);
+      }
+    }
+
+    function detachRemoteAudio(track) { try { track.detach(); } catch {} }
+
+    // ── Token ──
+    async function getToken() {
+      state.activeRoomName = `academy-web-${Date.now()}`;
+      const res = await fetch(`${GATEWAY_URL}/api/public/livekit-token`);
+      if (!res.ok) throw new Error(`Could not start call (${res.status})`);
+      const payload = await res.json();
+      if (payload.error) throw new Error(payload.error);
+      state.activeRoomName = payload.room || state.activeRoomName;
+      return payload;
+    }
+
+    async function connectRoom(tokenData) {
+      const room = new LivekitClient.Room({
+        adaptiveStream: true, dynacast: true,
+        audioCaptureDefaults: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+      });
+      state.room = room;
+
+      room.on(LivekitClient.RoomEvent.ConnectionStateChanged, (next) => {
+        if (next === LivekitClient.ConnectionState.Reconnecting) setConnectionStatus('Reconnecting...', 'warn');
+        else if (next === LivekitClient.ConnectionState.Connected) setConnectionStatus('Connected', 'ok');
+      });
+      room.on(LivekitClient.RoomEvent.Reconnecting, () => setConnectionStatus('Network unstable...', 'warn'));
+      room.on(LivekitClient.RoomEvent.Reconnected, () => setConnectionStatus('Reconnected', 'ok'));
+      room.on(LivekitClient.RoomEvent.MediaDevicesError, (err) => showToast(`Media error: ${err?.message || err}`, 'error'));
+      room.on(LivekitClient.RoomEvent.ParticipantConnected, (p) => registerParticipantEvents(p));
+      room.on(LivekitClient.RoomEvent.ParticipantDisconnected, (p) => {
+        if (p?.identity === state.agentIdentity) {
+          state.agentIdentity = null; state.agentSpeaking = false; state.hasAgentAudioTrack = false;
+          setConnectionStatus('Shakira disconnected', 'warn');
+        }
+        refreshSpeechUi();
+      });
+      room.on(LivekitClient.RoomEvent.TrackSubscribed, (track, pub, p) => attachRemoteAudio(track, p));
+      room.on(LivekitClient.RoomEvent.TrackUnsubscribed, (track) => detachRemoteAudio(track));
+      room.on(LivekitClient.RoomEvent.TranscriptionReceived, (segs, p) => handleTranscription(segs, p));
+      room.on(LivekitClient.RoomEvent.DataReceived, (pkt, p) => handleDataMessage(pkt, p));
+      room.on(LivekitClient.RoomEvent.Disconnected, (reason) => {
+        if (state.ending) return;
+        showToast(`Call ended: ${reason || 'connection lost'}`, 'warning');
+        teardownCall(false);
+      });
+
+      await withTimeout(room.connect(tokenData.url, tokenData.token, { autoSubscribe: true }), CONNECT_TIMEOUT_MS, 'Connection timed out');
+
+      state.connected = true;
+      setConnectionStatus('Connected', 'ok');
+      registerSpeakingEvents(room);
+      room.remoteParticipants.forEach((p) => registerParticipantEvents(p));
+      await room.localParticipant.setMicrophoneEnabled(true);
+      state.micMuted = false;
+      syncMuteButton();
+      startRinging();
+
+      state.joinWarningTimer = setTimeout(() => {
+        if (state.connected && !state.agentIdentity) showToast('Shakira hasn\'t joined yet. Wait a moment or try reconnecting.', 'warning', 10000);
+      }, AGENT_JOIN_TIMEOUT_MS);
+    }
+
+    function syncMuteButton() {
+      refs.muteBtn.disabled = !(state.connected && !state.muteBusy);
+      refs.muteBtn.classList.toggle('active', state.micMuted);
+      refs.muteBtn.textContent = state.micMuted ? 'Unmute Mic' : 'Mute Mic';
+    }
+
+    async function toggleMute() {
+      if (!state.room || !state.connected || state.muteBusy) return;
+      state.muteBusy = true; syncMuteButton();
+      const nextMuted = !state.micMuted;
+      try {
+        await state.room.localParticipant.setMicrophoneEnabled(!nextMuted);
+        state.micMuted = nextMuted;
+        if (state.micMuted) state.localSpeaking = false;
+        syncMuteButton(); refreshSpeechUi();
+      } catch (err) {
+        showToast(`Mic toggle failed: ${err?.message || err}`, 'error', 7000);
+      } finally { state.muteBusy = false; syncMuteButton(); }
+    }
+
+    async function startCall() {
+      refs.connectBtn.disabled = true;
+      refs.connectBtn.textContent = 'Connecting...';
+      resetTranscript();
+      setComposerEnabled(false);
+      syncMuteButton();
+      try {
+        setScreen(true);
+        setConnectionStatus('Getting ready...', '');
+        setSpeechStatus('Preparing call', 'thinking');
+        const tokenData = await getToken();
+        await connectRoom(tokenData);
+        setComposerEnabled(true);
+        refreshSpeechUi();
+      } catch (err) {
+        showToast(`Failed to start: ${err?.message || err}`, 'error', 10000);
+        teardownCall(false);
+      } finally {
+        refs.connectBtn.disabled = false;
+        refs.connectBtn.textContent = 'Start Call';
+      }
+    }
+
+    async function endCall() { await teardownCall(true); }
+
+    async function teardownCall(fromUser) {
+      stopRinging();
+      clearTimeout(state.joinWarningTimer);
+      clearTimeout(state.audioWarningTimer);
+
+      if (!state.room) {
+        Object.assign(state, { connected: false, agentIdentity: null, localSpeaking: false, agentSpeaking: false, pendingAgentReply: false, hasAgentAudioTrack: false, micMuted: false, muteBusy: false });
+        setComposerEnabled(false); syncMuteButton(); setScreen(false);
+        return;
+      }
+
+      state.ending = true;
+      try { await state.room.disconnect(); } catch {}
+      for (const el of state.attachedAudioEls) { try { el.remove(); } catch {} }
+      state.attachedAudioEls = [];
+      try { state.room.removeAllListeners?.(); } catch {}
+
+      Object.assign(state, { room: null, connected: false, agentIdentity: null, localSpeaking: false, agentSpeaking: false, pendingAgentReply: false, hasAgentAudioTrack: false, ending: false, micMuted: false, muteBusy: false });
+      setComposerEnabled(false); syncMuteButton();
+      setConnectionStatus('Call ended', fromUser ? '' : 'warn');
+      setSpeechStatus('Idle', 'idle');
+      setScreen(false);
+    }
+
+    async function onChatSubmit(event) {
+      event.preventDefault();
+      const text = refs.chatInput.value.trim();
+      if (!text) return;
+      refs.chatInput.value = '';
+      refs.chatInput.focus();
+      appendTranscript('You', text);
+      state.pendingAgentReply = true;
+      refreshSpeechUi();
+      setComposerEnabled(false);
+      try {
+        if (state.room?.localParticipant?.publishData) {
+          const bytes = new TextEncoder().encode(JSON.stringify({ type: 'client_text', role: 'caller', text: text, ts: Date.now() }));
+          await state.room.localParticipant.publishData(bytes, { reliable: true });
+        }
+      } catch (err) {
+        showToast(`Message failed: ${err?.message || err}`, 'error', 9000);
+        state.pendingAgentReply = false; refreshSpeechUi();
+      } finally { setComposerEnabled(state.connected); }
+    }
+
+    function withTimeout(promise, ms, msg) {
+      return Promise.race([promise, new Promise((_, rej) => setTimeout(() => rej(new Error(msg)), ms))]);
+    }
+
+    function escapeHtml(s) {
+      return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    }
+
+    // ── Event bindings ──
+    refs.connectBtn.addEventListener('click', startCall);
+    refs.endBtn.addEventListener('click', endCall);
+    refs.muteBtn.addEventListener('click', toggleMute);
+    refs.chatForm.addEventListener('submit', onChatSubmit);
+    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && state.connected) endCall(); });
+
+    setScreen(false);
+    setConnectionStatus('Not connected', '');
+    setSpeechStatus('Idle', 'idle');
+    syncMuteButton();
+  </script>
+</body>
+</html>
