@@ -31,14 +31,18 @@ async def _verify_request(
     timestamp: str | None,
     signature: str | None,
 ) -> tuple[bytes, str]:
-    """Read body and verify the Ultravox signature. Return (body_bytes, call_id)."""
+    """Read body and verify the Ultravox signature. Return (body_bytes, call_id).
+
+    Fast-fail order: secret missing → 503, headers missing → 401, then read
+    body, then HMAC verify → 401 on mismatch.
+    """
     secret = os.getenv("ULTRAVOX_TOOL_SECRET", "").strip()
     if not secret:
         logger.error("ULTRAVOX_TOOL_SECRET not configured — refusing webhook")
         raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="server not configured")
-    body = await request.body()
     if not call_id or not timestamp or not signature:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="missing signature headers")
+    body = await request.body()
     if not verify_signature(
         body=body,
         timestamp=timestamp,

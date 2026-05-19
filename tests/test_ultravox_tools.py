@@ -53,6 +53,24 @@ class TestSignatureGating:
         resp = client.post("/api/ultravox/tools/datetime", headers=headers, content=body)
         assert resp.status_code == 401
 
+    def test_missing_tool_secret_returns_503(self, monkeypatch, client):
+        # Remove secret AFTER the client fixture has built the app, so the
+        # endpoint sees an empty env when it runs.
+        monkeypatch.delenv("ULTRAVOX_TOOL_SECRET", raising=False)
+        # We don't even need valid signature headers — the secret check
+        # comes first.
+        resp = client.post("/api/ultravox/tools/datetime", content=b"{}")
+        assert resp.status_code == 503
+
+    def test_invalid_json_body_returns_400(self, client):
+        body = b"{not-valid-json}"
+        resp = client.post(
+            "/api/ultravox/tools/datetime",
+            headers=_sign_headers("call-bad-json", body),
+            content=body,
+        )
+        assert resp.status_code == 400
+
 
 class TestDatetime:
     def test_valid_signature_returns_uae_datetime(self, client):
