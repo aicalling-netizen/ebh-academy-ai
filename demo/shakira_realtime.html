@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk to Shakira (Realtime) | EBH Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1f393;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f4f0fa;
+  --text: #1a1020;
+  --muted: #7a6590;
+  --accent: #7c3aed;
+  --accent-deep: #5b21b6;
+  --accent-light: rgba(124, 58, 237, 0.10);
+  --line: rgba(100, 50, 150, 0.10);
+  --panel: rgba(255, 255, 255, 0.84);
+  --success: #2d7a50;
+  --danger: #b5434b;
+  --shadow: 0 20px 50px rgba(80, 30, 120, 0.10);
+  --radius: 22px;
+}
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(124, 58, 237, 0.15), transparent 50%),
+    linear-gradient(180deg, #f8f5fd 0%, #ede6f7 100%);
+  min-height: 100vh;
+}
+.container { max-width: 720px; margin: 0 auto; padding: 32px 16px; }
+.brand { font-family: 'Cormorant', Georgia, serif; font-weight: 700; font-size: 1.8rem; color: var(--accent-deep); text-align: center; }
+.tagline { color: var(--muted); text-align: center; margin-top: 4px; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.realtime-badge { display: inline-block; background: var(--accent-light); color: var(--accent-deep); padding: 4px 10px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; margin-top: 8px; text-transform: uppercase; }
+.panel { background: var(--panel); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; margin-top: 28px; box-shadow: var(--shadow); }
+.orb {
+  width: 160px; height: 160px; margin: 12px auto 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #b794ec, #7c3aed 60%, #5b21b6);
+  box-shadow: 0 0 60px rgba(124, 58, 237, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.orb.listening { animation: pulse 1.6s infinite ease-in-out; }
+.orb.speaking { box-shadow: 0 0 80px rgba(124, 58, 237, 0.7); transform: scale(1.05); }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+.lang-picker { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; }
+.lang-btn { background: white; border: 1px solid var(--line); padding: 8px 18px; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 0.9rem; transition: background 0.2s; }
+.lang-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+.call-btn {
+  display: block; margin: 0 auto; padding: 14px 36px;
+  background: var(--accent); color: white; border: none; border-radius: 999px;
+  font-family: inherit; font-size: 1rem; font-weight: 600; cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.call-btn:hover { background: var(--accent-deep); transform: translateY(-1px); }
+.call-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.call-btn.end { background: var(--danger); }
+.status { text-align: center; color: var(--muted); margin-top: 16px; font-size: 0.85rem; min-height: 20px; }
+.transcript {
+  margin-top: 20px; max-height: 220px; overflow-y: auto;
+  background: white; border: 1px solid var(--line); border-radius: 14px;
+  padding: 14px; font-size: 0.92rem;
+}
+.t-row { margin-bottom: 8px; line-height: 1.5; }
+.t-row.agent { color: var(--accent-deep); }
+.t-row.user { color: var(--text); }
+.t-role { font-weight: 600; margin-right: 6px; }
+.classic-link { text-align: center; margin-top: 16px; font-size: 0.85rem; }
+.classic-link a { color: var(--muted); text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="brand">EBH Academy</div>
+  <div class="tagline">Talk to Shakira</div>
+  <div style="text-align: center;"><span class="realtime-badge">Realtime · Beta</span></div>
+
+  <div class="panel">
+    <div id="orb" class="orb"></div>
+
+    <div class="lang-picker">
+      <button class="lang-btn active" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ar">العربية</button>
+    </div>
+
+    <button id="callBtn" class="call-btn">Start Call</button>
+    <div id="status" class="status">Ready</div>
+
+    <div id="transcript" class="transcript" style="display: none;"></div>
+  </div>
+
+  <div class="classic-link"><a href="/talk">Use classic version instead</a></div>
+</div>
+
+<script>
+let lang = 'en';
+let pc = null;
+let micStream = null;
+let dataChannel = null;
+let inCall = false;
+
+const orb = document.getElementById('orb');
+const callBtn = document.getElementById('callBtn');
+const statusEl = document.getElementById('status');
+const transcriptEl = document.getElementById('transcript');
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (inCall) return;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    lang = btn.dataset.lang;
+  });
+});
+
+callBtn.addEventListener('click', async () => {
+  if (inCall) {
+    endCall();
+  } else {
+    await startCall();
+  }
+});
+
+async function startCall() {
+  setStatus('Requesting microphone…');
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch (e) {
+    setStatus('Microphone access denied.');
+    return;
+  }
+
+  setStatus('Connecting…');
+  let joinUrl;
+  try {
+    const res = await fetch(`/api/public/ultravox-call?lang=${lang}&source=web`);
+    if (!res.ok) throw new Error(`gateway ${res.status}`);
+    const json = await res.json();
+    joinUrl = json.joinUrl;
+    if (!joinUrl) throw new Error('no joinUrl');
+  } catch (e) {
+    setStatus('Could not start call. Try again.');
+    cleanupMic();
+    return;
+  }
+
+  try {
+    await openWebRtc(joinUrl);
+  } catch (e) {
+    console.error(e);
+    setStatus('Connection failed.');
+    cleanupMic();
+    return;
+  }
+
+  inCall = true;
+  callBtn.textContent = 'End Call';
+  callBtn.classList.add('end');
+  orb.classList.add('listening');
+  transcriptEl.style.display = 'block';
+  transcriptEl.innerHTML = '';
+  setStatus('Connected. Shakira is listening.');
+}
+
+async function openWebRtc(joinUrl) {
+  pc = new RTCPeerConnection();
+  micStream.getTracks().forEach(t => pc.addTrack(t, micStream));
+
+  pc.ontrack = (ev) => {
+    const audio = new Audio();
+    audio.srcObject = ev.streams[0];
+    audio.autoplay = true;
+  };
+
+  dataChannel = pc.createDataChannel('ultravox');
+  dataChannel.onmessage = handleDataMessage;
+
+  const offer = await pc.createOffer();
+  await pc.setLocalDescription(offer);
+
+  const resp = await fetch(joinUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/sdp' },
+    body: offer.sdp,
+  });
+  if (!resp.ok) throw new Error(`signaling ${resp.status}`);
+  const answer = await resp.text();
+  await pc.setRemoteDescription({ type: 'answer', sdp: answer });
+}
+
+function handleDataMessage(ev) {
+  let msg;
+  try { msg = JSON.parse(ev.data); } catch { return; }
+  if (msg.type === 'transcript' && msg.text) {
+    appendTranscript(msg.role || 'agent', msg.text, msg.final !== false);
+  } else if (msg.type === 'state') {
+    if (msg.state === 'speaking') {
+      orb.classList.add('speaking');
+      orb.classList.remove('listening');
+    } else if (msg.state === 'listening') {
+      orb.classList.remove('speaking');
+      orb.classList.add('listening');
+    }
+  }
+}
+
+function appendTranscript(role, text, isFinal) {
+  const div = document.createElement('div');
+  div.className = `t-row ${role}`;
+  div.innerHTML = `<span class="t-role">${role === 'agent' ? 'Shakira' : 'You'}:</span>${text}`;
+  transcriptEl.appendChild(div);
+  transcriptEl.scrollTop = transcriptEl.scrollHeight;
+}
+
+function endCall() {
+  if (pc) { try { pc.close(); } catch {} pc = null; }
+  cleanupMic();
+  inCall = false;
+  callBtn.textContent = 'Start Call';
+  callBtn.classList.remove('end');
+  orb.classList.remove('listening', 'speaking');
+  setStatus('Call ended.');
+}
+
+function cleanupMic() {
+  if (micStream) {
+    micStream.getTracks().forEach(t => t.stop());
+    micStream = null;
+  }
+}
+
+function setStatus(msg) { statusEl.textContent = msg; }
+</script>
+</body>
+</html>
