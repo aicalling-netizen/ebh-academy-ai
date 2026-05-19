@@ -7,7 +7,6 @@ Auth: X-API-Key header. See https://docs.ultravox.ai/.
 """
 from __future__ import annotations
 
-import inspect
 import logging
 import os
 from dataclasses import dataclass
@@ -64,8 +63,7 @@ class UltravoxClient:
         headers = {"X-API-Key": self._config.api_key, "Content-Type": "application/json"}
 
         async with httpx.AsyncClient() as client:
-            _result = client.post(url, headers=headers, json=body, timeout=15.0)
-            resp = await _result if inspect.isawaitable(_result) else _result
+            resp = await client.post(url, headers=headers, json=body, timeout=15.0)
         resp.raise_for_status()
         data = resp.json()
         logger.info(

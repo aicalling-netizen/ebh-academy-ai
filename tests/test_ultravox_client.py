@@ -22,7 +22,7 @@ def config():
 async def test_create_call_posts_to_agent_calls_endpoint(config, monkeypatch):
     captured = {}
 
-    def fake_post(self, url, headers=None, json=None, timeout=None):
+    async def fake_post(self, url, headers=None, json=None, timeout=None):
         captured["url"] = url
         captured["headers"] = headers
         captured["json"] = json
@@ -53,7 +53,7 @@ async def test_create_call_posts_to_agent_calls_endpoint(config, monkeypatch):
 async def test_create_call_arabic_sets_voice_override(config, monkeypatch):
     captured = {}
 
-    def fake_post(self, url, headers=None, json=None, timeout=None):
+    async def fake_post(self, url, headers=None, json=None, timeout=None):
         captured["json"] = json
         return httpx.Response(
             201,
@@ -77,7 +77,7 @@ async def test_create_call_arabic_sets_voice_override(config, monkeypatch):
 async def test_create_call_includes_source_in_metadata(config, monkeypatch):
     captured = {}
 
-    def fake_post(self, url, headers=None, json=None, timeout=None):
+    async def fake_post(self, url, headers=None, json=None, timeout=None):
         captured["json"] = json
         return httpx.Response(
             201,
@@ -95,7 +95,7 @@ async def test_create_call_includes_source_in_metadata(config, monkeypatch):
 
 @pytest.mark.asyncio
 async def test_create_call_raises_on_non_2xx(config, monkeypatch):
-    def fake_post(self, url, headers=None, json=None, timeout=None):
+    async def fake_post(self, url, headers=None, json=None, timeout=None):
         return httpx.Response(
             401,
             json={"error": "unauthorized"},
