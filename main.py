@@ -149,6 +149,54 @@ async def serve_dashboard():
     raise HTTPException(status_code=404, detail="Dashboard not found")
 
 
+# ── Ultravox realtime stack ──────────────────────────────────────────────
+
+from routers.ultravox_tools import router as _ultravox_tools_router
+app.include_router(_ultravox_tools_router)
+
+
+@app.get("/talk-realtime", response_class=HTMLResponse)
+async def serve_talk_realtime():
+    """Serve the Ultravox realtime web call page."""
+    page = Path(__file__).parent / "demo" / "shakira_realtime.html"
+    if page.exists():
+        return HTMLResponse(page.read_text(encoding="utf-8"))
+    raise HTTPException(status_code=404, detail="Realtime talk page not found")
+
+
+@app.get("/api/public/ultravox-call")
+async def api_public_ultravox_call(
+    request: Request,
+    _rate_limit: None = Depends(_check_public_rate),
+):
+    """Create an Ultravox call and return the joinUrl for the web client."""
+    lang = (request.query_params.get("lang") or "en").strip().lower()
+    if lang not in {"en", "ar"}:
+        lang = "en"
+    source = (request.query_params.get("source") or "web").strip() or "web"
+
+    try:
+        from core.ultravox_client import UltravoxClient, UltravoxConfig
+
+        config = UltravoxConfig.from_env()
+        if not config.api_key or not config.agent_id:
+            raise HTTPException(status_code=503, detail="Ultravox not configured")
+
+        client = UltravoxClient(config)
+        result = await client.create_call(lang=lang, source=source)
+        return {
+            "joinUrl": result.get("joinUrl"),
+            "callId": result.get("callId"),
+            "agentId": config.agent_id,
+            "lang": lang,
+        }
+    except HTTPException:
+        raise
+    except Exception:
+        logger.exception("Ultravox call creation failed")
+        raise HTTPException(status_code=502, detail="Failed to create realtime call")
+
+
 # ── Public LiveKit token endpoint ────────────────────────────────────────
 
 @app.get("/api/public/livekit-token")
