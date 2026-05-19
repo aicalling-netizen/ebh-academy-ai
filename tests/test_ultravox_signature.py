@@ -52,3 +52,17 @@ class TestVerifySignature:
         sig = _sign(ts, call_id, body)
         # If a length-different forged signature crashes, we used == instead of hmac.compare_digest
         assert verify_signature(body=body, timestamp=ts, call_id=call_id, signature="ab", secret=SECRET) is False
+
+    def test_known_vector_matches(self):
+        # Pre-computed HMAC-SHA256 of "1.c.x" with secret "s".
+        # External ground truth — protects against accidental changes to the
+        # message construction formula (delimiter, byte order, etc.) by NOT
+        # being derived from the implementation under test.
+        known_sig = "b42768fdc63853802e4477b7cb9837752dc2a876f7a89796b948e270b63af8c0"
+        assert verify_signature(
+            body=b"x",
+            timestamp="1",
+            call_id="c",
+            signature=known_sig,
+            secret="s",
+        ) is True
