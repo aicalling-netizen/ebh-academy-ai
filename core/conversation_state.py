@@ -37,26 +37,48 @@ class SessionState:
     metadata: dict = field(default_factory=dict)
 
     def record_turn(self) -> None:
+        """Increment the user-turn counter. Called once per webhook fire."""
         self.turn_count += 1
 
     def mark_lead_captured(self) -> None:
+        """Record that name+phone were captured. Idempotent: stage only
+        advances from ANONYMOUS → IDENTIFIED; if already IDENTIFIED or
+        further, stage stays put while phone_captured flips to True."""
         self.phone_captured = True
         if self.stage == Stage.ANONYMOUS:
             self.stage = Stage.IDENTIFIED
 
     def mark_qualified(self) -> None:
+        """Advance to QUALIFIED if currently ANONYMOUS or IDENTIFIED.
+        No-op once QUALIFIED or BOOKED — qualification is monotonic."""
         if self.stage in (Stage.ANONYMOUS, Stage.IDENTIFIED):
             self.stage = Stage.QUALIFIED
 
     def mark_booked(self) -> None:
+        """Set the terminal BOOKED stage. Reachable from any prior stage —
+        a returning student may book directly without going through the
+        identification/qualification flow."""
         self.stage = Stage.BOOKED
 
     def enable_care_mode(self) -> None:
+        """Flip the CARE flag. Orthogonal to stage: a caller can be in
+        any stage (even BOOKED) and still need care mode (distress
+        triggers, self-harm mentions). The prompt layer overrides
+        sales/upsell guidance while care_mode is True."""
         self.care_mode = True
 
 
 class SessionStore:
-    """Thread-safe in-memory store of SessionState by call_id."""
+    """In-memory store of SessionState keyed by call_id.
+
+    The internal dict is protected by a lock so concurrent ``get``/``drop``/
+    ``peek`` calls cannot race on lookup or insertion. Mutations on the
+    returned ``SessionState`` instances themselves (``record_turn``,
+    ``mark_lead_captured``, etc.) are NOT lock-protected; they rely on
+    CPython's GIL for atomicity of simple int/bool/enum writes. This is
+    safe under the current single-worker uvicorn deployment. Swap for a
+    Redis-backed implementation if running multi-instance.
+    """
 
     def __init__(self) -> None:
         self._sessions: dict[str, SessionState] = {}
