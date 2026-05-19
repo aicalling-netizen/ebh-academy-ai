@@ -13,6 +13,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import time
 from typing import Any
 
 from fastapi import APIRouter, Header, HTTPException, Request, status
@@ -21,6 +22,8 @@ from core.conversation_state import default_store
 from core.ultravox_signature import verify_signature
 
 logger = logging.getLogger("academy.ultravox.tools")
+
+_MAX_CLOCK_SKEW_S = 300  # ±5 minutes — protects against signed-request replay
 
 router = APIRouter(prefix="/api/ultravox/tools", tags=["ultravox"])
 
@@ -51,6 +54,12 @@ async def _verify_request(
         secret=secret,
     ):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="invalid signature")
+    try:
+        ts_int = int(timestamp)
+    except ValueError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="invalid timestamp")
+    if abs(time.time() - ts_int) > _MAX_CLOCK_SKEW_S:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="stale timestamp")
     return body, call_id
 
 

@@ -159,3 +159,24 @@ class TestCaptureLead:
         assert state is not None
         assert state.phone_captured is True
         assert state.stage == Stage.IDENTIFIED
+
+
+class TestTimestampReplayProtection:
+    def test_stale_timestamp_rejects_with_401(self, client):
+        # Sign a request with a timestamp from 10 minutes ago — HMAC still valid
+        # but the timestamp is outside the ±5 min replay window.
+        import hashlib
+        import hmac as _hmac
+        body = b"{}"
+        old_ts = str(int(time.time()) - 600)  # 10 minutes ago
+        call_id = "call-old-1"
+        msg = f"{old_ts}.{call_id}.".encode("utf-8") + body
+        sig = _hmac.new(SECRET.encode("utf-8"), msg, hashlib.sha256).hexdigest()
+        headers = {
+            "X-Ultravox-Call-ID": call_id,
+            "X-Ultravox-Signature-Timestamp": old_ts,
+            "X-Ultravox-Signature": sig,
+            "Content-Type": "application/json",
+        }
+        resp = client.post("/api/ultravox/tools/datetime", headers=headers, content=body)
+        assert resp.status_code == 401
