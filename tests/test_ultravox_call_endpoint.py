@@ -1,8 +1,6 @@
 """Tests for the public /api/public/ultravox-call endpoint."""
 from __future__ import annotations
 
-import os
-
 import httpx
 import pytest
 from fastapi.testclient import TestClient
@@ -58,6 +56,46 @@ class TestUltravoxCallEndpoint:
         assert resp.status_code == 200
         assert resp.json()["lang"] == "en"
 
-    def test_source_is_passed_through(self, client):
+    def test_source_is_passed_through(self, monkeypatch):
+        # Use our own client + capturing fake_post for this test, so we can
+        # inspect the body the gateway sent to Ultravox.
+        captured = {}
+
+        async def fake_post(self, url, headers=None, json=None, timeout=None):
+            captured["json"] = json
+            return httpx.Response(
+                201,
+                json={"callId": "c", "joinUrl": "https://x", "created": "t"},
+                request=httpx.Request("POST", url),
+            )
+
+        monkeypatch.setattr(httpx.AsyncClient, "post", fake_post)
+        from main import app
+        client = TestClient(app)
+
         resp = client.get("/api/public/ultravox-call?lang=en&source=q2-campaign")
         assert resp.status_code == 200
+        assert captured["json"]["metadata"]["source"] == "q2-campaign"
+
+    def test_missing_config_returns_503(self, monkeypatch):
+        # Even though the autouse fixture set ULTRAVOX_API_KEY, remove it
+        # for this test so the endpoint's config-missing guard fires.
+        monkeypatch.delenv("ULTRAVOX_API_KEY", raising=False)
+        from main import app
+        client = TestClient(app)
+        resp = client.get("/api/public/ultravox-call?lang=en")
+        assert resp.status_code == 503
+
+    def test_ultravox_failure_returns_502(self, monkeypatch):
+        async def fake_post(self, url, headers=None, json=None, timeout=None):
+            return httpx.Response(
+                401,
+                json={"error": "unauthorized"},
+                request=httpx.Request("POST", url),
+            )
+
+        monkeypatch.setattr(httpx.AsyncClient, "post", fake_post)
+        from main import app
+        client = TestClient(app)
+        resp = client.get("/api/public/ultravox-call?lang=en")
+        assert resp.status_code == 502
