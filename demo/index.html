@@ -185,6 +185,34 @@ body {
   background: rgba(255, 255, 255, 0.7);
 }
 
+.lang-picker {
+  display: inline-flex;
+  gap: 0;
+  margin: 0 auto 18px;
+  border: 1px solid rgba(91, 33, 182, 0.18);
+  border-radius: 999px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.7);
+}
+.lang-picker button {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 7px 18px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.lang-picker button:hover { color: var(--accent); }
+.lang-picker button.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+
 .start-btn {
   width: 100%;
   border: none;
@@ -543,6 +571,10 @@ audio.hidden-audio {
         <span class="feature-chip">Enrollment inquiry</span>
         <span class="feature-chip">Certifications & DHA</span>
       </div>
+      <div class="lang-picker" role="group" aria-label="Language">
+        <button id="lang-en" type="button" class="active" data-lang="en">English</button>
+        <button id="lang-ar" type="button" data-lang="ar">العربية</button>
+      </div>
       <button id="connect-btn" class="start-btn" type="button">Start Call</button>
       <p class="welcome-note">
         Microphone access required. Or visit <a href="https://ebhacademy.com" target="_blank">ebhacademy.com</a> for details.
@@ -640,7 +672,8 @@ audio.hidden-audio {
       attachedAudioEls: [],
       ending: false,
       micMuted: false,
-      muteBusy: false
+      muteBusy: false,
+      lang: 'en'
     };
 
     // ── Ring tone ──
@@ -878,7 +911,8 @@ audio.hidden-audio {
     // ── Token ──
     async function getToken() {
       state.activeRoomName = `academy-web-${Date.now()}`;
-      const res = await fetch(`${GATEWAY_URL}/api/public/livekit-token`);
+      const lang = state.lang || 'en';
+      const res = await fetch(`${GATEWAY_URL}/api/public/livekit-token?lang=${encodeURIComponent(lang)}`);
       if (!res.ok) throw new Error(`Could not start call (${res.status})`);
       const payload = await res.json();
       if (payload.error) throw new Error(payload.error);
@@ -1043,6 +1077,18 @@ audio.hidden-audio {
     setConnectionStatus('Not connected', '');
     setSpeechStatus('Idle', 'idle');
     syncMuteButton();
+
+    // Language picker
+    document.querySelectorAll('.lang-picker button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        if (!lang || state.lang === lang) return;
+        state.lang = lang;
+        document.querySelectorAll('.lang-picker button').forEach((b) => {
+          b.classList.toggle('active', b === btn);
+        });
+      });
+    });
   </script>
 </body>
 </html>

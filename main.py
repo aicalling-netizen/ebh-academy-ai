@@ -16,7 +16,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=Path(__file__).parent / ".env")
+load_dotenv(dotenv_path=Path(__file__).parent / ".env", override=True)
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse
@@ -153,9 +153,16 @@ async def serve_dashboard():
 
 @app.get("/api/public/livekit-token")
 async def api_public_livekit_token(
+    request: Request,
     _rate_limit: None = Depends(_check_public_rate),
 ):
     """Generate a LiveKit token for public web callers (no API key needed)."""
+    import json as _json
+
+    lang = (request.query_params.get("lang") or "en").strip().lower()
+    if lang not in {"en", "ar"}:
+        lang = "en"
+
     try:
         from livekit.api import AccessToken, VideoGrants, LiveKitAPI, CreateAgentDispatchRequest
 
@@ -181,15 +188,20 @@ async def api_public_livekit_token(
         }
         if force_dispatch:
             try:
+                dispatch_metadata = _json.dumps({"lang": lang})
                 async with LiveKitAPI(url=lk_url_internal, api_key=lk_key, api_secret=lk_secret) as lk_api:
                     await lk_api.agent_dispatch.create_dispatch(
-                        CreateAgentDispatchRequest(room=room, agent_name=lk_agent_name)
+                        CreateAgentDispatchRequest(
+                            room=room,
+                            agent_name=lk_agent_name,
+                            metadata=dispatch_metadata,
+                        )
                     )
-                logger.info("Dispatched agent '%s' to room '%s'", lk_agent_name, room)
+                logger.info("Dispatched agent '%s' to room '%s' (lang=%s)", lk_agent_name, room, lang)
             except Exception as de:
                 logger.warning("Agent dispatch failed: %s", de)
 
-        return {"token": token, "url": lk_url_public, "room": room, "identity": identity}
+        return {"token": token, "url": lk_url_public, "room": room, "identity": identity, "lang": lang}
 
     except ImportError as ie:
         raise HTTPException(status_code=500, detail=f"LiveKit not configured: {ie}")

@@ -19,7 +19,7 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=Path(__file__).parent / ".env")
+load_dotenv(dotenv_path=Path(__file__).parent / ".env", override=True)
 sys.path.insert(0, str(Path(__file__).parent))
 
 import logging
@@ -56,6 +56,18 @@ try:
     _ANTHROPIC_AVAILABLE = True
 except ImportError:
     _ANTHROPIC_AVAILABLE = False
+
+try:
+    from livekit.plugins import munsit as lk_munsit
+    _MUNSIT_AVAILABLE = True
+except ImportError:
+    _MUNSIT_AVAILABLE = False
+
+try:
+    from livekit.plugins import faseeh as lk_faseeh
+    _FASEEH_AVAILABLE = True
+except ImportError:
+    _FASEEH_AVAILABLE = False
 
 from livekit.agents.voice.agent_session import SessionConnectOptions
 from core.time_context import build_uae_time_context, now_uae
@@ -116,15 +128,67 @@ def _load_prompt() -> str:
 _SYSTEM_PROMPT_BASE = _load_prompt()
 
 
-def _build_session_prompt() -> str:
-    """Compose full prompt with real-time context."""
+def _build_session_prompt(lang: str = "en") -> str:
+    """Compose full prompt with real-time context and language directive."""
     time_ctx = build_uae_time_context()
-    return f"{_SYSTEM_PROMPT_BASE}\n\n--- LIVE CONTEXT ---\n{time_ctx}"
+    if lang == "ar":
+        lang_directive = (
+            "--- LANGUAGE ---\n"
+            "The caller chose Arabic. You MUST reply in Modern Standard Arabic only. "
+            "Do not switch to English even if the caller mixes English words. "
+            "Keep numbers, prices (AED), and proper names readable; the rest must be Arabic."
+        )
+    else:
+        lang_directive = (
+            "--- LANGUAGE ---\n"
+            "The caller chose English. Reply in English only."
+        )
+    return f"{_SYSTEM_PROMPT_BASE}\n\n{lang_directive}\n\n--- LIVE CONTEXT ---\n{time_ctx}"
 
 
 # ── STT / TTS builders ──────────────────────────────────────────────────
 
-def _build_stt():
+# Nova-3 "multi" mode does NOT include Arabic — must use language=ar explicitly.
+_STT_KEYTERMS_EN = [
+    "CIDESCO", "KHDA", "DHA", "IAO",
+    "dermaplaning", "maderotherapy", "Madero",
+    "Tabby", "EBH", "Shakira",
+]
+_STT_KEYTERMS_AR = [
+    "شاكيرا", "أكاديمية", "دبي", "دورة", "شهادة",
+]
+
+
+def _build_stt(lang: str = "en"):
+    # Arabic → Munsit (much better Arabic accuracy than Deepgram)
+    if lang == "ar":
+        munsit_key = os.getenv("MUNSIT_API_KEY", "").strip()
+        if not munsit_key:
+            raise RuntimeError("MUNSIT_API_KEY not set — required for Arabic STT")
+        model = os.getenv("MUNSIT_STT_MODEL", "munsit-en-ar")  # code-switching
+
+        # Default to our custom streaming adapter (true streaming, ~500ms interim updates).
+        # Set MUNSIT_MODE=batch to fall back to the upstream plugin's batch mode
+        # (slower per-utterance latency but well-tested).
+        munsit_mode = os.getenv("MUNSIT_MODE", "streaming").strip().lower()
+        if munsit_mode == "streaming":
+            from core.munsit_streaming_stt import MunsitStreamingSTT
+            return MunsitStreamingSTT(
+                api_key=munsit_key,
+                model=model,
+                language="ar",
+            )
+
+        if not _MUNSIT_AVAILABLE:
+            raise RuntimeError("livekit-plugins-munsit not installed")
+        return lk_munsit.STT(
+            model=model,
+            mode="batch",
+            api_key=munsit_key,
+            language="ar",
+        )
+
+    # English (and default) → Deepgram
     if not _DEEPGRAM_AVAILABLE:
         raise RuntimeError("livekit-plugins-deepgram not installed")
     model = os.getenv("DEEPGRAM_STT_MODEL", "nova-3")
@@ -132,32 +196,40 @@ def _build_stt():
     return lk_deepgram.STT(
         model=model,
         language=language,
-        detect_language=True,
         interim_results=True,
         punctuate=True,
         smart_format=True,
         no_delay=True,
         endpointing_ms=200,
-        keywords=[
-            ("CIDESCO", 5.0),
-            ("KHDA", 5.0),
-            ("DHA", 5.0),
-            ("IAO", 3.0),
-            ("dermaplaning", 5.0),
-            ("maderotherapy", 5.0),
-            ("Madero", 4.0),
-            ("Tabby", 3.0),
-            ("EBH", 5.0),
-            ("Shakira", 4.0),
-        ],
+        keyterm=_STT_KEYTERMS_EN,
     )
 
 
-def _build_tts():
+def _build_tts(lang: str = "en"):
+    # Arabic → Faseeh (Munsit's TTS, dedicated Arabic voices)
+    if lang == "ar":
+        if not _FASEEH_AVAILABLE:
+            raise RuntimeError("livekit-plugins-faseeh not installed")
+        munsit_key = os.getenv("MUNSIT_API_KEY", "").strip()
+        if not munsit_key:
+            raise RuntimeError("MUNSIT_API_KEY not set — required for Arabic TTS")
+        voice = os.getenv("FASEEH_VOICE", "WcxyRPjVQcpVYmceBQO4Helb")  # Aisha (Emirati female)
+        model = os.getenv("FASEEH_MODEL", "faseeh-v1-preview")
+        speed = float(os.getenv("FASEEH_SPEED", "1.04"))
+        stability = float(os.getenv("FASEEH_STABILITY", "1.0"))
+        return lk_faseeh.TTS(
+            voice_id=voice,
+            model=model,
+            api_key=munsit_key,
+            stability=stability,
+            speed=speed,
+        )
+
+    # English (and default) → Inworld
     if not _INWORLD_AVAILABLE:
         raise RuntimeError("livekit-plugins-inworld not installed")
-    voice = os.getenv("INWORLD_VOICE", "Elara")
-    return lk_inworld.TTS(voice=voice)
+    voice = os.getenv("INWORLD_VOICE", "Abby")
+    return lk_inworld.TTS(voice=voice, language="en-US")
 
 
 # ── Agent class ──────────────────────────────────────────────────────────
@@ -165,11 +237,12 @@ def _build_tts():
 class ShakiraAgent(Agent):
     """Shakira — EBH Academy AI Advisor (LiveKit transport)."""
 
-    def __init__(self) -> None:
-        super().__init__(instructions=_build_session_prompt())
+    def __init__(self, lang: str = "en") -> None:
+        super().__init__(instructions=_build_session_prompt(lang))
         self._call_start = time.monotonic()
         self._tool_calls: list[dict] = []
-        logger.info("ShakiraAgent initialized")
+        self._lang = lang
+        logger.info("ShakiraAgent initialized (lang=%s)", lang)
 
     # ── Tools ────────────────────────────────────────────────────────────
 
@@ -238,15 +311,29 @@ async def entrypoint(ctx: JobContext) -> None:
     await ctx.connect()
     logger.info("Room connected: %s", ctx.room.name)
 
-    stt_engine = _build_stt()
-    tts_engine = _build_tts()
+    # Read language from job dispatch metadata (set by gateway)
+    import json as _json
+    lang = "en"
+    try:
+        raw_md = getattr(ctx.job, "metadata", "") or ""
+        if raw_md:
+            md = _json.loads(raw_md)
+            cand = (md.get("lang") or "").strip().lower()
+            if cand in {"en", "ar"}:
+                lang = cand
+    except Exception as me:
+        logger.warning("Failed to parse job metadata, defaulting to English: %s", me)
+    logger.info("Session language: %s", lang)
+
+    stt_engine = _build_stt(lang)
+    tts_engine = _build_tts(lang)
 
     # LLM setup
     anthropic_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
     anthropic_model = os.getenv("ANTHROPIC_LLM_MODEL", "claude-sonnet-4-5").strip()
     llm_temperature = float(os.getenv("LIVEKIT_TEMPERATURE", "0.3"))
-    llm_max_tokens = int(os.getenv("LIVEKIT_MAX_COMPLETION_TOKENS", "80"))
-    llm_max_tokens = max(32, min(llm_max_tokens, 1024))
+    llm_max_tokens = int(os.getenv("LIVEKIT_MAX_COMPLETION_TOKENS", "400"))
+    llm_max_tokens = max(64, min(llm_max_tokens, 2048))
     llm_timeout_s = float(os.getenv("LIVEKIT_LLM_TIMEOUT_S", "25"))
 
     llm_kwargs: dict[str, Any] = dict(
@@ -256,8 +343,8 @@ async def entrypoint(ctx: JobContext) -> None:
         max_tokens=llm_max_tokens,
     )
     caching = os.getenv("ANTHROPIC_PROMPT_CACHING", "true").strip().lower() in ("1", "true", "yes")
-    if caching and hasattr(lk_anthropic.LLM, "__init__"):
-        llm_kwargs["caching"] = True
+    if caching:
+        llm_kwargs["caching"] = "ephemeral"
     llm_engine = lk_anthropic.LLM(**llm_kwargs)
 
     # Session connection options
@@ -271,34 +358,36 @@ async def entrypoint(ctx: JobContext) -> None:
         tts_conn_options=APIConnectOptions(max_retry=0, timeout=30.0),
     )
 
-    # Voice activity detection
-    vad = silero.VAD.load(
-        min_speech_duration=0.08,
-        min_silence_duration=0.35,
-    )
+    # Voice activity detection (matches PAM — defaults only)
+    vad = silero.VAD.load()
 
     allow_interruptions = os.getenv("LIVEKIT_ALLOW_INTERRUPTIONS", "true").strip().lower() in ("1", "true", "yes")
 
-    agent = ShakiraAgent()
+    agent = ShakiraAgent(lang=lang)
     session = AgentSession(
         stt=stt_engine,
         llm=llm_engine,
         tts=tts_engine,
         vad=vad,
-        turn_detection=None,
+        conn_options=session_conn_opts,
     )
 
-    # Greeting
-    greeting = os.getenv(
-        "ACADEMY_GREETING",
-        "Hello and welcome to EBH Academy! I'm Shakira, your academy advisor. How can I help you today?",
-    )
+    # Greeting (language-specific)
+    if lang == "ar":
+        greeting = os.getenv(
+            "ACADEMY_GREETING_AR",
+            "مرحباً بك في أكاديمية إي بي إتش! أنا شاكيرا، مستشارتك الأكاديمية. كيف يمكنني مساعدتك اليوم؟",
+        )
+    else:
+        greeting = os.getenv(
+            "ACADEMY_GREETING",
+            "Hello and welcome to EBH Academy! I'm Shakira, your academy advisor. How can I help you today?",
+        )
 
     await session.start(
         agent=agent,
         room=ctx.room,
         room_input_options=RoomInputOptions(noise_cancellation=True),
-        conn_options=session_conn_opts,
     )
     await session.say(greeting)
     logger.info("Shakira agent started in room %s", ctx.room.name)
