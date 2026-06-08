@@ -18,6 +18,8 @@ livekit-api==1.1.0
 livekit-plugins-deepgram==1.4.5
 livekit-plugins-inworld==1.4.5
 livekit-plugins-anthropic==1.4.5
+livekit-plugins-groq==1.4.5
+livekit-plugins-elevenlabs==1.4.5
 
 # ── Semantic / vector search (course FAQ RAG) ─────────────────────────────
 sentence-transformers==5.2.3
