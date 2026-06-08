@@ -187,24 +187,65 @@ body {
 
 .lang-picker {
   display: inline-flex;
-  gap: 0;
+  flex-wrap: wrap;
+  gap: 2px;
   margin: 0 auto 18px;
   border: 1px solid rgba(91, 33, 182, 0.18);
   border-radius: 999px;
   padding: 4px;
   background: rgba(255, 255, 255, 0.7);
+  max-width: 100%;
+}
+.stack-picker {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto 20px;
+  flex-wrap: wrap;
+}
+.stack-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 18px;
+  border: 1.5px solid rgba(91, 33, 182, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+  min-width: 180px;
+}
+.stack-opt:hover { border-color: var(--accent); }
+.stack-opt.active {
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.06);
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.15);
+}
+.stack-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+}
+.stack-opt.active .stack-name { color: var(--accent); }
+.stack-sub {
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
 }
 .lang-picker button {
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   color: var(--text-secondary);
-  padding: 7px 18px;
+  padding: 7px 14px;
   border: none;
   border-radius: 999px;
   background: transparent;
   cursor: pointer;
   transition: all 0.18s ease;
+  white-space: nowrap;
 }
 .lang-picker button:hover { color: var(--accent); }
 .lang-picker button.active {
@@ -571,9 +612,15 @@ audio.hidden-audio {
         <span class="feature-chip">Enrollment inquiry</span>
         <span class="feature-chip">Certifications & DHA</span>
       </div>
-      <div class="lang-picker" role="group" aria-label="Language">
-        <button id="lang-en" type="button" class="active" data-lang="en">English</button>
-        <button id="lang-ar" type="button" data-lang="ar">العربية</button>
+      <div class="stack-picker" role="radiogroup" aria-label="Voice stack">
+        <button id="stack-ultravox" type="button" class="stack-opt active" data-stack="ultravox">
+          <span class="stack-name">Ultravox</span>
+          <span class="stack-sub">Speech-to-speech · 1 vendor</span>
+        </button>
+        <button id="stack-cascaded" type="button" class="stack-opt" data-stack="cascaded">
+          <span class="stack-name">Cascaded</span>
+          <span class="stack-sub">Deepgram · Groq · ElevenLabs</span>
+        </button>
       </div>
       <button id="connect-btn" class="start-btn" type="button">Start Call</button>
       <p class="welcome-note">
@@ -632,6 +679,13 @@ audio.hidden-audio {
   </div>
 
   <script src="/static/livekit-client.umd.min.js"></script>
+  <script type="module">
+    // Ultravox SDK — only loaded when the caller picks English (faster path).
+    // Arabic still routes through LiveKit + Munsit/Faseeh below.
+    import { UltravoxSession } from 'https://esm.sh/ultravox-client@0.5.0';
+    window.UltravoxSession = UltravoxSession;
+    window.dispatchEvent(new Event('ultravox-ready'));
+  </script>
   <script>
     const GATEWAY_URL = `${location.protocol}//${location.host}`;
     const CONNECT_TIMEOUT_MS = 20000;
@@ -673,7 +727,12 @@ audio.hidden-audio {
       ending: false,
       micMuted: false,
       muteBusy: false,
-      lang: 'en'
+      lang: 'en',
+      stack: 'ultravox',               // 'ultravox' | 'cascaded' (A/B test)
+      callMode: null,                  // 'livekit' | 'ultravox' | null
+      ultravox: null,                  // UltravoxSession instance (when English)
+      lastUltravoxTranscriptCount: 0,  // de-dup transcript stream
+      uvxLineEls: null                 // index → DOM row for Ultravox transcript upserts
     };
 
     // ── Ring tone ──
@@ -912,7 +971,8 @@ audio.hidden-audio {
     async function getToken() {
       state.activeRoomName = `academy-web-${Date.now()}`;
       const lang = state.lang || 'en';
-      const res = await fetch(`${GATEWAY_URL}/api/public/livekit-token?lang=${encodeURIComponent(lang)}`);
+      const stack = state.stack || 'cascaded';
+      const res = await fetch(`${GATEWAY_URL}/api/public/livekit-token?lang=${encodeURIComponent(lang)}&stack=${encodeURIComponent(stack)}`);
       if (!res.ok) throw new Error(`Could not start call (${res.status})`);
       const payload = await res.json();
       if (payload.error) throw new Error(payload.error);
@@ -989,8 +1049,17 @@ audio.hidden-audio {
     }
 
     async function startCall() {
+      // Route by chosen stack — both English-only for now.
+      if (state.stack === 'cascaded') {
+        return startCallLiveKit();
+      }
+      return startCallUltravox();
+    }
+
+    async function startCallLiveKit() {
       refs.connectBtn.disabled = true;
       refs.connectBtn.textContent = 'Connecting...';
+      state.callMode = 'livekit';
       resetTranscript();
       setComposerEnabled(false);
       syncMuteButton();
@@ -1011,7 +1080,128 @@ audio.hidden-audio {
       }
     }
 
-    async function endCall() { await teardownCall(true); }
+    async function startCallUltravox() {
+      if (!window.UltravoxSession) {
+        showToast('Realtime SDK still loading — try again in a moment.', 'warning', 6000);
+        return;
+      }
+      refs.connectBtn.disabled = true;
+      refs.connectBtn.textContent = 'Connecting...';
+      state.callMode = 'ultravox';
+      state.lastUltravoxTranscriptCount = 0;
+      resetTranscript();
+      setComposerEnabled(false);  // composer is LiveKit-only for now
+      setScreen(true);
+      setConnectionStatus('Getting ready...', '');
+      setSpeechStatus('Preparing call', 'thinking');
+
+      let joinUrl;
+      try {
+        const res = await fetch(`${GATEWAY_URL}/api/public/ultravox-call?lang=en&source=web`);
+        if (!res.ok) throw new Error(`gateway ${res.status}`);
+        const json = await res.json();
+        joinUrl = json.joinUrl;
+        if (!joinUrl) throw new Error('no joinUrl returned');
+      } catch (err) {
+        showToast(`Failed to start: ${err?.message || err}`, 'error', 10000);
+        teardownUltravox();
+        refs.connectBtn.disabled = false;
+        refs.connectBtn.textContent = 'Start Call';
+        return;
+      }
+
+      try {
+        const sess = new window.UltravoxSession();
+        state.ultravox = sess;
+        sess.addEventListener('status', () => onUltravoxStatus(sess.status));
+        sess.addEventListener('transcripts', () => onUltravoxTranscripts(sess.transcripts));
+        await sess.joinCall(joinUrl);
+        state.connected = true;
+        setConnectionStatus('Connected', 'ok');
+      } catch (err) {
+        showToast(`Connection failed: ${err?.message || err}`, 'error', 10000);
+        teardownUltravox();
+      } finally {
+        refs.connectBtn.disabled = false;
+        refs.connectBtn.textContent = 'Start Call';
+      }
+    }
+
+    function onUltravoxStatus(status) {
+      const s = String(status || '').toLowerCase();
+      if (s.includes('speaking')) {
+        state.agentSpeaking = true; state.localSpeaking = false;
+        setSpeechStatus('Shakira is speaking', 'speaking');
+      } else if (s.includes('listening')) {
+        state.agentSpeaking = false; state.localSpeaking = true;
+        setSpeechStatus('Listening...', 'listening');
+      } else if (s.includes('thinking')) {
+        state.agentSpeaking = false; state.localSpeaking = false;
+        setSpeechStatus('Thinking...', 'thinking');
+      } else if (s.includes('idle')) {
+        state.agentSpeaking = false; state.localSpeaking = false;
+        setSpeechStatus('Connected', 'idle');
+      } else if (s.includes('disconnected')) {
+        teardownUltravox();
+      }
+      refreshSpeechUi();
+    }
+
+    function onUltravoxTranscripts(transcripts) {
+      // Ultravox sends the full transcript list on each update; the LAST entry's
+      // text grows word-by-word as the speaker continues. We must update each
+      // turn IN PLACE (not append) — otherwise every word becomes its own line.
+      const list = transcripts || [];
+      if (!state.uvxLineEls) state.uvxLineEls = new Map(); // index → <div.line>
+      // Clear the placeholder once real transcripts arrive
+      const first = refs.transcriptBox.firstElementChild;
+      if (first && first.classList.contains('meta')) refs.transcriptBox.innerHTML = '';
+
+      for (let i = 0; i < list.length; i++) {
+        const t = list[i];
+        if (!t) continue;
+        const text = String(t.text || '').trim();
+        if (!text) continue;
+        const speaker = t.speaker === 'agent' ? 'Shakira' : 'You';
+        const roleClass = speaker === 'Shakira' ? 'agent' : 'user';
+
+        let line = state.uvxLineEls.get(i);
+        if (!line) {
+          line = document.createElement('div');
+          line.className = `line ${roleClass}`;
+          line.dataset.speaker = speaker;
+          refs.transcriptBox.appendChild(line);
+          state.uvxLineEls.set(i, line);
+        }
+        if (line.dataset.text !== text) {
+          line.dataset.text = text;
+          line.innerHTML = `<span class="who">${speaker}:</span>${escapeHtml(text)}`;
+        }
+      }
+      // Auto-scroll to the bottom on growth
+      refs.transcriptBox.scrollTop = refs.transcriptBox.scrollHeight;
+    }
+
+    function teardownUltravox() {
+      if (state.ultravox) {
+        try { state.ultravox.leaveCall(); } catch {}
+        state.ultravox = null;
+      }
+      if (state.uvxLineEls) state.uvxLineEls.clear();
+      state.callMode = null;
+      state.connected = false;
+      state.agentSpeaking = false;
+      state.localSpeaking = false;
+      setComposerEnabled(false);
+      setConnectionStatus('Call ended', '');
+      setSpeechStatus('Idle', 'idle');
+      setScreen(false);
+    }
+
+    async function endCall() {
+      if (state.callMode === 'ultravox') { teardownUltravox(); return; }
+      await teardownCall(true);
+    }
 
     async function teardownCall(fromUser) {
       stopRinging();
@@ -1078,13 +1268,13 @@ audio.hidden-audio {
     setSpeechStatus('Idle', 'idle');
     syncMuteButton();
 
-    // Language picker
-    document.querySelectorAll('.lang-picker button').forEach((btn) => {
+    // Stack picker (A/B test)
+    document.querySelectorAll('.stack-opt').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const lang = btn.dataset.lang;
-        if (!lang || state.lang === lang) return;
-        state.lang = lang;
-        document.querySelectorAll('.lang-picker button').forEach((b) => {
+        const next = btn.dataset.stack;
+        if (!next || state.stack === next) return;
+        state.stack = next;
+        document.querySelectorAll('.stack-opt').forEach((b) => {
           b.classList.toggle('active', b === btn);
         });
       });

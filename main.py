@@ -160,8 +160,11 @@ async def api_public_livekit_token(
     import json as _json
 
     lang = (request.query_params.get("lang") or "en").strip().lower()
-    if lang not in {"en", "ar"}:
+    if lang not in {"en", "ar", "hi", "ur"}:
         lang = "en"
+    stack = (request.query_params.get("stack") or "cascaded").strip().lower()
+    if stack not in {"cascaded", "ultravox"}:
+        stack = "cascaded"
 
     try:
         from livekit.api import AccessToken, VideoGrants, LiveKitAPI, CreateAgentDispatchRequest
@@ -188,7 +191,7 @@ async def api_public_livekit_token(
         }
         if force_dispatch:
             try:
-                dispatch_metadata = _json.dumps({"lang": lang})
+                dispatch_metadata = _json.dumps({"lang": lang, "stack": stack})
                 async with LiveKitAPI(url=lk_url_internal, api_key=lk_key, api_secret=lk_secret) as lk_api:
                     await lk_api.agent_dispatch.create_dispatch(
                         CreateAgentDispatchRequest(

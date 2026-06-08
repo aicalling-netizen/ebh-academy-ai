@@ -1,7 +1,11 @@
 """RAG pipeline for EBH Academy course content and FAQs.
 
-Builds a FAISS vector index over structured course data and policy documents.
-Falls back to keyword matching when the embedding model isn't loaded.
+Loads structured knowledge from data/faq_knowledge.json (parsed from the official
+EBH Academy FAQ document by scripts/parse_faq_doc.py). Falls back to in-code
+constants when the JSON file is missing (test environments, fresh checkouts).
+
+Search uses keyword scoring — good enough for ~165 Q&As. Upgrade to embeddings
+later if recall becomes a bottleneck.
 """
 from __future__ import annotations
 
@@ -17,8 +21,36 @@ _INDEX = None
 _CHUNKS: list[dict[str, str]] = []
 _EMBEDDER = None
 
-_CACHE_DIR = Path(__file__).parent.parent / "data" / "rag_cache"
-_SOURCES_DIR = Path(__file__).parent.parent / "data" / "rag_sources"
+_DATA_DIR = Path(__file__).parent.parent / "data"
+_CACHE_DIR = _DATA_DIR / "rag_cache"
+_SOURCES_DIR = _DATA_DIR / "rag_sources"
+_KNOWLEDGE_FILE = _DATA_DIR / "faq_knowledge.json"
+
+
+def _load_knowledge() -> dict[str, Any]:
+    """Read the parsed FAQ JSON; return empty dict if unavailable."""
+    if not _KNOWLEDGE_FILE.exists():
+        logger.warning("faq_knowledge.json not found at %s — using in-code fallback", _KNOWLEDGE_FILE)
+        return {}
+    try:
+        return json.loads(_KNOWLEDGE_FILE.read_text(encoding="utf-8"))
+    except Exception as e:  # noqa: BLE001
+        logger.warning("Failed to load faq_knowledge.json: %s — using in-code fallback", e)
+        return {}
+
+
+_KB = _load_knowledge()
+
+# Full FAQ corpus from the parsed knowledge file (Categories A through I).
+# Each entry: {category, q_num, q, a}.
+ACADEMY_FAQ: list[dict[str, Any]] = _KB.get("faqs", []) or []
+
+# Course Certification Matrix from Part 3 of the FAQ doc.
+# Each entry: {name, cidesco, khda, iao, ebh, dha_eligible}.
+COURSE_MATRIX: list[dict[str, Any]] = _KB.get("courses", []) or []
+
+# Operating principles block (Honesty rules, DHA lock, FOMO discipline).
+ACADEMY_PRINCIPLES: str = _KB.get("principles", "") or ""
 
 # ── Built-in course knowledge (always available, no external docs needed) ──
 COURSES: list[dict[str, Any]] = [
@@ -214,20 +246,58 @@ def search_courses(query: str, max_results: int = 3) -> list[dict[str, Any]]:
     return [c for _, c in scored[:max_results]]
 
 
-def search_faq(query: str, max_results: int = 3) -> list[dict[str, str]]:
-    """Simple keyword search over built-in FAQ data."""
-    query_lower = query.lower()
-    scored: list[tuple[int, dict]] = []
+def search_faq(query: str, max_results: int = 3) -> list[dict[str, Any]]:
+    """Keyword search over the full FAQ corpus from data/faq_knowledge.json.
 
-    for item in ACCREDITATION_FAQ:
+    Falls back to the legacy ACCREDITATION_FAQ list if the JSON wasn't loaded.
+    Each returned item has at least q and a fields.
+    """
+    pool: list[dict[str, Any]] = ACADEMY_FAQ or ACCREDITATION_FAQ
+    if not pool:
+        return []
+    query_lower = query.lower()
+    query_words = [w for w in query_lower.split() if len(w) >= 2]
+    if not query_words:
+        return pool[:max_results]
+
+    scored: list[tuple[int, dict]] = []
+    for item in pool:
+        q = item.get("q", "").lower()
+        a = item.get("a", "").lower()
         score = 0
-        for word in query_lower.split():
-            if word in item["q"].lower():
-                score += 3
-            if word in item["a"].lower():
+        # Exact phrase match in question is gold
+        if query_lower in q:
+            score += 20
+        for word in query_words:
+            if word in q:
+                score += 5
+            if word in a:
                 score += 1
         if score > 0:
             scored.append((score, item))
 
+    if not scored:
+        # No keyword hits — return first N as a generic-info fallback
+        return pool[:max_results]
+
     scored.sort(key=lambda x: x[0], reverse=True)
     return [item for _, item in scored[:max_results]]
+
+
+def get_course_credentials(course_name: str) -> dict[str, Any] | None:
+    """Look up the accreditation matrix row for a given course name.
+
+    Returns {cidesco, khda, iao, ebh, dha_eligible} or None if not found.
+    Case- and partial-match tolerant.
+    """
+    if not COURSE_MATRIX:
+        return None
+    needle = course_name.lower().strip()
+    # Try exact, then substring, then word-overlap
+    for entry in COURSE_MATRIX:
+        if entry["name"].lower() == needle:
+            return entry
+    for entry in COURSE_MATRIX:
+        if needle in entry["name"].lower() or entry["name"].lower() in needle:
+            return entry
+    return None

@@ -69,6 +69,18 @@ try:
 except ImportError:
     _FASEEH_AVAILABLE = False
 
+try:
+    from livekit.plugins import groq as lk_groq
+    _GROQ_AVAILABLE = True
+except ImportError:
+    _GROQ_AVAILABLE = False
+
+try:
+    from livekit.plugins import elevenlabs as lk_elevenlabs
+    _ELEVENLABS_AVAILABLE = True
+except ImportError:
+    _ELEVENLABS_AVAILABLE = False
+
 from livekit.agents.voice.agent_session import SessionConnectOptions
 from core.time_context import build_uae_time_context, now_uae
 
@@ -138,6 +150,20 @@ def _build_session_prompt(lang: str = "en") -> str:
             "Do not switch to English even if the caller mixes English words. "
             "Keep numbers, prices (AED), and proper names readable; the rest must be Arabic."
         )
+    elif lang == "hi":
+        lang_directive = (
+            "--- LANGUAGE ---\n"
+            "The caller chose Hindi (हिन्दी). You MUST reply in conversational Hindi (Devanagari script). "
+            "Use natural spoken Hindi; English loanwords for technical terms (course, certificate, AED) are fine. "
+            "Do not switch to English, Arabic, or any other language."
+        )
+    elif lang == "ur":
+        lang_directive = (
+            "--- LANGUAGE ---\n"
+            "The caller chose Urdu (اردو). You MUST reply in conversational Urdu (Nastaliq script). "
+            "Use natural spoken Urdu; English loanwords for technical terms (course, certificate, AED) are fine. "
+            "Do not switch to English, Hindi, Arabic, or any other language."
+        )
     else:
         lang_directive = (
             "--- LANGUAGE ---\n"
@@ -156,6 +182,12 @@ _STT_KEYTERMS_EN = [
 ]
 _STT_KEYTERMS_AR = [
     "شاكيرا", "أكاديمية", "دبي", "دورة", "شهادة",
+]
+# Shared by Hindi + Urdu — academy/industry acronyms keep English form in both languages
+_STT_KEYTERMS_HI = [
+    "CIDESCO", "KHDA", "DHA", "IAO", "EBH", "Shakira",
+    "dermaplaning", "Madero", "Tabby",
+    "अकादमी", "कोर्स", "दुबई", "शकीरा",
 ]
 
 
@@ -188,11 +220,20 @@ def _build_stt(lang: str = "en"):
             language="ar",
         )
 
-    # English (and default) → Deepgram
+    # English / Hindi / Urdu → Deepgram
     if not _DEEPGRAM_AVAILABLE:
         raise RuntimeError("livekit-plugins-deepgram not installed")
     model = os.getenv("DEEPGRAM_STT_MODEL", "nova-3")
-    language = os.getenv("DEEPGRAM_LANGUAGE", "multi")
+    if lang == "hi":
+        language = "hi"
+        keyterm = _STT_KEYTERMS_HI
+    elif lang == "ur":
+        # Nova-3 supports Urdu (ur). Falls back to nova-2 if Deepgram rejects.
+        language = "ur"
+        keyterm = _STT_KEYTERMS_HI  # share — most Hindi keyterms apply to Urdu too
+    else:
+        language = os.getenv("DEEPGRAM_LANGUAGE", "multi")
+        keyterm = _STT_KEYTERMS_EN
     return lk_deepgram.STT(
         model=model,
         language=language,
@@ -201,11 +242,22 @@ def _build_stt(lang: str = "en"):
         smart_format=True,
         no_delay=True,
         endpointing_ms=200,
-        keyterm=_STT_KEYTERMS_EN,
+        keyterm=keyterm,
     )
 
 
-def _build_tts(lang: str = "en"):
+def _build_tts(lang: str = "en", stack: str = "cascaded"):
+    # English + cascaded stack (A/B test) → ElevenLabs
+    if lang == "en" and stack == "cascaded":
+        if not _ELEVENLABS_AVAILABLE:
+            raise RuntimeError("livekit-plugins-elevenlabs not installed")
+        el_key = os.getenv("ELEVENLABS_API_KEY", "").strip()
+        if not el_key:
+            raise RuntimeError("ELEVENLABS_API_KEY not set — required for cascaded stack TTS")
+        voice = os.getenv("ELEVENLABS_VOICE_ID", "EXAVITQu4vr4xnSDxMaL")  # Bella, warm female
+        model = os.getenv("ELEVENLABS_MODEL", "eleven_turbo_v2_5")
+        return lk_elevenlabs.TTS(voice_id=voice, model=model, api_key=el_key, language="en")
+
     # Arabic → Faseeh (Munsit's TTS, dedicated Arabic voices)
     if lang == "ar":
         if not _FASEEH_AVAILABLE:
@@ -225,9 +277,17 @@ def _build_tts(lang: str = "en"):
             speed=speed,
         )
 
-    # English (and default) → Inworld
+    # Hindi / Urdu / English → Inworld
     if not _INWORLD_AVAILABLE:
         raise RuntimeError("livekit-plugins-inworld not installed")
+    if lang == "hi":
+        voice = os.getenv("INWORLD_VOICE_HI", "Riya")  # Hindi female, professional & clean
+        return lk_inworld.TTS(voice=voice, language="hi-IN")
+    if lang == "ur":
+        # Inworld has no native Urdu voice; Aanya (Hindi) speaks Urdu acceptably
+        # since spoken Urdu and Hindi are >90% mutually intelligible.
+        voice = os.getenv("INWORLD_VOICE_UR", "Aanya")
+        return lk_inworld.TTS(voice=voice, language="hi-IN")
     voice = os.getenv("INWORLD_VOICE", "Abby")
     return lk_inworld.TTS(voice=voice, language="en-US")
 
@@ -311,41 +371,61 @@ async def entrypoint(ctx: JobContext) -> None:
     await ctx.connect()
     logger.info("Room connected: %s", ctx.room.name)
 
-    # Read language from job dispatch metadata (set by gateway)
+    # Read language + stack from job dispatch metadata (set by gateway)
     import json as _json
     lang = "en"
+    stack = "cascaded"  # default for non-Ultravox path (Ultravox calls don't dispatch this agent)
     try:
         raw_md = getattr(ctx.job, "metadata", "") or ""
         if raw_md:
             md = _json.loads(raw_md)
-            cand = (md.get("lang") or "").strip().lower()
-            if cand in {"en", "ar"}:
-                lang = cand
+            cand_lang = (md.get("lang") or "").strip().lower()
+            if cand_lang in {"en", "ar", "hi", "ur"}:
+                lang = cand_lang
+            cand_stack = (md.get("stack") or "").strip().lower()
+            if cand_stack in {"cascaded", "ultravox"}:
+                stack = cand_stack
     except Exception as me:
-        logger.warning("Failed to parse job metadata, defaulting to English: %s", me)
-    logger.info("Session language: %s", lang)
+        logger.warning("Failed to parse job metadata, defaulting: %s", me)
+    logger.info("Session lang=%s stack=%s", lang, stack)
 
     stt_engine = _build_stt(lang)
-    tts_engine = _build_tts(lang)
+    tts_engine = _build_tts(lang, stack)
 
-    # LLM setup
-    anthropic_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
-    anthropic_model = os.getenv("ANTHROPIC_LLM_MODEL", "claude-sonnet-4-5").strip()
+    # LLM setup — Stack B uses Groq Llama-4-Scout; default (Arabic/Hindi/Urdu) uses Claude Haiku.
     llm_temperature = float(os.getenv("LIVEKIT_TEMPERATURE", "0.3"))
     llm_max_tokens = int(os.getenv("LIVEKIT_MAX_COMPLETION_TOKENS", "400"))
     llm_max_tokens = max(64, min(llm_max_tokens, 2048))
     llm_timeout_s = float(os.getenv("LIVEKIT_LLM_TIMEOUT_S", "25"))
 
-    llm_kwargs: dict[str, Any] = dict(
-        model=anthropic_model,
-        api_key=anthropic_key,
-        temperature=llm_temperature,
-        max_tokens=llm_max_tokens,
-    )
-    caching = os.getenv("ANTHROPIC_PROMPT_CACHING", "true").strip().lower() in ("1", "true", "yes")
-    if caching:
-        llm_kwargs["caching"] = "ephemeral"
-    llm_engine = lk_anthropic.LLM(**llm_kwargs)
+    if lang == "en" and stack == "cascaded":
+        if not _GROQ_AVAILABLE:
+            raise RuntimeError("livekit-plugins-groq not installed")
+        groq_key = os.getenv("GROQ_API_KEY", "").strip()
+        if not groq_key:
+            raise RuntimeError("GROQ_API_KEY not set — required for cascaded stack LLM")
+        groq_model = os.getenv("GROQ_LLM_MODEL", "meta-llama/llama-4-scout-17b-16e-instruct").strip()
+        llm_engine = lk_groq.LLM(
+            model=groq_model,
+            api_key=groq_key,
+            temperature=llm_temperature,
+            max_completion_tokens=llm_max_tokens,
+        )
+        logger.info("LLM: Groq %s", groq_model)
+    else:
+        anthropic_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
+        anthropic_model = os.getenv("ANTHROPIC_LLM_MODEL", "claude-haiku-4-5-20251001").strip()
+        llm_kwargs: dict[str, Any] = dict(
+            model=anthropic_model,
+            api_key=anthropic_key,
+            temperature=llm_temperature,
+            max_tokens=llm_max_tokens,
+        )
+        caching = os.getenv("ANTHROPIC_PROMPT_CACHING", "true").strip().lower() in ("1", "true", "yes")
+        if caching:
+            llm_kwargs["caching"] = "ephemeral"
+        llm_engine = lk_anthropic.LLM(**llm_kwargs)
+        logger.info("LLM: Anthropic %s", anthropic_model)
 
     # Session connection options
     session_conn_opts = SessionConnectOptions(
@@ -377,6 +457,16 @@ async def entrypoint(ctx: JobContext) -> None:
         greeting = os.getenv(
             "ACADEMY_GREETING_AR",
             "مرحباً بك في أكاديمية إي بي إتش! أنا شاكيرا، مستشارتك الأكاديمية. كيف يمكنني مساعدتك اليوم؟",
+        )
+    elif lang == "hi":
+        greeting = os.getenv(
+            "ACADEMY_GREETING_HI",
+            "नमस्ते! EBH अकादमी में आपका स्वागत है। मैं शकीरा हूँ, आपकी अकादमिक सलाहकार। मैं आज आपकी कैसे मदद कर सकती हूँ?",
+        )
+    elif lang == "ur":
+        greeting = os.getenv(
+            "ACADEMY_GREETING_UR",
+            "السلام علیکم! EBH اکیڈمی میں خوش آمدید۔ میں شکیرا ہوں، آپ کی اکیڈمک ایڈوائزر۔ میں آج آپ کی کیسے مدد کر سکتی ہوں؟",
         )
     else:
         greeting = os.getenv(

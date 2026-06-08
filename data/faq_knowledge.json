@@ -1,0 +1,1205 @@
+{
+  "principles": "We never promise a job, placement, salary, visa, residency or other outcome we do not control.\nWe never claim accreditation we do not hold. Every accreditation claim must align to the Course Certification Matrix in Part 3.\nOn DHA we always say 'prepares you to apply for the DHA licensing examination' — never 'gives you a DHA license' or 'automatic DHA licence.' Only the Diploma in Beauty Therapy is DHA-eligible.\nWe never quote 'average' salary or fee figures in chat. Verified current numbers are shared in the counselling session, in writing.\nWe never use more than ONE FOMO statement per conversation, and only after firm interest is shown.\nIf a student discloses distress, financial hardship, mental-health concerns or a difficult life situation, we pause conversion entirely and prioritise wellbeing. Care comes before any sale.\n \nDHA Language Lock\nALWAYS: 'prepares you to apply for the DHA licensing examination' NEVER: 'you will be DHA-licensed' · 'gives you a DHA license' · 'automatic DHA' · 'DHA-certified' Per our verified Certification Matrix, only the Diploma in Beauty Therapy is DHA-eligible. DHA itself awards the license based on their own examination, eligibility and decision.",
+  "courses": [
+    {
+      "name": "Diploma in Beauty Therapy",
+      "cidesco": true,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": true
+    },
+    {
+      "name": "Diploma in Body Therapy",
+      "cidesco": true,
+      "khda": false,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Diploma in Beauty & Spa Management",
+      "cidesco": true,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Madero Body Massage",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Madero Face Massage",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Indian Head Massage",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Relaxation Massage",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Advanced Relaxation Massage",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Reflexology",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Manual Lymphatic Drainage (MLD)",
+      "cidesco": false,
+      "khda": false,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Basic Facial",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Electrical Facial",
+      "cidesco": false,
+      "khda": false,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "HydraFacial",
+      "cidesco": false,
+      "khda": false,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Dermaplaning",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Eyelash Extension - Classic",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Eyelash Extension - 2D/3D/Russian Volume",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Lash Lifting",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Brow Lamination",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Diploma in Lashes",
+      "cidesco": false,
+      "khda": false,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Self Makeup",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Basic to Advance Makeup",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Professional Makeup",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Diploma in Makeup",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Basic Hair Styling",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Party / Event Hair Styling",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    },
+    {
+      "name": "Advanced Hair Styling",
+      "cidesco": false,
+      "khda": true,
+      "iao": true,
+      "ebh": true,
+      "dha_eligible": false
+    }
+  ],
+  "faqs": [
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 1,
+      "q": "What is EBH Academy and what makes you different from other beauty schools in Dubai?",
+      "a": "EBH Academy — Elite Body Home Academy — is a Dubai-based academy for beauty, wellness and aesthetic professionals. What genuinely sets us apart is not one thing but a combination of structural choices. We keep our diploma batches small (typically up to around ten students) because beauty therapy is a hands-on craft that cannot be learned in a crowded room. Our teaching team is deliberately multi-disciplinary — DHA-approved staff, CIDESCO-certified Beauty Therapy trainers, medical doctors for clinical depth, a physiotherapist for body mechanics, a dietitian for the wellness conversation, and an MBA / marketing expert for business strategy. Our practical training happens in a clinic-style environment with real models, not just demonstrations. And the credentials our graduates leave with — CIDESCO Switzerland, KHDA Dubai, IAO International, EBH Academy — are internationally recognised and built to travel. You will not be a number here. You will be supported, challenged, mentored, and prepared to walk into the UAE beauty industry with the calm confidence of someone who has trained to a serious international standard."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 2,
+      "q": "Where is EBH Academy located and how do I visit?",
+      "a": "Our academy is in Dubai and we strongly encourage every prospective student to visit before deciding. The best way to do this is through a Free Counselling Session and Academy Tour — about 30 to 45 minutes, completely free of charge, with no pressure to enrol on the same day. You will see the classrooms, the practical lab, meet members of our teaching team, and have your specific questions answered in person. Most students who visit tell us afterwards that the visit gave them more clarity in one hour than weeks of online research. We would love to welcome you in — shall we set a slot?"
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 3,
+      "q": "How many students are in each class and why does class size matter?",
+      "a": "Our diploma classes are deliberately small — typically up to around ten students per batch. This is a conscious structural decision, not a happy accident. In a hands-on profession like beauty therapy, the gap between someone who has practised a technique eighty times and someone who has practised it twelve times is enormous, and class size is what decides that. Ten students is the size at which the trainer can still see every pair of hands, correct every angle before it becomes a habit, and notice when a student is quietly struggling. It is also the size at which your classmates become real friends and a lifelong professional network. Bigger feels efficient on paper; smaller is what actually produces working professionals. This is one of the reasons our graduates feel ready when they walk into their first interview."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 4,
+      "q": "Who teaches at EBH Academy?",
+      "a": "Our teaching team is intentionally multi-disciplinary because the modern beauty industry demands more than one perspective. You will learn from Dubai Health Authority-approved staff who understand the realities of practising under DHA regulation; from CIDESCO-certified Beauty Therapy trainers who themselves hold the Swiss-headquartered qualification you are working toward; from medical doctors who bring clinical depth to anatomy, physiology and contraindications; from a physiotherapist who teaches body mechanics and the technique that protects both your client and your own body across a long career; from a dietitian who brings the nutritional and wellness context that elevates a therapist into a wellness advisor; and from an MBA-qualified marketing expert who teaches the commercial and business side of running a profitable practice. This combination is one of the most quietly powerful things about an EBH education — you will graduate able to speak credibly across every dimension of the modern wellness conversation, not just the technical one."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 5,
+      "q": "What are your class timings and how often do classes run?",
+      "a": "Schedules vary by course. Short courses run intensively over days or focused weeks so working students can complete a focused skill without disrupting their lives. Diplomas run on a structured weekly schedule designed to fit alongside work or family commitments, with revision support built into the calendar before exams. We deliberately do not publish a single fixed timetable here because intake batches shift through the year and we never want to send you outdated information. In your Free Counselling Session our advisor will share the exact current schedule for your chosen course and find the batch that fits your life. Many of our students juggle full-time jobs, young children or other commitments — we have built the rhythm to work for real people in real lives."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 6,
+      "q": "Do you offer one-to-one attention and extra support if I am struggling?",
+      "a": "Yes — and we do this on purpose, not as a favour. Small batches mean every student is visible and supported individually. If you are struggling with a topic, a technique or simply with life pressure, our trainers are accessible, our extra support sessions are real, and revision is structured into the calendar rather than left as your personal problem. The most common pattern we see in beauty education is silent drop-off — students go quiet for two weeks, fall behind, feel embarrassed, then disappear. We have designed against that. A student who goes quiet here is noticed almost immediately and pulled back in with care, not shame. Many of our most successful graduates were students who hit a hard moment somewhere mid-year and made it through specifically because the support was there to catch them. You will not be left to figure it out alone."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 7,
+      "q": "Is the teaching environment multicultural?",
+      "a": "Very much so. Our students come from across the GCC, South Asia, Africa, Europe, the Philippines and beyond. You will learn alongside salon owners, working therapists, nurses transitioning into aesthetics, career-changers and complete beginners — a mix that directly mirrors the real working environment of Dubai's beauty industry. This is not a side benefit, it is a structural advantage: by graduation you are already used to working across languages, cultures, skin types and client expectations, which is one of the most commercially valuable things you can take into a UAE clinic or spa interview. The diversity itself becomes part of the education."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 8,
+      "q": "Do you provide study materials, workbooks and presentation decks?",
+      "a": "Yes — students receive a structured workbook, presentation decks, question banks, real anonymised case studies and access to revision material. The materials are designed for self-study between classes and for systematic exam preparation. We have built them in the middle of the two unhelpful extremes you sometimes see in beauty education — pages and pages of dense, unreadable text on one side, or no notes at all and 'just watch the trainer' on the other. Our materials are visual where vision helps, written where writing helps, structured throughout to mirror the exam style. By the time you reach examinations, the material in front of you feels familiar — not foreign — and your confidence is built on a foundation you can actually rely on."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 9,
+      "q": "Will I get to practise on real models, not just mannequins?",
+      "a": "Yes — and this matters more than students sometimes realise on day one. Live model practice is built throughout the course in a supervised, clinic-style setting. The progression is deliberate: technique foundation on mannequins to build muscle memory; peer practice in pairs to develop your client communication; then supervised practice on real models with real skin, real reactions and real conversation. By the time you sit your CIDESCO practical examination, you have been working on real clients long enough that the examiner becomes one more client, not your first. That progression is the difference between a graduate who freezes on their first real day of work and one who walks in calm. There is a particular kind of confidence that only comes from having held the trust of real people in real treatment chairs — and that is exactly what we build into you."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 10,
+      "q": "What payment options do you offer?",
+      "a": "We offer flexible payment plans designed to make our courses genuinely accessible. For UAE students we work with options including Tabby, Tamara and ENBD-based instalment plans. International students have country-specific options. We deliberately do not publish a single fixed payment table because student situations vary enormously and one-size plans rarely fit anybody well — what works for a working professional on a steady salary is different from what works for a returning mother or a self-employed student. In your counselling session our admissions team will design a workable plan around your honest financial picture. Nobody we have enrolled has had to give up on a course because of payment structure alone, and we mean that — bring your real situation to the conversation and we will build something that works."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 11,
+      "q": "How do I know your academy is accredited and trustworthy?",
+      "a": "Three things make our accreditation story checkable rather than just claimed. First, CIDESCO Switzerland — the globally respected beauty therapy and spa management standard founded in 1946, which maintains its register of accredited member schools internationally. Second, KHDA Dubai — the Knowledge and Human Development Authority, the regulator of education and training providers in Dubai, which attests our credentials on KHDA-eligible courses. Third, IAO — the International Accreditation Organization, providing additional international recognition. We do not claim CIDESCO on every course because not every course is CIDESCO-eligible; the specific accreditations attached to each course are published in our verified Course Certification Matrix in this document. We welcome verification — the academies that do not are usually the ones to be cautious of."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 12,
+      "q": "Do you have networking opportunities and industry exposure?",
+      "a": "Yes — studying beauty in Dubai is itself a networking advantage, because this is a city where world-class clinics, spas, salons and resort brands compete to hire qualified professionals, and the people doing the hiring tend to know the same small circles. Our students benefit from clinic-style exposure built into the practical training, guest sessions and industry insights where they add value, and a growing alumni network across the GCC that increasingly opens doors after graduation. We do not promise placements (no honest academy can) but we do promise that the relationships you build with classmates, trainers and the wider network during your time here are real, and they travel with you into your career."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 13,
+      "q": "Can my family or partner join the counselling session with me?",
+      "a": "Of course — and many students do exactly that, especially when discussing fees and a career change. We genuinely welcome it. A career decision is rarely a solo decision, and in many family contexts financial discussions and lifestyle changes need to be shared decisions. Just let us know who is coming so we can prepare the room properly. Often the family members who arrive most sceptical leave the most reassured — there is something different about hearing the realistic career picture from a trained advisor versus reading it second-hand."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 14,
+      "q": "What happens if I have to miss a class because of work or family?",
+      "a": "Life happens — children get sick, jobs require sudden travel, family situations arise that we cannot control. We have built our support structure for this reality. Notes and materials are available through the student portal, revision classes are scheduled into the calendar, and your trainer will guide you on what to focus on to catch up. What we ask is simply that you communicate with us — the students who fall behind are almost always the ones who went silent. The ones who message us saying 'I missed Tuesday, what do I do?' almost always finish strong. We treat absence as something to support, not punish, provided you stay in conversation with us."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 15,
+      "q": "Do you offer any free resources I can review before deciding?",
+      "a": "The single most useful free resource we offer is the Free Counselling Session itself — about 30 to 45 minutes, no commitment of any kind, in which our advisor walks through your goals, recommends the genuinely right course for you, explains certifications and fees honestly, and gives you space to ask every question on your mind. Most students tell us afterwards that this single conversation gave them more useful, personalised information than weeks of online research. We are deliberately cautious about pushing generic downloadable PDFs that quickly go out of date — the real value is in the conversation about your specific situation. Shall we set one up?"
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 16,
+      "q": "Is EBH Academy a premium academy or an affordable one?",
+      "a": "Honestly — we position ourselves as premium, and we are transparent about that choice. You are paying for small batches that cost more to run than mass classrooms, for a multi-disciplinary teaching team (DHA-approved staff, CIDESCO-certified trainers, doctors, physiotherapist, dietitian, MBA-marketing expert) that costs more than a single-track instructor pool, for internationally recognised credentials that carry licensing fees, and for real practical hours with real lab time, professional products and live models. Our flexible payment plans exist precisely to make this accessible without compromising the structural choices that make our graduates strong. We are not the cheapest in Dubai, and we will not pretend to be. If your single criterion is lowest cost, we will respect that and tell you honestly that we may not be the right fit. If your criterion is the strongest long-term return on your investment, please come and talk to us."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 17,
+      "q": "How long does it take to actually feel confident as a therapist?",
+      "a": "Honestly — most students start feeling genuinely confident around the midpoint of their training, after they have worked on real models repeatedly under supervision. By the end of the course you should feel ready to walk into a real workplace and treat a real client professionally. Full mastery and clinical intuition typically build through the first year or two of paid client work — there is no shortcut for the experience of treating dozens of different bodies, skin types and presenting concerns. What our training does is give you the structured repetition during the course itself, so that 'first day of work' is not actually your first time. Confidence in this profession is built by reps. We design our practical training around the reps."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 18,
+      "q": "Do you welcome students who tried beauty courses elsewhere and did not finish?",
+      "a": "Absolutely yes, and we genuinely understand why someone might be hesitant. The honest pattern with unfinished courses is rarely a willpower problem — it is almost always a support problem. Students go quiet, fall behind, feel embarrassed, then disappear without being noticed. We have designed deliberately against this. Small batches mean a quiet student is spotted immediately. Trainers chase rather than wait. Extra support is real and accessible. Revision is structured into the calendar. Tell our counsellor honestly what went wrong before — without judgement, without shame. They will help you design around it from day one. The 'I tried before and gave up' student who walks in here often becomes one of the proudest graduates we have, because they finished what they started this time."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 19,
+      "q": "Can men succeed at EBH and in the wider UAE beauty industry?",
+      "a": "Yes — clearly and meaningfully. Men succeed in massage therapy, body work, hair, male grooming, aesthetic clinics, spa management, and increasingly in leadership and ownership roles. In several specific UAE segments — male-only spas (which the country has many of, often within hotels), sports massage settings, mixed clinics with male-client preference — demand for qualified men actually outstrips supply. Our classrooms are mixed and our teaching is the same regardless of gender. The stigma some men feel before entering this industry tends to evaporate quickly once they meet the realities of the modern UAE wellness market and the respect competent male therapists genuinely command."
+    },
+    {
+      "category": "A — General Academy FAQ",
+      "q_num": 20,
+      "q": "What does a typical day at EBH actually feel like?",
+      "a": "Honestly the best way to answer this is in person — but the short version is: warm, focused, hands-on, never anonymous. Classes mix theory and practical in the right proportion so neither dominates. The lab feels like a working clinic, not a lecture room. Trainers know your name from day one, your strengths within a couple of weeks, and your specific support needs by the time you ask. There is genuine laughter in the corridors and a culture of mutual support among classmates rather than competition. By the end of the year, the people you started with often become close friends — and the trainers become mentors you stay connected to long after graduation. That atmosphere is one of the most quietly valuable things about an EBH education, and it is something a brochure can never capture. Come and feel it in person."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 1,
+      "q": "What are the three diplomas EBH offers and how do they differ?",
+      "a": "We offer three CIDESCO diplomas, each pointing to a meaningfully different career destination. The Diploma in Beauty Therapy is the comprehensive clinical-style pathway — minimum 1,200 CIDESCO training hours, CIDESCO + KHDA + IAO + EBH credentials, and the only one of the three that is DHA-eligible (meaning a graduate may pursue the DHA licensing examination separately to qualify for clinical settings in Dubai). The Diploma in Body Therapy is a focused body-specialised pathway — minimum 565 CIDESCO hours, CIDESCO + IAO + EBH credentials, perfect for those called specifically to body work without the full beauty therapy scope. The Diploma in Beauty & Spa Management is the leadership and business pathway — minimum 300 CIDESCO hours, CIDESCO + KHDA + IAO + EBH credentials, designed for future managers, owners and entrepreneurs (no prior beauty training required). The right diploma for you depends on where you see yourself in five years, and that is exactly the conversation our counsellor will help you work through."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 2,
+      "q": "I am not from a medical background — will I cope with the Diploma in Beauty Therapy?",
+      "a": "Honestly, yes — and this is one of the most common worries we hear. The CIDESCO Diploma in Beauty Therapy is designed to take a complete beginner with no medical background and build them into a competent, safe, internationally credentialled beauty therapist over the 1,200-hour CIDESCO curriculum. We teach anatomy and physiology from the ground up, in plain language, supported by diagrams, real client context and our medical doctor trainers who teach the clinical depth properly rather than skimming it. The 'systems' modules are not there to make you a doctor — they are there to make you a safe practitioner who knows why a particular treatment helps a particular client and when to refer out. Some of our most confident graduates were complete beginners on day one. What matters far more than your starting background is your willingness to practise, ask questions and show up consistently. That part you bring. We bring everything else."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 3,
+      "q": "Can you tell me exactly what modules the Diploma in Beauty Therapy covers?",
+      "a": "Yes — and this matters because the CIDESCO Diploma in Beauty Therapy is structured around a globally consistent syllabus you can verify on cidesco.com. Across the minimum 1,200 hours of practical and theoretical training, you cover: Natural Science (the chemistry, biology and physics that underpin professional skincare); Anatomy and Physiology (skeletal, muscular, circulatory, lymphatic, nervous, integumentary, endocrine, digestive, respiratory and reproductive systems); Skin and Dermatology (skin structure, types, conditions, disorders, contraindications and professional skin analysis); Cosmetic Science (ingredient chemistry, formulations, pH, skin barrier function); Facial Treatments (full CIDESCO facial sequence including deep cleansing, exfoliation, massage techniques, mask work); Electrical Facial Treatments (galvanic, high-frequency, vacuum, microcurrent); Body Treatments and Body Massage; Electrical Body Treatments (contouring, lymphatic, muscle stimulation); Hair Removal — Waxing; Make-up Application; Eyelash and Eyebrow Tinting and Shaping; Manicure and Pedicure; Aesthetic Treatments theory; Hygiene, Sterilisation and Safety; Client Care, Consultation and Communication; Business Studies; and the formal Project with Case Histories (2,500 to 4,000 words). Detailed Part 4 of this document walks through every module in depth with what you learn and why it matters. The CIDESCO examination itself has four components — Facial examination, Body examination, Project with Case Histories, and a Written multiple-choice paper covering all theoretical subjects."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 4,
+      "q": "Can you tell me exactly what modules the Diploma in Body Therapy covers?",
+      "a": "Yes — the CIDESCO Diploma in Body Therapy is a focused body-specialisation pathway, minimum 565 hours per CIDESCO official syllabus. The curriculum covers: Anatomy and Physiology with a body focus (skeletal, muscular, circulatory, lymphatic, nervous, integumentary and endocrine systems and their relevance to body therapy); Body Analysis and Consultation (structured body assessment, postural awareness, contraindication identification, treatment planning); Body Massage Techniques (effleurage, petrissage, friction, tapotement, vibration, flow design, pressure modulation, draping protocol); Body Treatments (wraps, scrubs, exfoliation, body masks and complete treatment sequencing); Electrical Body Treatments (contouring, lymphatic support, muscle stimulation, skin tone); Spa Wellness Concepts (spa culture, holistic philosophy, wellness journey design); Hygiene, Sterilisation and Safety; Client Care and Communication; and the Project with Case Histories. The CIDESCO examination has three components — Theoretical (MCQ), Practical, and the Project with Case Histories. Candidates must also complete at least 4 school examinations (2 practical, 2 theory) during training before being eligible to sit the CIDESCO examination. Part 5 of this document walks through every module in depth."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 5,
+      "q": "Can you tell me exactly what modules the Diploma in Beauty & Spa Management covers?",
+      "a": "Yes — and this is one of the most directly business-relevant qualifications in our catalogue. The CIDESCO Diploma in Beauty & Spa Management is minimum 300 hours per CIDESCO official syllabus, requires no prior beauty technical training, and is designed for future managers, owners and entrepreneurs. The curriculum covers: The Beauty and Spa Industry context and trends (global and GCC); Spa and Salon Operations Management (workflow, scheduling, equipment, supplier relationships, inventory, quality standards); Financial Management for Spa Business (pricing, cost structures, margin analysis, cash flow, budgeting, basic accounting, reading financial statements); Marketing and Brand Management (positioning, digital marketing, customer acquisition, content strategy, partnerships, reputation); Customer Experience Design (end-to-end client journey, service standards, complaint handling, retention); Human Resources and Team Leadership (hiring, onboarding, training, performance, culture); Retail Strategy (product menu, merchandising, consultation-to-retail, commission); Health, Safety, Hygiene and Legal Compliance (regulatory awareness, licensing, insurance); Spa Design and Atmosphere (space design principles); and the formal Examination Project — a complete business plan with PowerPoint presentation. The CIDESCO examination consists of an MCQ paper, the PowerPoint Presentation, and the Business Plan. Many of our graduates use the business plan they write here as the genuine launch document for their own venture. Part 6 of this document walks through every module in depth."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 6,
+      "q": "How long does the Diploma in Beauty Therapy take and why a full year?",
+      "a": "The CIDESCO Diploma in Beauty Therapy requires a minimum of 1,200 hours of practical and theoretical training — set by CIDESCO Switzerland as the international standard for the qualification. At EBH this works out to a structured one-year programme. We deliberately do not compress it. There is a real difference between completing a syllabus and learning it: CIDESCO's scope is genuinely a year's worth of work if it is taught properly — theory needs time to settle between sessions, practical technique needs weeks of repetition to become reliable, anatomy needs revisiting, exam preparation needs proper space. Eight-month versions you see elsewhere typically achieve their compression by cutting content, cutting practical hours, or rushing the foundation — none of which are kind to the student in their first real interview. We have chosen pace because we have watched, batch after batch, what produces confident working graduates and what does not. Speed feels efficient on enrolment day; pace pays off in your career."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 7,
+      "q": "Will I receive support if I fail part of the CIDESCO exam?",
+      "a": "Absolutely — and we treat exam failure as a coaching moment, not a closure. If a student fails part of the CIDESCO examination, your trainer sits down with you, identifies exactly which competencies were weak (not just the score), schedules targeted revision sessions, gives you additional practical practice time on the specific techniques that need work, and walks you carefully into the re-sit with proper preparation. CIDESCO operates re-sit policies that allow students to re-attempt failed components within defined rules. The exact re-sit terms, fees and intervals are governed by CIDESCO themselves and confirmed by our admissions team for your specific intake. We will walk through this transparently in your counselling session. On the reassuring side: students who engage with revision support, mock exams and trainer feedback have a strong track record of passing — this is the pattern we see consistently. The worst thing a school can do is make a student feel ashamed for one exam result; the best thing is to turn it into the moment they really learn. We aim hard for the second."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 8,
+      "q": "How strict are CIDESCO examiners and what do they look for?",
+      "a": "CIDESCO examiners are rigorous — that is what gives the credential its reputation since 1946 — but they are fair and not looking to trip you up. In the practical examinations they assess: professional expertise (technique mastery), hygiene throughout, client care and interaction, and personal presentation. They want to confirm you are ready to walk into a real salon or clinic and treat a real client safely and competently. They are checking whether you have reached the standard, not searching for reasons to fail you. Our practical preparation maps exactly onto their assessment criteria, so what you have been rehearsing for months is what they are looking for. Walk in prepared and the examiner becomes your audience, not your adversary. Many students tell us afterwards that the real exam felt calmer than the anticipation — because of the preparation that came before it."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 9,
+      "q": "What career opportunities open up after the Diploma in Beauty Therapy?",
+      "a": "A CIDESCO + KHDA + IAO + EBH credentialled beauty therapist has multiple realistic paths. The conventional opening is salon or wellness spa employment, where you build experience, client base and reputation. From there many graduates pursue the DHA licensing examination separately to qualify for clinical settings — different tier of clinic, different earning potential. Some specialise further into clinical aesthetics: HydraFacial, advanced electricals, MLD, body contouring, advanced skin. Some progress to senior or lead therapist roles over several years of strong work. Some move into education over time, becoming trainers themselves. Some build a private clientele and eventually open their own studio, salon or wellness business. We are cautious about painting any single path as guaranteed because much of your trajectory depends on your own practice, client relationships, and how proactively you build your reputation in the first 2 to 3 years. What the diploma gives you is the credibility, the credentials and the foundational skill to walk onto any of those paths confidently."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 10,
+      "q": "What is the difference between CIDESCO and CIBTAC?",
+      "a": "Both are respected international beauty therapy qualifications and a student is fortunate to encounter either. CIDESCO — Comité International D'Esthétique et de Cosmétologie — is the Swiss-headquartered qualification founded in 1946 with its head office in Zurich. Its examination standards are rigorous, its global member-school network is extensive, and in markets like the GCC, Europe and Asia it is often the qualification serious employers ask for by name. CIBTAC — the Confederation of International Beauty Therapy and Cosmetology — is the UK-based equivalent, also well respected and widely held. EBH has focused on the CIDESCO pathway because of its particular global standing, its rigour, and the way it travels with our students if they choose to work outside the UAE. Neither qualification is wrong; they are slightly different doors into the same profession, and CIDESCO is the door we open for you."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 11,
+      "q": "Am I eligible to do injectables after this diploma?",
+      "a": "No — and we want to be very clear because the answer matters legally and ethically. In the UAE, injectable treatments (Botox, dermal fillers, thread lifts and similar) fall within medical scope under DHA regulations and may only be performed by appropriately licensed medical professionals (doctors, and certain qualified nurses under supervision). A beauty therapy diploma does not change that scope. We will not tell you otherwise, even though some less ethical operators in the market do. What the Diploma in Beauty Therapy does open is the full non-invasive beauty therapy scope — facials, body treatments, electricals, skin care protocols, hair removal, make-up, lash and brow work — and, if you choose to pursue the DHA licensing route, clinic-side eligibility for the treatments within a beauty therapist's scope."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 12,
+      "q": "What is the course fee and what is included?",
+      "a": "The headline fee and current inclusion details are shared from our verified price list during your Free Counselling Session — in writing — so you have the accurate current figure with the full breakdown of what is included. The reason we do not publish a single number here is that fees vary with intake, current promotions, payment plan structure, and what is bundled into that specific cohort. What is typically included: structured tuition across the CIDESCO curriculum, study materials (workbook, presentation decks, question banks), access to the practical lab and live model sessions, accreditation processing for the certifications mapped to the course, and certain exam-related fees per the published inclusion list. The DHA examination fee, where applicable, is separate as that is paid directly to the Dubai Health Authority."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 13,
+      "q": "Are DHA fees included in the Beauty Therapy diploma fee?",
+      "a": "No — the DHA licensing examination fee is paid directly to the Dubai Health Authority and is separate from the diploma fee. The reason is structural: DHA controls the licensing process independently of training providers. Our diploma fee covers your educational preparation — tuition, materials, lab access, CIDESCO + KHDA + IAO + EBH accreditation processing. The DHA examination and licensing fees are a separate payment to DHA itself, only relevant if you choose to pursue the DHA licensing route after completing the diploma. Our counsellor will walk through every component clearly in your session so there are no surprises at any stage."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 14,
+      "q": "Why do you provide CIDESCO and not other certifications like CIBTAC?",
+      "a": "We made a deliberate choice to focus on CIDESCO rather than spreading across multiple awarding bodies. Three reasons drove that decision. First, CIDESCO is one of the world's most respected beauty therapy credentials with genuine name-recognition in many markets — particularly the GCC, Europe and parts of Asia. Second, its examination structure is rigorous in ways that produce more confident practitioners, not just paper-qualified ones. Third, focusing our energy on one demanding international standard let us build deeper trainer expertise (every one of our Beauty Therapy trainers is themselves CIDESCO-certified), better revision support, and a stronger pass-rate culture than we could maintain across many parallel credentials. Quality, depth, focus — that was the trade we made, and we stand by it."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 15,
+      "q": "What if I have many years of beauty experience — can I just get the certificate without studying?",
+      "a": "We genuinely understand the frustration of feeling overqualified — but the honest answer is no. CIDESCO certification is awarded only after completing the structured course and successfully passing the CIDESCO examination. There is no fast-track-on-experience route, and any provider offering one would be operating outside CIDESCO's framework. That said, experienced students often find the diploma less of a stretch and more of a structured validation. Many move through the year confidently and use it to consolidate skills they have been practising informally, formalise the anatomy and clinical knowledge, and earn a credential that genuinely changes employer perception. We would love to talk through your specific background in your counselling session — sometimes the right answer is the full diploma, sometimes a specialised course pathway fits your situation better."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 16,
+      "q": "I am not in Dubai — is the Beauty Therapy diploma possible online?",
+      "a": "Honestly, the Diploma in Beauty Therapy is fundamentally a practical, clinical-style qualification — the hands-on practice on live models, the trainer-supervised technique correction, the supervised body and facial work — these cannot be replicated online without compromising the very thing the qualification stands for. That is why this particular diploma requires in-person attendance. For international students the realistic options are: plan a Dubai intake and stay for the duration, or consider the Diploma in Beauty & Spa Management which CIDESCO delivers internationally as a 100% online qualification (no prior beauty training required). Our online video counselling sessions are available to discuss the right path for your specific situation."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 17,
+      "q": "What is the payment plan for the one-year diploma?",
+      "a": "We offer flexible instalment plans designed to make the diploma manageable across the full year. For UAE students that typically includes options like Tabby, Tamara and ENBD-based instalments. The exact split — number of instalments, monthly amount, any deposit, flexibility for life-changes — is tailored in your counselling session based on your honest circumstances. International students have country-specific options that our advisor will walk through. We deliberately do not publish a single fixed table because student situations vary enormously and a one-size plan rarely fits anybody well. Come with an honest picture of your budget and we will build a plan around it."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 18,
+      "q": "Do students practise on live models during the Beauty Therapy diploma?",
+      "a": "Yes — extensively. Live model practice is built throughout the course in a supervised, clinic-style setting. You start with technique foundation on mannequins (because that is where the muscle memory begins), progress to peer practice in pairs (where client communication starts), then move to supervised practice on real models with real skin, real reactions and real conversation. By the time you sit your CIDESCO practical examination, you have been working with live models long enough that the examiner is simply another client — not the first time you have ever held a stranger's face in your hands. That progression is the difference between a graduate who freezes on day one of a real job and one who walks in calm."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 19,
+      "q": "Does the diploma include training on professional machines?",
+      "a": "Yes — hands-on machine training is a core part of the practical syllabus, including the electrical modalities required by the CIDESCO scope (galvanic, high-frequency, vacuum, microcurrent and the body-specific equivalents). Our practical lab is set up to feel like a working clinic environment rather than a sterile classroom, so the machines you train on, the protocols you follow and the safety checks you build into muscle memory are the ones you will use in your actual career. We keep our equipment current with industry standards because training on outdated machines does graduates no favours. The specific equipment in your intake is confirmed in your counselling session."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 20,
+      "q": "Why do I have to study all the body systems if I just want to do facials?",
+      "a": "Because safe practice depends on it — and so does CIDESCO certification. The moment you become a working therapist you will encounter clients with high blood pressure, autoimmune conditions, recent surgeries, pregnancy, medication interactions, skin conditions and contraindications you could not have predicted. Understanding the circulatory, lymphatic, nervous, integumentary and other systems is what allows you to recognise when a treatment is appropriate, when it needs adapting, and crucially when to refer out. CIDESCO's standards exist precisely because the profession demands this depth — the written examination covers Natural Science, Anatomy and Physiology, Skin/Dermatology, Cosmetic Science, Aesthetic Treatments and Business Studies for exactly this reason. The therapists who skip the systems become liabilities. The therapists who internalise them become trusted, sought-after professionals. We want you to be the second."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 21,
+      "q": "How does the Diploma in Body Therapy differ from the Diploma in Beauty Therapy?",
+      "a": "Both are CIDESCO Swiss-headquartered diplomas but they point to different careers. The Diploma in Beauty Therapy is the comprehensive clinical-style qualification — minimum 1,200 CIDESCO hours, covering facials, body, electricals, make-up, lashes, manicure/pedicure, the full beauty therapy scope, four-part examination (facial, body, project, written), and crucially DHA-eligible meaning you can pursue the DHA licensing route afterwards. The Diploma in Body Therapy is a focused body-specialised pathway — minimum 565 CIDESCO hours, concentrating on body analysis, body massage technique, body treatments and electrical body work, with a three-part examination (theoretical MCQ, practical, project). It is shorter, more focused, but NOT a DHA pathway. The right one for you depends on whether you want the full beauty therapy career with DHA optionality (Beauty Therapy) or a focused body-therapy specialisation in a wellness setting (Body Therapy). Your counsellor will help you map this in your session."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 22,
+      "q": "How does the Beauty & Spa Management diploma actually help me run a business?",
+      "a": "Enormously — and that is the entire point of the qualification. CIDESCO designed this diploma specifically for people stepping into management, ownership and operational leadership in the beauty and spa industry. Over the minimum 300 CIDESCO hours you cover spa operations, financial management (the actual numbers and margins of running a profitable spa), marketing and brand strategy, customer experience design, HR and team leadership, retail strategy, compliance, and spa design. The course culminates in a formal CIDESCO-examined Business Plan project with a PowerPoint presentation — and many of our graduates have used this business plan as the genuine launch document for their own venture, or as portfolio evidence in management applications. It is the most directly career-actionable assessment in the entire EBH catalogue. The course is taught with the support of our MBA-qualified marketing expert and our broader faculty so the teaching is commercially serious, not abstract. CIDESCO + KHDA + IAO + EBH credentialled."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 23,
+      "q": "Will the Beauty & Spa Management diploma help me open my own spa?",
+      "a": "It is literally designed for that. By graduation you will have the financial literacy to price profitably and read your own books, the operational understanding to run a spa efficiently, the marketing skill to attract and retain clients, the leadership tools to hire, train and lead a team, and a written, CIDESCO-examined business plan that can serve as your launch document or pitch to a backer. We will not promise business success because no honest course can — that depends on your market choice, your capital, your execution and many factors outside any classroom. But this is the most direct preparation you can do, and we have seen graduates launch genuine businesses with the plan they wrote in this course. Real spas were built on those pages. Yours could be next."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 24,
+      "q": "Do I need prior beauty training to do the Beauty & Spa Management diploma?",
+      "a": "No — and this is one of the most important things to understand about this qualification. Per CIDESCO official requirements, no prior beauty or spa training is required for the Diploma in Beauty & Spa Management. The course is open to anyone wishing to obtain a higher understanding of management within the beauty and spa industry. An understanding of the industry is an advantage but not a prerequisite. This makes it genuinely accessible for career-changers from hospitality, retail, finance, hotel management or any business background who see opportunity in the wellness sector and want to step in at the management or ownership level."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 25,
+      "q": "Can I do the Beauty & Spa Management diploma online?",
+      "a": "Yes — CIDESCO delivers the Diploma in Beauty & Spa Management as a 100% online qualification at international standard. This makes it particularly attractive for international students, working professionals who cannot attend in-person, and entrepreneurs preparing to open a business in their own market. Our admissions team will walk through the current intake structure, delivery format and any in-person components for your specific situation in your counselling session."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 26,
+      "q": "How long is the Beauty & Spa Management diploma?",
+      "a": "Per CIDESCO official syllabus, the diploma requires a minimum of 300 hours of training covering all subjects in the Beauty & Spa Management Syllabus. At EBH the programme is structured to deliver this comfortably while leaving time for the substantive Business Plan project work, which is the culminating CIDESCO-examined deliverable. Exact intake duration and current schedule are confirmed in your counselling session."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 27,
+      "q": "What is the format of the Beauty & Spa Management diploma examination?",
+      "a": "The CIDESCO Beauty & Spa Management examination has three components: a Multiple Choice Question (MCQ) paper covering the full syllabus theoretical content, a PowerPoint Presentation that you develop and deliver, and a complete Business Plan. The Business Plan is the most substantial component — it is your demonstrated ability to apply everything you have learned into a real, executable plan for a beauty or spa business. The PowerPoint Presentation is your ability to communicate that plan to a real audience, which is itself the skill you will use again and again as a manager or owner. The MCQ paper tests your underlying knowledge across operations, finance, marketing, HR, retail and the wider syllabus."
+    },
+    {
+      "category": "B — Diploma Course FAQs",
+      "q_num": 28,
+      "q": "What kind of career does the Beauty & Spa Management diploma open?",
+      "a": "Several genuinely different paths. Spa or salon manager (running operations, leading teams, owning the P&L). Wellness centre operations lead in larger hospitality, hotel or resort groups. Brand or franchise business roles for skincare and spa-product companies. Consultant for new spa openings — increasingly in demand as GCC investors enter the wellness space. And of course entrepreneur and owner-operator, which is where many of our graduates ultimately head. CIDESCO credentialling matters here because it gives external credibility to your management positioning, particularly when you are seeking investment, applying for licences, or negotiating with suppliers and landlords. The Business Plan project becomes a meaningful asset in any of these conversations."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 1,
+      "q": "What is Madero Therapy and how is it different from regular massage?",
+      "a": "Madero Therapy — sometimes called maderoterapia — is a body-sculpting massage technique originating in South America that uses precisely shaped wooden tools to manually contour the body, drain lymphatic build-up and stimulate circulation. It is not a relaxation modality; it is a results-driven, often quite intense technique that clients book specifically for visible body-shaping outcomes. The demand for it has grown sharply in the GCC wellness market because clients want non-invasive body contouring and Madero delivers visible results in a hands-on, holistic way. We offer separate Madero Body Massage and Madero Face Massage courses, both KHDA + IAO + EBH accredited. Many of our graduates add Madero as a premium service that commands premium pricing on their menu."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 2,
+      "q": "What does the Manual Lymphatic Drainage (MLD) course cover and where can I work after it?",
+      "a": "MLD is a specialised, clinical-style technique that works gently with the lymphatic system to support post-surgical recovery, manage oedema, assist post-aesthetic-procedure healing, and support general wellness. It is gentle, precise and deeply technical — and increasingly requested in both wellness spas and aesthetic clinic settings across the UAE. Our MLD course carries IAO and EBH Academy accreditation. Where you can practise depends on the setting: wellness spas typically welcome MLD certification directly; medical clinic environments have their own scope rules that vary clinic to clinic and are sometimes tied to DHA requirements. Our counsellor will walk through realistic placement scenarios for your situation in your session. MLD is one of the most career-strengthening specialisations a body therapist can add — clients with real medical recovery needs become deeply loyal once they find someone who can help them properly."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 3,
+      "q": "What is the difference between deep tissue massage and sports massage?",
+      "a": "Both modalities work into deeper muscle layers but the intent and protocol differ meaningfully. Deep tissue massage is typically used to release chronic muscle tension, work through adhesions and knots, and provide structural relief for clients dealing with day-to-day muscle issues — desk work, posture, sleep tension, accumulated stress. Sports massage is performance-focused: pre-event protocols prepare specific muscle groups for activity, post-event protocols accelerate recovery and reduce soreness, and between-training-cycle work supports an athlete's ongoing performance. There is significant overlap in technique, which is why many working therapists train in both. From a career angle in the UAE market: wellness spa work tends to favour broad deep-tissue ability, while corporate-fitness, hotel-gym and athlete-clientele settings increasingly request sports massage specifically."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 4,
+      "q": "Can I work as a male massage therapist in Dubai?",
+      "a": "Yes — male massage therapists are part of the UAE wellness industry, particularly in male-only spas (which the UAE has many of, often within hotels), hotel gym wellness rooms with male trainer assignments, sports recovery and physiotherapy-adjacent settings where male clients prefer male therapists, mixed-gender clinics with appropriate scheduling, and freelance and private work for established male clientele. The career exists and in several segments demand for qualified male professionals genuinely outstrips supply. Cultural considerations in the UAE typically pair therapists with clients of the same gender for body treatments — and this works in your favour as a male therapist because the demand is real and the qualified-male supply is comparatively limited. Our counsellor will walk through the realistic settings and current market scenarios in your session."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 5,
+      "q": "Can I work part-time while studying for a massage course?",
+      "a": "Yes — many of our students do exactly that. Our class schedules are designed to leave space for work, family or freelance practice. The intensity varies by course: short courses are more compressed (a few intensive days or weeks), while the Diploma in Body Therapy is more structured across months. Your counsellor will help you match a schedule to your work commitments honestly so you are not setting yourself up to drop out from over-commitment. Honesty here saves a lot of stress later — bring the real picture of your work and life into the conversation and we will help you design something workable."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 6,
+      "q": "How do I build proper massage pressure and hand stamina?",
+      "a": "This is a real skill that develops through structured practice rather than guesswork. We teach progressive pressure technique with our physiotherapist's input — the secret is learning to use your bodyweight, posture and rhythm rather than relying on hand strength alone, which is exactly what burns therapists out within a couple of years if done wrong. We work on hand and wrist positioning to protect your own joints (a long career depends on this), breathing rhythm to maintain flow and stamina, and treatment sequencing so each massage feels like one continuous experience rather than disjointed movements. Live model practice under supervision turns the theory into muscle memory. By the end of the course what felt awkward in week one should feel natural and confident — and your hands and shoulders will be set up to sustain a long career without injury."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 7,
+      "q": "How do I know if a client is comfortable during a massage treatment?",
+      "a": "This is a genuine professional skill and we teach it explicitly because it is the difference between a technically correct massage and a treatment a client actually rebooks. You learn to read client body language during treatment (breathing rate changes, subtle muscle tension shifts, facial expression, hand position), use pre-treatment consultation questions to establish baseline preferences and any contraindications, check in verbally at appropriate moments without disrupting the treatment flow, and adjust pressure or technique based on subtle feedback. The therapists who get rebooked are not the ones with the strongest hands — they are the ones who make the client feel truly listened to. That is a teachable skill, and it is woven through our massage training."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 8,
+      "q": "My hands get tired quickly — is this normal and will it improve?",
+      "a": "Completely normal — every new massage student goes through this, and it almost always tells us the same thing: technique is currently relying too heavily on hand strength rather than bodyweight, posture and proper joint alignment. This is exactly why our physiotherapist-supported massage training emphasises proper biomechanics from day one — how to lean into pressure rather than push it, how to stack your joints, how to use rhythm and breath to maintain flow. Over weeks of structured practice your hand strength does build, but more importantly your technique evolves so the load shifts off your hands and into your whole body. Our graduates work full massage days years into their careers without significant hand strain — that is the long-term payoff of learning technique properly from the start."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 9,
+      "q": "Do massage courses make me DHA-eligible?",
+      "a": "Honestly, no — and we want to be clear because this matters. Our standalone massage courses (Madero, MLD, Indian Head, Relaxation, Advanced Relaxation, Reflexology) are KHDA / IAO / EBH credentialled but they are not DHA license pathways. The only EBH programme that confers DHA eligibility is the Diploma in Beauty Therapy, and even there the DHA license itself is issued by the Dubai Health Authority based on their own examination and eligibility criteria — completing the diploma is the educational preparation step, not an automatic license. If a DHA-licensed career is your goal, the route is the Diploma in Beauty Therapy followed by DHA's own licensing process. Our counsellor will map the right pathway for your goals in your session."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 10,
+      "q": "Can I use my massage certificate outside the UAE?",
+      "a": "Our massage course certificates carry KHDA (Dubai), IAO (international) and EBH Academy accreditation. How well they translate into another country depends on that country's beauty and wellness regulatory framework. Some markets recognise IAO directly and you can work with the certificate as-is, often after a routine registration step. Others — particularly heavily regulated markets like the UK, US, Australia and parts of Europe — typically require local licensing examinations or registration on top, regardless of where you trained. We never promise specific country recognition without verification because regulations change and we would rather you make the decision with accurate current information. In your counselling session, tell our advisor where you are hoping to work and they will give you the realistic picture for that specific country."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 11,
+      "q": "Can I work as a freelance massage therapist in Dubai?",
+      "a": "Yes — freelance and home-service massage therapy has grown into a meaningful segment of the UAE wellness market, particularly after the pandemic shifted client preferences toward in-home treatments. The realistic setup involves appropriate trade licensing in the UAE (current requirements walked through in your counselling session — these do change), a client acquisition strategy (typically Instagram + WhatsApp + word-of-mouth referrals), equipment investment (portable massage table, oils, towels, sanitation), and pricing strategy that reflects the premium of mobile service. Several of our graduates have built strong freelance practices. The strongest foundation we typically see is a Diploma in Body Therapy combined with a couple of specialised credentials like Madero, MLD or Reflexology — because clients pay more for genuine specialisation. Many therapists eventually run a hybrid model — part employed, part freelance."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 12,
+      "q": "Is reflexology in demand in the UAE and worth learning?",
+      "a": "Reflexology has a steady, loyal client base in the UAE wellness scene — it is not the largest segment of the market but it has the characteristic that reflexology clients tend to be deeply committed repeat bookers. Most therapists offer reflexology as part of a broader treatment menu rather than as their sole service, which is the realistic positioning we would advise. As a specialisation it complements a massage diploma beautifully — it expands your menu, deepens your clinical credibility, and gives wellness-focused clients a reason to keep coming back. Our reflexology course carries KHDA, IAO and EBH Academy accreditation. Particularly popular as a top-up for working therapists who want to add a more therapeutic, less labour-intensive treatment to their offering."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 13,
+      "q": "What does your Relaxation Massage course cover?",
+      "a": "Our Relaxation Massage course covers the foundation of Swedish-style relaxation technique — flow, pressure modulation, sequence design, professional client consultation, draping protocol and treatment-room hygiene. It is the perfect entry point for someone completely new to professional massage and it is KHDA + IAO + EBH accredited. We also offer an Advanced Relaxation Massage course for those wanting to take this technique further with more sophisticated flow patterns, extended treatment design and refined client experience skills. The Relaxation Massage qualification is what gets you started in salon and spa settings, and many therapists begin here and build outward into specialised modalities once their foundation is solid."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 14,
+      "q": "Can I work in a clinic with just a relaxation massage course?",
+      "a": "Honestly, no — a standalone relaxation massage course is a wonderful skill but it typically positions you for wellness spas and salons rather than clinical settings. Clinical environments — medical spas, post-surgical recovery centres, certain wellness clinics — usually require more specialised credentials and often connect to DHA-related qualifications for any work classified as clinical. If clinic work is your ultimate goal, the more appropriate pathway is typically the Diploma in Body Therapy (for wellness-clinical body work) or the Diploma in Beauty Therapy (for the full beauty therapy clinical scope, which is also the DHA-eligible route). We would rather match you to the right pathway from day one than have you complete a course and then realise it does not open the door you wanted."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 15,
+      "q": "Will MLD specifically help me get a clinic job?",
+      "a": "MLD is genuinely a sought-after skill in wellness spas, aesthetic clinics doing post-procedure care, and certain clinical settings — particularly for post-surgical lymphatic recovery and oedema management. Adding it to your profile can absolutely strengthen your candidacy. Whether MLD alone is enough for a specific clinic role depends on that clinic's own scope of practice, licensing requirements and the role definition. The strongest profile we typically see is a foundation diploma (Body Therapy or Beauty Therapy) combined with specialised certifications like MLD — that combination tells employers you have both breadth and depth. Our counsellor will map realistic scenarios for the type of clinic environment you are aiming for."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 16,
+      "q": "How long until I feel genuinely confident in massage technique?",
+      "a": "Honestly, the trajectory we see across hundreds of students is consistent. Early weeks feel awkward and effortful. The midpoint of training usually marks the first 'this is starting to feel natural' moment after repeated work on live models. By the end of the course you should feel ready to walk into a real workplace and treat a real client professionally. Full mastery and true clinical intuition typically build through the first year of paid client work — there is no shortcut for the experience of treating dozens of different bodies, skin types and presenting concerns. What our training does is give you the repetition during the course itself so that 'first day of work' is not actually your first time. Confidence is built by reps and we design for the reps."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 17,
+      "q": "Do slimming and wellness machines really give permanent results?",
+      "a": "Honestly — and we would rather tell you the truth than oversell — slimming and body contouring results are best understood as lifestyle-supported, not stand-alone permanent. Machines and techniques can deliver visible, real results when combined with appropriate diet, hydration and physical activity, and maintenance sessions extend outcomes meaningfully over time. The clients who treat them as a one-shot miracle are typically disappointed; the ones who treat them as part of an ongoing wellness programme — with realistic expectations from the start — are typically loyal repeat-bookers. Managing client expectations is itself a core professional skill, and we teach it explicitly (with input from our dietitian on the nutritional and lifestyle side that genuinely supports lasting results). The therapists who get this conversation right build trust and loyal clienteles; the ones who oversell lose clients fast and damage their reputation."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 18,
+      "q": "How do I explain realistic results to slimming clients without losing the booking?",
+      "a": "Great question — and a real professional skill we teach explicitly. The framing that works consistently in real practice: 'This treatment can deliver real, visible results when combined with your daily habits — diet, hydration, movement, sleep — and maintenance sessions sustain those results over time. I would rather set you up for outcomes you will genuinely love than promise something today that disappoints you next month.' This sounds like it would lose the booking; in practice it does the opposite. Clients have been over-promised so often that the therapist who speaks plainly stands out as trustworthy. The booking rate stays strong, the satisfaction rate goes up, and the rebooking rate — where the real money is — goes up significantly. We give you the exact language, the consultation script, the visual aids and (with our dietitian's input) the supporting nutritional framing during the course."
+    },
+    {
+      "category": "C — Massage Course FAQs",
+      "q_num": 19,
+      "q": "Can I start a home-service slimming business after certification?",
+      "a": "Yes — home-service body work and slimming is a growing segment of the UAE wellness market, driven by clients who want privacy, convenience and personal attention. The realistic setup involves appropriate trade licensing in the UAE (current requirements walked through in your counselling session — these do change), portable or compact equipment suitable for home visits, professional kit and hygiene supplies, a client acquisition strategy (Instagram visuals, WhatsApp booking flow, referral incentives are the typical trio for this segment), clear treatment and consultation protocols, and realistic pricing that reflects the premium of mobile service. Several of our graduates have built thriving home-service businesses. With our MBA-qualified marketing expert on the faculty, we are well-placed to help you think through the business side properly."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 1,
+      "q": "What is the difference between a Basic Facial course and a clinical aesthetic course?",
+      "a": "Both courses teach facials but at very different depths. A Basic Facial course covers the foundation — skin analysis, cleansing, exfoliation protocols, mask application, the classic facial sequence and basic product knowledge. It is the right starting point for a salon-focused career. A clinical aesthetic course goes significantly further into advanced equipment (galvanic, high-frequency, vacuum, hydrafacial, microcurrent), advanced skin protocols, post-procedure care for clients who have had medical aesthetic treatments, and a more clinical style of application. The clinical aesthetic pathway prepares you for medical-spa and clinic environments where the work integrates with dermatologist or aesthetic-doctor-led treatments. The right starting point depends entirely on where you see yourself working in 2 to 3 years — your counsellor will help you map this in your session."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 2,
+      "q": "What is HydraFacial and why is it so popular worldwide?",
+      "a": "HydraFacial is a multi-step facial treatment that combines cleansing, gentle exfoliation, painless extraction, hydration and targeted serum infusion using a specialised vortex-suction machine. Its global popularity comes down to one thing: it consistently delivers visible, immediate results with virtually no downtime — clients walk out with brighter, smoother, more hydrated skin that they can see in the mirror right away. That immediate visible result is what drives the high rebook rate that has made HydraFacial one of the most requested treatments in modern aesthetic clinics worldwide. From a therapist's career angle it is a particularly valuable specialisation because clinics doing HydraFacial volume need certified therapists, and the treatment commands premium pricing. Our HydraFacial training carries IAO and EBH Academy accreditation."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 3,
+      "q": "What does your Electrical Facial course cover?",
+      "a": "Our Electrical Facial course covers the professional electrical modalities used in salons and aesthetic clinics — including galvanic current, high-frequency, vacuum suction, microcurrent and related modalities — alongside safety protocols, contraindications, skin condition matching, and treatment design. The course is IAO and EBH Academy accredited. It is a particularly valuable specialisation for working therapists who want to upgrade their menu, and for new entrants planning to work in modern salons that increasingly expect electrical-facial competence as standard. Safe practice with electricals is essential — incorrect application can harm clients — which is why the course emphasises protocol mastery and safety from the start, with our medical doctor faculty supporting the clinical-science depth."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 4,
+      "q": "Can I do dermaplaning in a salon after this course?",
+      "a": "Yes — dermaplaning is generally within the scope of salon and beauty therapist work because it is a manual exfoliation technique (using a sterile single-use blade to remove dead skin cells and vellus hair) rather than a piercing or invasive procedure. After completing our KHDA + IAO + EBH Academy accredited Dermaplaning course you will have the certification, the safe-technique training, the proper consultation framework, and the contraindication knowledge to offer it professionally. Specific employment in a particular salon depends on that salon's protocols and your broader profile, but dermaplaning is widely offered across UAE salons and the demand has grown steadily. It is a particularly nice add-on because it pairs well with facials and the treatment time is short, which keeps margins healthy."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 5,
+      "q": "Can I teach my salon staff dermaplaning after I learn it?",
+      "a": "Informally showing a colleague a technique you have just learned and helping them practise is one thing — most working salons do this all the time. But formally teaching staff and issuing any kind of certification is a different matter that should go through recognised accreditation channels. Proper training delivery typically requires teaching qualifications on top of your technical qualifications and meaningful practical experience to teach from. If teaching is genuinely a direction you want to head, we would much rather map the proper pathway — diploma → industry experience → teaching qualification → trainer route — in your counselling session, so you build a credible long-term position rather than one that could be questioned later."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 6,
+      "q": "What else can I learn after dermaplaning?",
+      "a": "Lovely that you are thinking ahead — the therapists who plan their development this way are the ones who build the strongest careers. Natural progressions from dermaplaning include the Electrical Facial course (deepens your facial menu meaningfully with galvanic, high-frequency, vacuum and microcurrent), HydraFacial training (a premium-priced, in-demand specialisation), chemical peel studies, Manual Lymphatic Drainage (excellent for post-procedure care work), or stepping into a full Diploma in Beauty Therapy if you want to consolidate everything into a CIDESCO-credentialled qualification. The right next step depends entirely on where you are aiming — high-street salon, premium spa, aesthetic clinic, freelance, your own studio. Your counsellor will help you sequence specialisations strategically so they compound rather than scatter."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 7,
+      "q": "Will laser therapist training make me DHA-eligible?",
+      "a": "Honestly, no — our laser therapist training course is IAO + EBH accredited and provides the technique training, safety protocols, contraindication knowledge and certification recognised in non-medical settings. However, it is not a standalone DHA license pathway. Laser work in the UAE in clinical or medical settings typically requires DHA-aligned qualifications and the DHA's own licensing examination process, and the scope of who can perform certain laser procedures is governed by DHA regulations. The realistic positioning: the course is appropriate for trained therapists working in salon and certain wellness settings where laser scope is permitted; for clinical or medical laser scope, the pathway involves DHA-aligned routes that your counsellor will walk through realistically in your session."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 8,
+      "q": "Can laser treatment make pigmentation worse and how do I avoid that?",
+      "a": "Yes, in some cases — and this is precisely why proper training matters. Incorrect treatment can cause post-inflammatory hyperpigmentation, rebound pigmentation, burns, scarring or skin damage. The major risk factors are wrong wavelength selection for the condition, incorrect device settings, inadequate skin type assessment (different skin tones absorb laser energy very differently), unsuitable client conditions at time of treatment (recent sun exposure, certain medications, hormonal influences, pregnancy, active skin conditions), and inadequate consultation. Our laser training — supported by our medical doctor faculty for the clinical-science depth — covers these factors comprehensively: contraindication knowledge including Fitzpatrick classification, client consultation protocols, safe parameter selection, and recognition of warning signs. The course is designed to produce safe practitioners, not just technically certified ones — because in laser, safe practice is the entire profession."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 9,
+      "q": "What are the most in-demand aesthetic treatments in the UAE market right now?",
+      "a": "The aesthetic market in the UAE shifts year to year but the consistent strong performers tend to be treatments that deliver visible, immediate, low-downtime results. HydraFacial remains a global and regional star because of its instant glow. Advanced skin analysis-based protocols are increasingly demanded by sophisticated clients. Dermaplaning has become a staple add-on. Certain electrical facials, MLD (especially as post-aesthetic-procedure care), professional lash work, and body contouring including Madero have all sustained meaningful demand. The pattern is consistent: treatments that show visible immediate results, that pair well with photo-shareable moments, and that suit busy clients with no downtime are the ones that fill diaries. Your counsellor will give you the current market read and help you sequence specialisations strategically."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 10,
+      "q": "What machines and products will I be trained on?",
+      "a": "Our practical lab is equipped with professional-grade equipment used in working salons and aesthetic clinics — the specific machines per course are confirmed in your counselling session because intake equipment rotates as we keep current with industry standards. Products are professional-grade and matched to each treatment protocol. The guiding principle behind our training equipment choices is simple: what you train on should be what you will actually use on your first day at work. A course running on machines that have been off the market for five years does students no favours; we update deliberately."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 11,
+      "q": "Can I work in a clinic after a single short aesthetic course?",
+      "a": "Honestly — for most clinic settings, a single short aesthetic course is best understood as adding to your profile rather than being the standalone qualification a clinic hires on. Clinics typically look for a recognised foundation diploma plus relevant specialisations. The realistic pathway we recommend for clinic-bound students: complete a foundation diploma (Beauty Therapy if you want the DHA route, Body Therapy for wellness-clinical body work), then stack relevant specialisations (HydraFacial, advanced electricals, MLD, laser etc.) on top. Your counsellor will map your realistic pathway in your session so you do not invest in the wrong sequence."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 12,
+      "q": "Why is HydraFacial more expensive than a regular facial — and how do I justify the price to clients?",
+      "a": "Two reasons. On the cost side: the HydraFacial machine itself is expensive to acquire and maintain, the consumable serums and tips are professional-grade and pricey per treatment, and the multi-step protocol takes meaningful equipment time. On the value side — which is what clients actually care about: HydraFacial delivers visible, immediate results with effectively no downtime, which is rare in skincare. Clients walk out brighter, smoother and glowing. The justification to clients is the result itself: show your before/after gallery (with consent), walk them through the multi-step process so they understand they are getting a multi-treatment-in-one, and let the mirror do the rest. We train you on the consultation language and the client journey explicitly during the course because pricing confidence is itself a professional skill."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 13,
+      "q": "Is this treatment really effective or is it just marketing?",
+      "a": "Honest answer: most professional aesthetic treatments deliver real, measurable results within their advertised scope when applied correctly to suitable clients. The 'just marketing' problem is not typically with the treatment itself — it is with operators who over-promise (claiming permanent miracle results from one session, claiming a treatment will solve issues outside its actual scope, claiming results without lifestyle factors). When the treatment is properly matched to the right client, applied correctly with proper technique and product, and outcomes are framed realistically from the consultation onwards, real effectiveness is normal — and clients become happy repeat-bookers. We teach this realistic framing explicitly because it is the professional ethic that protects both the client and your reputation over a long career."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 14,
+      "q": "Can I open my own aesthetic clinic after these courses?",
+      "a": "Opening your own business is genuinely achievable, but the specifics depend hugely on what scope of business you mean. Beauty and wellness-scope businesses (salons, wellness spas, home-service models, focused specialisation studios) are accessible after appropriate training — the requirements involve DED trade licensing, premises that meet relevant standards, business setup capital, and the right credential mix on your team. Medical-scope aesthetic clinics — places performing injectables, certain laser procedures, anything classified as medical — require DHA facility licensing, qualified medical professionals (doctors, certain nurses) for the medical-scope treatments, and a more significant capital and operational structure. Our Diploma in Beauty & Spa Management is specifically designed for the leadership side. Your counsellor will walk through what is realistic for your specific ambition in your session."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 15,
+      "q": "What is advanced skin analysis and why does it matter?",
+      "a": "Advanced skin analysis is the professional skill of accurately identifying a client's skin type, condition, concerns and relevant history — often using diagnostic tools and structured consultation — before recommending or beginning any treatment. It matters enormously for two reasons. Clinically, the right treatment for the wrong skin can cause damage (irritation, post-inflammatory hyperpigmentation, sensitisation, broken skin barrier). Commercially, modern aesthetic practice has shifted decisively toward consultation-led service, and sophisticated clients now expect detailed analysis as the first step. The therapists who can analyse skin properly are the ones building loyal high-value clienteles. Our Advanced Skin Analysis course builds this professional foundation systematically — observation, tools, consultation framework, treatment recommendation logic, and the language to communicate findings to clients with confidence."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 16,
+      "q": "What is body contouring training and what jobs does it lead to?",
+      "a": "Body contouring training covers the non-invasive techniques used to shape, sculpt, drain and improve body areas — including manual techniques such as Madero, machine-based treatments where appropriate, treatment protocol design and consultation. Career routes include wellness spas (where body work is increasingly a core menu item), dedicated body contouring studios (a growing UAE business format), home-service freelance practice for clients who want privacy, and as a high-margin add-on to a salon menu. Demand for body work in the UAE has grown substantially, driven by year-round visible-skin culture and increasing awareness of non-invasive options. Our body contouring training carries KHDA, IAO and EBH Academy credentials. The realistic positioning: combine body contouring with a foundation diploma and a couple of related specialisations and you have built a genuinely commercial skill stack."
+    },
+    {
+      "category": "D — Aesthetic Course FAQs",
+      "q_num": 17,
+      "q": "What is the realistic earning potential as an aesthetic therapist in Dubai?",
+      "a": "We are cautious about quoting earning numbers in chat because they vary enormously and dating them publicly does students a disservice. The honest variables that drive aesthetic-therapist earnings in Dubai: setting (high-street salon vs five-star hotel spa vs medical aesthetic clinic — these tiers have meaningfully different pay scales), qualification level (KHDA-only vs CIDESCO-qualified vs DHA-licensed), specialisations stacked (a HydraFacial-certified therapist commands more than a general therapist), language skills (multilingual therapists are at a premium in Dubai's international client base), and your own client-building skill (the therapist who builds a personal rebook rate of 70%+ is the one who eventually negotiates premium rates or freelances independently). The trajectory tends to climb meaningfully with the right certifications and 2 to 3 years of focused experience. Your counsellor will share current realistic ranges in your session."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 1,
+      "q": "Can a complete beginner really succeed in beauty and aesthetics?",
+      "a": "Yes — and many of our most successful graduates were complete beginners on day one. The beauty and aesthetics industry does not reward where you start; it rewards how seriously you train, how much you practise, and how thoughtfully you build relationships with clients. Our courses are deliberately structured to take a beginner step by step: foundations first, then technique, then practical repetition with live models, then examination preparation and real-world readiness. The students who graduate confident are not the ones with prior experience — they are the ones who showed up, asked questions, practised consistently and trusted the process. That is something you can absolutely do. The fear you are feeling about being a beginner is, more often than not, the same fear most of our strongest graduates carried into their first week. They got past it through structure and support. So can you."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 2,
+      "q": "I am in my late 30s or 40s — am I too old to start a beauty career?",
+      "a": "Honestly, no — and we want to be straight with you because the evidence is clearly on your side. We have trained students starting at 38, 42, even 50-plus who have gone on to build genuine careers — some as senior therapists in established spas, several as independent practitioners, others running their own businesses. There is something mature students bring that the industry quietly values: client communication skill built over a lifetime, calm presence under pressure, life experience that helps them read people accurately, and a seriousness about the investment that often produces more disciplined practice. Clients trust them faster, and employers notice. Age feels like a barrier when you are standing outside the door; once you are inside the room it stops mattering very quickly. Bring this worry to your counselling session honestly — we will talk it through, and we will tell you the truth about your realistic prospects, not what you want to hear."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 3,
+      "q": "My English is weak — will I struggle in classes and exams?",
+      "a": "Many of our students arrive with limited English and finish their diploma confidently — sometimes more confidently than they expected, because the structured exposure to industry terminology actually builds their language alongside their craft. Our trainers teach in simple plain English (we deliberately avoid complicated jargon), our materials use clear language supported by diagrams and visuals, and we offer additional support if a student is struggling specifically with terminology. We want you to learn, not feel embarrassed. The thing we do not do is pretend it does not matter — for some highly clinical content the technical vocabulary genuinely matters for CIDESCO examinations and client safety. So we put extra structure around it rather than glossing over it. Tell our counsellor honestly what your starting point is and they will be straight with you about what is realistic and where extra support will be focused for you."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 4,
+      "q": "Will real clients trust me when I have just started out?",
+      "a": "More than you might think. What clients actually look for in those early appointments is not decades of experience — it is presence, hygiene standards, attentive listening, and confidence in your hands. The way we build this into the course is that by graduation you have worked on real models repeatedly under supervision, which means your 'first real client' on day one of paid work is not actually your first client. The trust builds remarkably fast when three things are present: you communicate with genuine care during consultation, your hygiene and professionalism are visibly excellent, and you never pretend to know something you do not (clients respect 'let me check with my senior on that' far more than a confident wrong answer). The therapists who say 'I felt like a fraud for the first month' usually overcame it by month two. The ones who pretended never to feel uncertain often struggled longer. We prepare you to be the first kind."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 5,
+      "q": "I am a housewife wanting to restart my career — is this realistic for me?",
+      "a": "Absolutely realistic, and many of our most committed students are exactly in your situation. Beauty and aesthetics is genuinely one of the most accessible career re-entries for women returning to work, for several real reasons: the qualification is portable (CIDESCO travels internationally), the work can be structured flexibly (employed, part-time, freelance, home-service for school-hour mums), employers care far more about skill, hygiene and client manner than prior career CV gaps, and the income trajectory can build meaningfully over a few years of focused work. The students we see thrive most are the ones who treat the diploma year seriously — they practise, they show up, they engage. The skills you have been using daily — managing a household, navigating relationships, handling stress, listening to people — translate directly into the client-facing skills employers want. Bring your situation to your counselling session and we will be realistic with you."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 6,
+      "q": "I have small children — can I actually manage a one-year diploma?",
+      "a": "Many of our diploma students are mothers with school-age or young children — it is genuinely manageable, but it requires honest planning rather than wishful thinking. The course is structured around weekly classes which fit alongside school runs and childcare arrangements, materials support self-study at home in the gaps you can find, and our team genuinely works around what is realistic for your family situation. The honest things to plan around: a designated study time most days (even 30 focused minutes adds up), a backup plan for the days when childcare falls through, and a partner or family member who understands what you are committing to. In your counselling session bring your specific constraints — school timings, work commitments, childcare patterns — and your advisor will help design a realistic plan. Hiding constraints upfront only sets you up to struggle later; planning for them is what makes the year work."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 7,
+      "q": "I have no confidence — will this course help build it?",
+      "a": "Confidence is genuinely one of the things we set out to build, not just a side-effect we hope happens. The architecture of the course works for it: small batches mean every student is seen and supported individually rather than disappearing in a crowd; practical practice on real models in a safe, supervised environment builds genuine self-belief through controlled repetition; mentors notice your growth and tell you when you have crossed a threshold (this matters more than people realise — being witnessed in your progress is what makes growth feel real); real clients begin to trust you and rebook you, which is the most powerful confidence-builder of all. By graduation, the most common feedback we get is some version of 'I cannot believe how much I have changed since week one.' That is not coincidence — it is how the course is structured. Bring your low confidence to your counselling session honestly. Our advisors have heard it before, and they will treat it with care."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 8,
+      "q": "I tried beauty courses before and did not finish — what is different here?",
+      "a": "Honestly, the pattern with unfinished courses is almost always silent drop-off — students go quiet for two weeks, fall behind, feel embarrassed, then disappear. We have designed deliberately against this. Small batches mean a student going quiet is immediately noticed rather than disappearing in a crowd; trainers chase students who go silent rather than waiting for them to come back; extra support sessions exist specifically for the moments you are struggling so you do not have to choose between catching up alone or giving up; revision is structured into the calendar rather than left as a personal responsibility. The single most important thing you can do is tell our counsellor honestly what went wrong last time — without judgement, without shame. They will help you design around it from the start. Course completion is not a willpower question for most students; it is a support question. We try hard to be the support."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 9,
+      "q": "What if I am shy and not good with people?",
+      "a": "Many therapists you would today consider 'people-people' started exactly here, and the truthful answer is that client interaction is a learned skill, not a personality trait you must already possess. Through the course you build a structured consultation framework that gives you words to say (which removes much of the anxiety), listening prompts that take the pressure off you having to 'be entertaining', and professional language that creates appropriate distance between you-as-person and you-as-therapist. Small batches mean you build these skills in a low-pressure environment first, then practise them on peers, then with supervised models, then with real clients. By graduation you will have had enough supervised interaction that natural shyness gives way to professional comfort. The introverts often become the most-loved therapists — they listen better."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 10,
+      "q": "What if I cannot keep up with the science and theory parts?",
+      "a": "Honestly — very few students sail through the theory effortlessly, and we plan for that explicitly. Our materials are deliberately designed to be accessible (clear language, diagrams, real-client context to anchor the science), revision is built into the calendar so you are not relying purely on personal discipline, extra support sessions exist for tough topics, and your trainer (with the support of our medical doctor faculty for clinical content) is paying attention — they will spot when you are falling behind and pull you in before it becomes a crisis. The students who genuinely struggle with the science part of the diploma are almost always the ones who hide their struggle out of embarrassment. The ones who say openly 'I am not getting this, can you help' almost always pass — because we wrap support around them. The system works if you let it. Tell our counsellor honestly if science is your worry — we will plan around it from day one."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 11,
+      "q": "Can men succeed in this industry?",
+      "a": "Yes, clearly. Men succeed in massage therapy (particularly sports massage, deep tissue and male-client work), male grooming, hair styling, body work and contouring, certain aesthetic clinic environments, and spa management and ownership. In several specific UAE segments — male-only spas (which the country has many of), sports massage settings, mixed clinics with male-client preference — demand for qualified men actually outstrips supply. The stigma some men feel before entering this industry tends to evaporate quickly once they meet the realities of the modern UAE wellness market and the respect competent male therapists genuinely command. Your counsellor will give you a realistic picture of opportunity in the specific area you are considering."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 12,
+      "q": "I am worried I will never find a job after the course — what if I just waste a year?",
+      "a": "We hear this fear often and we want to be honest with you: no academy can guarantee a job, and any that promises one should worry you. What we can say genuinely is that our graduates with strong credentials (CIDESCO + KHDA + IAO + EBH), meaningful practical hours, and active job-search effort generally do find roles, though sometimes the timeline is longer than people expect, sometimes the first role is not the dream role, and sometimes it takes a few applications. The students who land fastest tend to share three patterns: they treat the final months of the course strategically (building a portfolio, refining a CV, beginning conversations with potential employers), they network actively (using classmates, trainers, alumni and the wider industry connections Dubai offers), and they are realistic about starting roles — taking the foothold that leads somewhere. We will talk through realistic job-search strategy in your final months. Wasting a year is not the typical outcome; landing somewhere takes effort and patience."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 13,
+      "q": "I have never been good at studying — will I cope?",
+      "a": "Honestly, many of our students would say exactly the same thing about themselves, and the vast majority of them finish well. Our training is fundamentally practice-led rather than academically heavy — you learn through doing the technique, repeating it on real models, getting trainer feedback, refining it. The theory portion exists and is real, but it is anchored to practical context (you learn anatomy because you can feel the muscle under your hands, not as abstract memorisation). The 'I was never good at studying' worry usually evaporates within the first few weeks once students realise this is not sitting in a library reading textbooks — it is an active, sensory, hands-on training environment that engages people who never thrived in conventional academic settings. If reading is a particular barrier we can flag that early and adjust support around you. Bring it to your counselling session honestly."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 14,
+      "q": "Will my family take this career seriously, or will they think it is not a real job?",
+      "a": "Honestly, this is a real concern many students carry quietly — particularly in some cultural contexts — and we honour the weight of it. What tends to shift family perception over time is consistently two things: holding a genuinely internationally recognised credential (CIDESCO is Swiss-headquartered, founded in 1946, recognised globally — that is hard to dismiss as 'not a real career'), and showing visible professional progress in respected workplaces with real income. Many of our students have walked this path and tell us the family doubt largely evaporates by year two of their career, as the credentials and progression speak for themselves. You are very welcome to bring a parent or spouse to your counselling session — our advisor can speak to them directly about the realistic career and earnings picture, and often the family members who arrive most sceptical leave the most reassured."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 15,
+      "q": "Can I really change careers at this stage of my life?",
+      "a": "Yes — and many of our students are doing exactly that, sometimes in their 30s, often in their 40s, occasionally later. We have had career-changers from teaching, retail, hospitality management, admin and HR, finance, nursing, the airline industry, and dozens of other backgrounds. Beauty and aesthetics is genuinely one of the most accessible career pivots in the UAE because the industry values skill, certification and people-presence over your prior career history. The transition tends to feel huge before you start and much smaller once you are in. The students who manage it best treat the diploma year as a serious investment (not a hobby), build relationships with classmates and trainers (which become professional contacts), and start positioning themselves for the kind of role they actually want in the final months of the course rather than waiting until graduation. We will help you think this through honestly in your counselling session."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 16,
+      "q": "What if I do not enjoy beauty therapy once I start?",
+      "a": "Honest answer — this is exactly why we strongly recommend doing the counselling session and academy tour before enrolling. The visit gives you a tangible sense of the environment, the teaching style, the practical work, the type of student around you, the trainers themselves. Many students arrive uncertain about whether beauty therapy is really for them and leave excited and committed; some discover that a different course (management, makeup, a specific specialisation) actually suits them better, which is also a perfectly good outcome and far cheaper than three months of regret. We would much rather you reach clarity at the counselling session than at week twelve of a year-long diploma. Take the visit seriously — it is the lowest-cost decision you can make in this process."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 17,
+      "q": "I am scared I will waste a lot of money — what if it does not work out?",
+      "a": "This is the most honest fear of all, and we respect it deeply. Two things we do specifically to reduce that risk: the Free Counselling Session is genuinely free and genuinely no-pressure — its job is to give you a clear-headed read of whether this is right for you before you commit anything, and our advisors will sometimes recommend a different course or even tell you the timing is not right. Second, our flexible instalment plans mean you are not committing the full investment upfront in cash, which keeps the decision lower-risk. We would rather have one clear-headed enrolled student than three emotionally pressured ones who regret it later — that is why our pace on this question is deliberately slow. Bring your financial reality to the counselling session honestly. The students who enrol with their eyes open are the ones who finish well."
+    },
+    {
+      "category": "E — Beginner Fear FAQs",
+      "q_num": 18,
+      "q": "I am scared of failing the exam in front of others — how do you handle that?",
+      "a": "Exam anxiety is real, and we plan for it specifically. We run mock exams in low-pressure settings so the real CIDESCO exam is not your first time under pressure — your body adapts through repetition. Revision support runs in the final weeks, exam technique coaching teaches you how to manage breath, pace and presence in the exam room, and one-to-one trainer time is available before exams for the specific competencies you are worried about. The CIDESCO practical examiners are looking for safe, competent practice — not theatrical perfection. They want to see proper technique, good hygiene, careful client communication, sensible time management. Most students discover the actual exam is calmer than the anticipation. We will prepare you for both the technique and the nerves."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 1,
+      "q": "What career paths open up after the Diploma in Beauty Therapy?",
+      "a": "A CIDESCO + KHDA + IAO + EBH credentialled beauty therapist has multiple realistic paths: salon therapist (entry into the industry, building client base and reputation), wellness spa therapist (more refined client base, higher-tier hotel and resort settings), aesthetic clinic-side roles (pursuing the DHA examination route for clinical settings), specialisation into aesthetic treatments (HydraFacial, advanced skin, MLD, body contouring), progression to senior or lead therapist as you build experience, becoming a trainer over several years, freelance and home-service practice (a growing UAE segment), and eventually opening your own salon or studio. The path that suits you depends on personality, financial situation, ambition and timing — your counsellor will help you sequence it realistically in your session."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 2,
+      "q": "Can I work in a clinic immediately after the diploma?",
+      "a": "The Diploma in Beauty Therapy is the qualifying education that opens clinic-side beauty therapist conversations, but actual employment in many UAE medical and aesthetic clinic settings is governed by DHA scope rules — meaning you would typically pursue the DHA licensing examination as a separate step after the diploma to qualify for the clinical settings you have in mind. Beyond the DHA route, specialised certifications stacked on top of the diploma make your profile significantly stronger for clinic interviews — HydraFacial, MLD, advanced electricals and advanced skin analysis are particularly clinic-relevant. The realistic sequence we recommend for clinic-bound students is: diploma → DHA examination route → specialisations stacked → targeted clinic applications. Your counsellor will map the realistic pathway in your session."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 3,
+      "q": "How long does it take to get a DHA license after the diploma?",
+      "a": "Honestly — the DHA timeline depends entirely on DHA themselves, not on the academy. Once you have completed the Diploma in Beauty Therapy, the pathway involves applying through DHA's own process which typically includes documentation review (your educational documents, identity, any required attestations), examination scheduling (which has its own waiting period), and the licensing decision after exam. Realistic timeframes vary based on your documentation completeness, any equivalency steps required for non-UAE documents, and DHA's own processing volumes at the time. Our admissions team will share current realistic timeframes in your counselling session based on the most recent intake experiences. We do not control DHA timelines and we would never claim otherwise — any academy promising a guaranteed DHA timeline is being dishonest."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 4,
+      "q": "How much can I realistically earn after a few years of experience?",
+      "a": "We deliberately do not publish specific salary numbers in chat because they date quickly and depend on too many personal factors — setting, qualifications, specialisations, language skills, client-building ability, and your own initiative in negotiating roles. The realistic earning trajectory we have observed across graduates: modest in year 1 while you are building experience, confidence and a track record; meaningful growth in years 2 to 4 as you specialise, develop a personal client following and become known in your segment; significant earning potential by year 5+ if you have stacked credentials thoughtfully, built reputation and either advanced into senior/lead roles or moved toward freelance, home-service or business ownership where the ceiling is much higher. In your counselling session our advisor will share current realistic ranges based on recent graduate placements and the specific direction you are aiming for."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 5,
+      "q": "Can I become a trainer myself after completing the diploma?",
+      "a": "Becoming a trainer is one of the most rewarding long-term destinations for a beauty therapist — and yes, many of our graduates do walk this path. Typically it requires the diploma itself (CIDESCO especially carries weight in training contexts), several years of strong clinical experience, the ability to communicate clearly with students, and increasingly a teaching qualification on top. It is not the day-one career — it is the year-five-to-ten reward for staying deeply curious and disciplined in your craft. If teaching genuinely excites you, share that with your counsellor; they will help map a sensible progression rather than an overnight leap."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 6,
+      "q": "Can I work in clinics internationally — or only in the UAE?",
+      "a": "CIDESCO is internationally recognised and travels with you across many markets — which is one of its biggest values. That said, working in a specific country depends on that country's regulatory framework — some markets recognise CIDESCO directly (often after a routine registration step), others require local licensing examinations on top regardless of where you trained (the UK, US, Australia and some European countries have their own additional layers). We never promise specific country recognition without verification, because regulations change. Your counsellor will walk through realistic scenarios for your specific destination in your session, including any document attestation steps that typically apply."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 7,
+      "q": "Can I become a freelance therapist or only an employee?",
+      "a": "Freelance and home-service therapy is absolutely a viable path, and the UAE market for in-home beauty and wellness has grown substantially over recent years. The setup involves appropriate trade licensing in the UAE (current requirements walked through in your session), a client acquisition strategy (typically Instagram + WhatsApp + word-of-mouth referrals), kit and equipment investment, pricing strategy that reflects the premium of mobile service, and the professional confidence to manage your own bookings and clients independently. Several of our graduates have built successful freelance practices — typically after a year or two of employed experience first that built their client base and confidence. Many therapists eventually run a hybrid model — part employed, part freelance. Our MBA-qualified marketing expert on faculty helps you think through the business side properly."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 8,
+      "q": "Will I be able to open my own salon or business after the course?",
+      "a": "Yes — and many of our graduates do exactly that, often after a few years of building experience and capital. Opening a salon involves DED trade licensing, premises, equipment, hiring, marketing and capital — beyond just the qualification itself. The Diploma in Beauty & Spa Management is specifically designed for this leadership and business side, with the CIDESCO-examined Business Plan project serving as a real launch document for many of our graduates. Your counsellor can map the realistic timeline for your specific ambition in your session."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 9,
+      "q": "Are there genuinely good employment opportunities in Dubai right now?",
+      "a": "Yes — Dubai has one of the most dynamic beauty, wellness and aesthetic industries in the world, with consistent demand for qualified, certified, professionally presented therapists across the spectrum from high-street salons to five-star spa resorts to medical aesthetic clinics. The market does reward the right combination of factors: CIDESCO certification carries real weight with serious employers, DHA licensing opens clinical-setting doors, in-demand specialisations (HydraFacial, advanced skin, MLD, body contouring) make your profile genuinely stronger, language ability is valued in a multilingual client base, and professional presentation matters enormously. The market does have more competition for entry-level salon roles than it did five years ago, which makes specialisation and credentialling more important — generic qualifications no longer stand out. Your counsellor will share the current realistic market picture in your session."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 10,
+      "q": "How do I actually find a job after graduation — do you help with placements?",
+      "a": "We want to be honest about what we do and do not do: we do not make placement guarantees or promise specific job outcomes, because no honest academy can. What we genuinely do is prepare you to be hireable — real practical hours so your hands know what they are doing, internationally respected credentials, portfolio guidance during the final months, CV support, and the network you will have organically built with classmates, trainers and our growing alumni community. We share opportunities through our channels when they come our way and many of our graduates land roles via the network they built during the course. The active job-search effort still has to come from you. The students who land fastest are the ones who treat the final months as job-search time, not just graduation time."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 11,
+      "q": "Will my work-life balance be sustainable as a therapist?",
+      "a": "Honest answer: therapy work is physical, and protecting your body is part of long-term career sustainability rather than a nice-to-have. The therapists with the longest careers — those still working confidently in their 50s and beyond — are typically the ones who learned a few habits early: proper biomechanical technique (we teach this with our physiotherapist's input — using bodyweight, posture and rhythm rather than relying on hand strength alone, which burns out wrists and shoulders within a couple of years if done wrong), realistic scheduling (not overbooking back-to-back without breaks or recovery time), professional self-care (your own treatments, stretching, movement work), and choosing employment settings that respect therapist welfare. Done well, this career sustains beautifully across decades."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 12,
+      "q": "Can I do this part-time while keeping my current job?",
+      "a": "Yes — many of our students do exactly that. Short courses can typically be done intensively over days or weeks alongside employment without major disruption. Diplomas run on weekly class schedules designed specifically to fit alongside work commitments, though the practice load between classes is significant and you will need to plan for it honestly rather than assuming you will find the time spontaneously. The students who manage part-time successfully tend to book their practice time as fixed calendar appointments, communicate with their employer about exam windows in advance, and accept that some weeks will be tighter than others. Bring your specific work situation to your counselling session and your advisor will help you design a realistic plan rather than an aspirational one."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 13,
+      "q": "What is the difference between working in a salon, wellness spa, and medical aesthetic clinic?",
+      "a": "Three meaningfully different work environments. Salons typically operate with faster client throughput, a broad service menu, accessible entry, and often a commission-plus-base pay structure — often the most accessible first role, building broad practical skill quickly. Wellness spas (particularly in hotels, resorts and dedicated spa businesses) operate at a more refined experience pace, with slower, longer treatments, higher-tier clientele, more focus on the holistic experience, and often slightly more structured employment terms. Medical aesthetic clinics are a clinical environment requiring DHA-aligned scope, often involving integration with doctor-led treatments, post-procedure care, and higher technical standards — typically pay better but demand more in credentials, presentation and clinical discipline. Many therapists work across multiple environments over their career as they grow."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 14,
+      "q": "Will I be able to grow into senior or lead therapist roles?",
+      "a": "Yes — senior therapist, lead therapist and team trainer roles are realistic growth directions, and many of our graduates have moved into them over time. Typically these roles open up after a few years of strong practical work, demonstrated expertise in your craft, professional reliability that employers come to depend on, and developing leadership presence with younger team members. The pace varies meaningfully by setting (some high-end spas have structured progression paths; others require you to move employer for advancement) and by your own initiative (the therapists who put themselves forward, take on extra training and visibly invest in their own development tend to advance faster). The right combination of credentials, in-demand specialisations and built reputation accelerates the timeline."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 15,
+      "q": "How important is social media for building a career in beauty?",
+      "a": "Honestly — increasingly important, particularly for freelance, home-service and entrepreneurship paths where you need to build personal client demand. A professional Instagram presence with portfolio work (well-lit before/after photos with consent), client testimonials (with consent), consistent professional posting and an authentic voice builds credibility and brings clients to you. For employed therapists in established spas the immediate importance is lower, but increasingly it becomes part of your personal professional brand as you progress and want to negotiate better roles. The trap to avoid is treating Instagram as a vanity project rather than a professional tool. We touch on this in your final-stage one-to-ones if it is relevant to your direction."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 16,
+      "q": "What kinds of UAE employers actually hire beauty therapists?",
+      "a": "A wider range than people realise. High-street salons (broad menu, accessible entry), mid-tier and luxury salons, hotel and resort spas (premium settings, international guest base), dedicated wellness centres, medical aesthetic clinics (DHA scope alignment required), freelance and home-service agencies (growing segment, often platform-based), brand-employed therapists for skincare and product companies (training and demonstration roles), training academies (later in career, requires teaching qualification), and increasingly corporate wellness providers offering services through employer wellness programmes. The right employer for you depends on your specialisation, work-life preferences and career direction."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 17,
+      "q": "What specialisations move the earning needle most?",
+      "a": "Based on observed demand in the current UAE market: HydraFacial (premium-priced, high-rebook treatment that clinics need certified therapists for), advanced electricals (broadens your facial menu meaningfully and is increasingly expected by serious salons), MLD (post-aesthetic-procedure care is increasingly requested as aesthetic procedures grow), advanced skin analysis (positions you for premium and discerning clientele who value sophisticated consultation), and body contouring including Madero (high-margin add-on with growing demand). The right sequencing depends on your foundation diploma, your career direction (employed vs freelance vs business owner) and what is commercially viable in your specific target market. Your counsellor will help plan a sensible specialisation sequence in your session rather than letting you stack random certifications that do not compound."
+    },
+    {
+      "category": "F — Career & Salary FAQs",
+      "q_num": 18,
+      "q": "What is the difference between part-time, full-time, and freelance income?",
+      "a": "Significantly different — and not in a simple proportional way. Part-time employed work typically scales roughly linearly with hours worked, with the limitations of fewer benefits and slower progression. Full-time employed work tends to offer more stable monthly income, access to benefits, faster progression pathways and the security of consistent client flow that the employer provides. Freelance and home-service therapists can earn meaningfully more per service hour because they keep more of the revenue — but they bear the costs of equipment, marketing, trade licensing, kit replacement, and the inherent variability of client-led income that fluctuates with seasons, marketing effort and reputation building. The freelance income ceiling is genuinely higher; the floor is also more variable. Your counsellor will discuss the realistic picture for your specific direction in your session."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 1,
+      "q": "What is CIDESCO and why does it matter for my career?",
+      "a": "CIDESCO — Comité International D'Esthétique et de Cosmétologie — is a Swiss-headquartered beauty therapy qualification founded in 1946 with its head office in Zurich. It is widely considered one of the gold-standard credentials in the global beauty industry. Its recognition spans many countries, and in markets like the GCC, parts of Europe and Asia, serious employers and certain professional registration pathways recognise it by name. CIDESCO matters for your career because of portability and credibility: it signals to employers, clients and overseas markets that you have completed rigorous structured training to a verified international standard, rather than holding a generic certificate that may or may not mean much. In a market increasingly crowded with short-course certificates, CIDESCO is the credential that consistently stands out. You can verify any CIDESCO-accredited school through the official register on cidesco.com."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 2,
+      "q": "What is KHDA and what does a KHDA-attested certificate mean?",
+      "a": "KHDA — the Knowledge and Human Development Authority — is the regulator of education and training providers in Dubai. A KHDA-attested EBH Academy certificate confirms that the qualification has been issued by an accredited training provider operating within Dubai's regulatory framework, which is the local credential that demonstrates legitimacy within the UAE. KHDA attestation matters because it distinguishes us from unregulated training providers and gives the credential local standing for UAE employment purposes. Not every short course is KHDA-eligible — the verified certification matrix in this document shows specifically which of our courses carry KHDA attestation."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 3,
+      "q": "What is IAO and how is it different from CIDESCO or KHDA?",
+      "a": "IAO — the International Accreditation Organization — is a US-based international accreditation body that provides recognition across many fields including beauty, wellness and vocational training. Where KHDA is Dubai-specific and CIDESCO is beauty-therapy-specific, IAO provides a broader international recognition layer that adds credibility, particularly useful for students who may work in markets less familiar with CIDESCO or KHDA. Most of our courses carry IAO accreditation per our verified certification matrix, which gives our students a credential with international portability beyond just the regional or specialised credentials."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 4,
+      "q": "Are all your courses CIDESCO accredited?",
+      "a": "Honestly, no — and we want to be clear about that. CIDESCO accreditation applies specifically to our three diplomas: Diploma in Beauty Therapy, Diploma in Body Therapy, and Diploma in Beauty & Spa Management. Our shorter specialised courses (massage modalities, electrical facial, hydrafacial, dermaplaning, lashes, makeup, hair styling) carry KHDA / IAO / EBH Academy credentials per our verified matrix — but not CIDESCO. This is not unusual — CIDESCO certifies comprehensive beauty therapy and spa management programmes that meet their structured curriculum requirements, not every individual technique course. Your counsellor will walk through the specific accreditations attached to whichever course you are considering so you have the accurate picture before deciding."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 5,
+      "q": "Which courses are DHA-eligible and which are not?",
+      "a": "Important clarity: of all our courses, only the Diploma in Beauty Therapy is DHA-eligible — meaning a graduate may pursue the DHA licensing examination (DHA itself awards the license based on their own examination, eligibility criteria and decision). The Diploma in Body Therapy and Diploma in Beauty & Spa Management are not DHA clinical-licensing pathways. All our shorter specialised courses (massage, facials, lashes, makeup, hair etc.) are also not DHA pathways. The diploma is the educational preparation step; the DHA license is awarded by the Dubai Health Authority based on their own process. Any academy claiming to guarantee DHA licensing is being dishonest with you."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 6,
+      "q": "What is the difference between an EBH Academy certificate and an attendance certificate?",
+      "a": "An EBH Academy certificate confirms that a student has successfully completed the course requirements, including the relevant assessment, and meets the standards expected of the qualification. An attendance certificate simply confirms that a student attended a programme without necessarily having completed and passed the full assessment requirements. All our courses per the verified certification matrix issue EBH Academy completion certificates — we do not typically issue attendance-only certificates because the value to students lies in the credentialled completion, not just the attendance record. The completion certificate is what tells future employers, clients or international registration bodies that you have actually met the standard."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 7,
+      "q": "Are CIDESCO certificates recognised across the GCC?",
+      "a": "CIDESCO has strong recognition across the GCC and is widely accepted by serious beauty employers across Saudi Arabia, Qatar, Kuwait, Bahrain and Oman, as well as by certain professional registration pathways in those markets. That said, specific employment in any country always depends on that country's own current registration and immigration framework, which evolves over time. We do not promise specific outcomes without verification because regulations change. In your counselling session our advisor will walk through realistic scenarios for the specific GCC country you are targeting, including the typical pathway recent graduates from EBH have used and any document attestation steps that apply for your specific nationality and destination."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 8,
+      "q": "How long is my certification valid? Does it expire?",
+      "a": "The diploma certificates themselves do not expire — your CIDESCO, KHDA, IAO and EBH Academy credentials remain valid as confirmation that you completed the qualification to the relevant standard. However, professional licenses are a different matter: a DHA license, for example, has its own renewal cycle and conditions set by the Dubai Health Authority, independent of the underlying education credential. Industry expectation is that working professionals continue to upskill through additional specialisations and continuing professional development — not because the certificate expires, but because the industry itself moves (new techniques, new equipment, new standards). The most respected therapists treat their initial qualification as a starting point and add to it across their career."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 9,
+      "q": "What is the difference between CIDESCO and CIBTAC?",
+      "a": "Both are respected international beauty therapy qualifications. CIDESCO is the Swiss-headquartered qualification founded in 1946 — its head office is in Zurich. Its examination standards are rigorous, its global member-school network spans many countries, and in markets like the GCC, parts of Europe and Asia it is often the qualification employers ask for by name. CIBTAC — the Confederation of International Beauty Therapy and Cosmetology — is the UK-based equivalent, also well respected and widely held. We chose CIDESCO for our pathway because of its particular global standing and the way it travels with our students if they choose to work outside the UAE. Neither qualification is wrong; they are slightly different doors into the same profession, and CIDESCO is the one we open for you."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 10,
+      "q": "Will I get a physical certificate or just digital?",
+      "a": "You receive the formal certificates as issued by each accrediting body relevant to your course — CIDESCO, KHDA, IAO and EBH Academy each have their own certificate formats and issuance processes. Some bodies issue physical certificates that are mailed or collected; others increasingly issue digital verifiable credentials alongside or instead of physical ones, which can be useful for international applications and verification. Specifics on physical vs digital delivery, processing timeframes and any verification protocols depend on each body's current format. Your counsellor will confirm current details in your session."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 11,
+      "q": "How can an employer or country verify my certificate?",
+      "a": "Each accrediting body has its own verification process. CIDESCO maintains its register of qualified members and accredited schools internationally — this is the gold-standard verification for the qualification, accessible via cidesco.com. KHDA-attested credentials can be verified through KHDA's official processes. IAO has its own credential verification system. EBH Academy can confirm graduate status and issuance details for our credentials. The specific verification routes per body are detailed and depend on the verifier's needs."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 12,
+      "q": "Can I add other certifications later on top of what I do with EBH?",
+      "a": "Absolutely — and we would actively encourage it. The strongest, most resilient beauty and aesthetic careers are typically built on a foundation diploma plus thoughtfully stacked specialisations added over time, aligned with where your career is heading. Some of those additional certifications can come from us — we offer many specialised courses (HydraFacial, Madero, MLD, electrical facial, dermaplaning, lash work and more) — and many of our graduates return for further training as their careers develop. Some students strategically add credentials from other providers when those credentials serve a specific career goal. The key is sequencing them so they compound rather than scatter."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 13,
+      "q": "What if I want to study just one short specialisation — will I still get a recognised certificate?",
+      "a": "Yes — each of our short specialised courses issues credentials per the verified Course Certification Matrix, with the specific combination of accreditations (typically KHDA, IAO and EBH Academy, varying by course) confirmed for that course. You do not need to do a full diploma to receive recognised credentials. Many working therapists come to us specifically for short specialisation training to add to their existing professional profile — Madero, MLD, HydraFacial, dermaplaning and other specialised modalities are particularly popular for this purpose."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 14,
+      "q": "Can I get a refund or transfer my credentials if I move countries?",
+      "a": "Refund policies, credential transfer terms and policy questions are governed by formal current terms that vary by course, intake and circumstance. We deliberately do not summarise these in chat because we would rather give you the correct current terms in writing through our admissions team than approximate them and risk giving you outdated or partial information. In your counselling session our admissions team will walk through the relevant policy clearly and provide it in writing where appropriate so there are no surprises later."
+    },
+    {
+      "category": "G — Certification FAQs",
+      "q_num": 15,
+      "q": "Do you offer attendance certificates if I just want to take a class without examination?",
+      "a": "Our courses are designed around recognised credentialled completion rather than attendance-only — because for working professionals, the value lies in the credential itself, not in the time logged. We do not typically offer attendance-only structures because that approach does not serve student career interests well. If you have a very specific reason for needing an attendance-only arrangement (occasionally relevant for CPD logging by already-credentialled professionals, for example) raise it directly with our counsellor in your session and they will discuss what is realistic for your specific situation."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 1,
+      "q": "I am scared of failing — what if I cannot do this?",
+      "a": "That fear is one of the most honest things you could say, and we want to honour it rather than dismiss it. Most of our successful graduates felt exactly this way at the start — the fear is not a sign you are in the wrong place; for many people it is a sign that they are taking the decision seriously. The architecture of how we run things — small batches, real one-to-one support, multi-disciplinary trainers who notice when a student is struggling, extra sessions when you need them, revision built into the calendar — is designed precisely for the person who feels this fear. You do not have to be fearless to succeed here. You just have to show up consistently and let the structure carry you. Bring this worry to your counselling session honestly. We have heard it many times and we treat it with care."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 2,
+      "q": "What if I waste a year of my life and the money on this?",
+      "a": "This is the most honest fear of all, and we genuinely respect it. Two anchors should guide your decision: first, take the Free Counselling Session before committing anything — it is genuinely free, genuinely no-pressure, and our advisors will sometimes say honestly that this is not the right course for you, or that the timing is not right, or that a different pathway would serve you better. Second, our flexible instalment plans mean you are not committing the full investment upfront in one payment. We have deliberately built the front of our process to be slow and high-clarity precisely because we would rather lose a wrong-fit prospective student before they enrol than have them feel stuck and regretful three months in. The students who join us with clear eyes after a proper counselling conversation are overwhelmingly the ones who finish strong."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 3,
+      "q": "I am worried I am too old or it is too late to start a new career.",
+      "a": "Honestly — we hear this often and we want to be straight with you: it is not too late, and the evidence is on your side. We have trained students starting at 38, 42, even 50-plus who have gone on to build genuine, sustained careers as senior therapists, freelance practitioners and business owners. The beauty and wellness industry genuinely rewards seriousness, skill, professional presence and client care far more than it rewards youth. Mature students often bring qualities employers and clients value highly: calm presence under pressure, communication maturity, life experience that helps them read clients accurately, and disciplined commitment to the investment they are making. The fear you are carrying about age is real and we do not dismiss it — but it tends to evaporate once you are in the classroom and discover how welcomed and supported you are."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 4,
+      "q": "My family does not support this — they think it is not a real career.",
+      "a": "This is one of the quietest, hardest parts of choosing this path, particularly in some cultural contexts where beauty careers have not traditionally been taken as seriously as medicine, engineering or business, and we honour the weight you are carrying. What tends to shift family perception over time is consistently two things: holding a genuinely internationally recognised credential (CIDESCO is Swiss-headquartered, founded in 1946, recognised globally — that is hard to dismiss as 'not a real career'), and showing visible professional progress in respected workplaces with real income. Many of our students have walked this path and tell us the family doubt largely evaporates by year two. You are very welcome to bring a parent or spouse to your counselling session — our advisor can speak to them directly about realistic career paths, credentials and earnings."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 5,
+      "q": "I have low self-confidence — will I survive in a beauty career?",
+      "a": "Survive? You will likely flourish more than you expect. Confidence is one of the qualities we deliberately design the course to build, not just hope happens. The structural ingredients: small batches mean every student is visible and supported individually; repeated supervised practice on real models builds genuine self-belief through controlled repetition; mentors witness your growth and tell you when you have crossed a threshold (this matters enormously — being seen in your progress is part of how growth becomes real); real clients begin to trust you and rebook you, which is the most powerful confidence-builder of all. Many of our most quietly low-confidence students at week one are noticeably transformed by week thirty. It is not magic — it is structure designed around how real growth actually happens."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 6,
+      "q": "I feel stuck — like I do not know what to do with my life. Could this be the right direction?",
+      "a": "Honest answer: it might be — but the right way to figure that out is a real conversation, not a chat message. Our Free Counselling Session is genuinely designed for exactly this kind of question. Bring your whole picture — what you have tried, what you have thought about, what feels stuck, what is drawing you to beauty and wellness — and our advisor will explore it with you without selling you anything. Sometimes the right answer is a course with us; sometimes it is a different timing; sometimes the conversation reveals you are actually being drawn toward a different direction entirely (it happens, and we will tell you so). We would rather have an honest conversation that ends with 'this is not right for you yet' than enrol someone who is not sure. Come and talk."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 7,
+      "q": "I am going through a difficult time financially or personally — should I even be looking at this right now?",
+      "a": "Thank you for sharing that with us — it matters. Honestly, sometimes the right answer for someone going through a difficult financial or personal time is 'yes, this could be a real step forward and a constructive direction'; sometimes the right answer is 'take care of yourself first, this will still be here when you are ready.' We are not interested in pressuring anyone into enrolling at a time when their plate is too full. Our courses run regularly throughout the year and they are not going anywhere. Let's have a conversation in your counselling session without any pressure, and our advisor will be straight with you about what makes sense given your specific situation. Take care of yourself first, always."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 8,
+      "q": "What if I freeze or panic during the practical exam?",
+      "a": "Exam-day anxiety is real and we plan for it explicitly. We run mock exams in deliberately low-pressure settings so the real CIDESCO practical exam is not the first time your body experiences exam pressure — through repetition your nervous system adapts and the real exam day becomes one more familiar situation. Exam-day technique coaching teaches you how to manage your breath, your pace through the practical, your presence in the room with the examiner. CIDESCO practical examiners are professionals looking for safe, competent practice, not theatrical perfection. They want to see proper technique, good hygiene, careful client communication, sensible time management. Most students discover the actual exam is calmer than the anticipation."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 9,
+      "q": "I am a single mother — can I realistically commit to this with everything else on my plate?",
+      "a": "Many of our diploma students are single mothers, and many finish well — sometimes flourishing more than they expected to. But we will not pretend it is easy. It requires honest planning around what is actually realistic in your life, sensible scheduling that respects your other commitments, and support structures around you (childcare on class days, study time when children are asleep, family or friend support for the harder weeks). Bring your full situation to your counselling session — your work, your childcare reality, your financial situation, your support network — and our advisor will help you design a plan that is truthful rather than aspirational. We would much rather help you make an honest decision than push you into something that will not work for your life."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 10,
+      "q": "I feel unsafe or in a difficult situation at home — can I still consider this for my future?",
+      "a": "I am really sorry you are going through that — thank you for sharing it with us. Your safety and wellbeing come first, always, and far above any conversation about courses. Our courses will still be here when the time is right for you. If you are going through a really hard time, please reach out to someone trained to help — in the UAE you can call 800-HOPE (800-4673), and many countries have similar free lines where people who are trained for these moments can support you. You are not alone in this. When you feel safe and ready, we would love to have a conversation about your future — but please take care of yourself first."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 11,
+      "q": "I keep starting things and never finishing — am I going to do the same with this?",
+      "a": "We hear this fear often and we want to be straight: the pattern of starting and not finishing usually is not a 'you' problem — it is usually a 'lack of support around you' problem. Most people do not fail at courses through lack of willpower; they fail through silent drop-off when life gets hard, classes feel intimidating, falling behind feels embarrassing, and nobody notices they have gone quiet. The structures we have in place exist precisely to break this pattern: small batches mean a student going quiet is immediately noticed; trainers chase you when you go silent rather than waiting for you to come back; extra support sessions exist for the tough moments; revision is built into the calendar so you are not relying on personal discipline alone. Tell our counsellor honestly what went wrong with previous courses."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 12,
+      "q": "I am an immigrant and I am scared of investing in this if I cannot stay in Dubai long-term.",
+      "a": "Honest answer — this is a real consideration and we would rather help you think it through clearly than gloss over it. The good news on credentials: CIDESCO and our internationally recognised qualifications genuinely travel with you to many other markets — that is a meaningful part of their value, particularly for students whose long-term path may not be in the UAE. Visa, residency and immigration specifics depend entirely on your nationality, current status and longer-term intentions, and we direct anyone with serious immigration questions to qualified immigration advice rather than guess. Bring your full picture to your counselling session and our advisor will think it through with you honestly, including how the credentials would serve you if your path takes you out of the UAE."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 13,
+      "q": "I feel ashamed I am asking these basic questions — does everyone already know this?",
+      "a": "Please do not feel ashamed — the questions you are asking are exactly the questions our counsellors hear every single week, from thoughtful prospective students who are taking the decision seriously. The students who ask questions are the students who go on to make confident, well-informed decisions. The ones who do not ask are the ones who either arrive confused on day one or never arrive at all. You are doing exactly the right thing by asking. Keep asking — we would rather answer one too many questions and have you confident, than too few and have you uncertain."
+    },
+    {
+      "category": "H — Emotional & Fear FAQs",
+      "q_num": 14,
+      "q": "I feel like I am going to disappoint myself or my family if this does not work out.",
+      "a": "That fear — the fear of disappointing yourself or your family — is the most quietly heavy one to carry, and we honour it deeply. What we can say honestly: the students who succeed with us are not the ones who arrived with no fear; they are the ones who showed up anyway and let the structure of the course carry them through the moments when their own confidence faltered. The students who do not succeed are almost always the ones who either never started despite wanting to, or who dropped out silently because nobody noticed they were struggling. By committing to honest conversation in your counselling session, by enrolling with clear eyes rather than pressured impulse, by engaging with the support systems we offer when you need them, you are already positioning yourself on the side of the people who do well here. The fear is real. The path through it is structure plus showing up. Both of those are available to you."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 1,
+      "q": "Another academy is offering this for much less — why are you more expensive?",
+      "a": "Honest answer: we are more expensive because small batches cost meaningfully more to run than mass classrooms, our multi-disciplinary teaching team (DHA-approved staff, CIDESCO-certified Beauty Therapy trainers, medical doctors, physiotherapist, dietitian, MBA / marketing expert) costs more than a single-track instructor pool, internationally recognised credentials like CIDESCO carry licensing and accreditation costs, and real practical hours need real lab equipment, real professional products and real live models. The cheaper providers in the market are usually saving on one or more of those structural choices — fewer practical hours, larger classes, less experienced trainers, certificates without strong international recognition, or skipping the support infrastructure entirely. The trade typically shows up in graduate confidence, examination pass-rates and downstream employment outcomes. We are built for the long-term return. If your only criterion is lowest cost, we may not be the right fit, and we will respectfully say so."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 2,
+      "q": "How do I know your accreditation claims are real and not just marketing?",
+      "a": "Fair question — and easily verifiable. CIDESCO maintains its register of accredited member schools internationally and you can confirm our membership through their official channels at cidesco.com. KHDA publishes its list of attested training providers in Dubai. IAO has its own verifiable accreditation directory. We would never claim an accreditation we do not hold — and importantly, our Course Certification Matrix in this document shows exactly which accreditations attach to which courses, because the truth is that not every course is CIDESCO-eligible (only our diplomas are), and we publish this honestly rather than imply blanket CIDESCO status across our catalogue. We welcome verification. The academies that do not are usually the ones to be cautious of."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 3,
+      "q": "How are you different from other academies in Dubai?",
+      "a": "We would rather not run down other academies — that is not how we want to win — but we will tell you honestly what we believe sets us apart. Small batches (typically up to around ten students in our diploma classes). A genuinely multi-disciplinary teaching team — Dubai Health Authority-approved staff, CIDESCO-certified Beauty Therapy trainers, medical doctors for clinical depth, a physiotherapist for body mechanics, a dietitian for the wellness conversation, and an MBA / marketing expert for business strategy. Real practical hours on real live models in a clinic-style environment. Internationally recognised credentials (CIDESCO + KHDA + IAO + EBH) transparently mapped per course rather than blanket claimed. Flexible payment plans. And a culture of mentorship rather than mass-production credentialling. We strongly encourage you to visit us and visit other academies you are considering — that comparison usually answers itself far better than anything we could say in chat."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 4,
+      "q": "How do I know I can trust this academy?",
+      "a": "The honest proof points we can offer: verifiable accreditations across CIDESCO, KHDA and IAO — all of which are checkable through their official channels; our real physical Dubai campus that you can visit; our published Course Certification Matrix that shows transparently exactly what each course confers (no inflated claims); our explicitly multi-disciplinary teaching team (DHA-approved staff, CIDESCO-certified trainers, doctors, physiotherapist, dietitian, MBA-marketing expert); and the Free Counselling Session itself, where you can see our environment, meet the team, walk the practical lab and form your own judgement before committing anything. The best trust comes from seeing us in person, asking direct questions, and forming your own read of the place."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 5,
+      "q": "Why should I trust EBH over a bigger, more famous training provider?",
+      "a": "Honest answer: bigger is not always better, especially in a hands-on profession like beauty therapy. Larger training providers often run bigger classes (because that is how the economics work at scale), more standardised teaching with less individual attention, and less personal support — the things that matter most in a craft built through repetition with individual feedback. We have deliberately chosen to stay focused on quality at our scale rather than chase volume. Visit us, see the small-batch environment, meet the trainers, ask how individual support works in practice, and judge for yourself. Many of our students chose us specifically because they had come from larger providers and felt invisible — they wanted to be seen, supported and treated as individuals. That is what we are built for."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 6,
+      "q": "Can you guarantee me a job after I finish?",
+      "a": "Honestly — no, and any academy that promises a guaranteed job should make you cautious, because no honest training provider can deliver that promise. Hiring decisions are made by employers based on factors no academy controls (specific skill fit, employer's current capacity, interview performance, your professional presentation, location availability, market timing). What we can genuinely commit to is preparing you to be hireable: real practical hours so your hands know what they are doing, internationally recognised credentials that open conversations, portfolio guidance during the final months, CV support, interview coaching where appropriate, and the network you will have organically built with classmates, trainers and our alumni community. The active job-search effort still has to come from you. Graduates with strong credentials, meaningful practical hours and active search effort generally find roles."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 7,
+      "q": "Can you guarantee I will get a DHA license?",
+      "a": "Honestly — no, and we want to be very clear because this matters. We do not issue the DHA license; the Dubai Health Authority does. What our Diploma in Beauty Therapy does is prepare you to apply for the DHA licensing examination — that is the educational preparation step. The DHA license itself is awarded by the Dubai Health Authority based on their own examination, their own eligibility criteria, and their own licensing decision. Any academy that promises or guarantees DHA licensing as a course outcome is being dishonest with you, and we would ask you to be cautious of such claims. Our job is to deliver the educational preparation to the standard expected; DHA's job is to assess and issue the license."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 8,
+      "q": "What is the return on investment — will I really make the money back?",
+      "a": "Honest answer: most of our graduates do recover their investment, but the timeline and amount vary based on factors specific to you. The investment typically pays back through several channels: the better employment options a properly credentialled diploma opens versus a generic certificate (different tier of employer, different starting position, different progression path); the higher-tier settings you can work in with CIDESCO recognition (premium spas, aesthetic clinics with DHA route, higher-end salons); the additional value of specialisations stacked over time on top of the foundation; and for entrepreneurially-minded graduates, the ability to run a salon or freelance business with proper credentials, which is a different earning ceiling entirely. Realistic ROI is built over years, not months, and depends substantially on what you do with the qualification post-graduation. The students who treat it as the start of a career rather than the end of a course are the ones who see strongest returns."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 9,
+      "q": "I am not sure if now is the right time — can I wait and decide later?",
+      "a": "Of course — there is no pressure, and we genuinely mean that. Take the Free Counselling Session anyway, because it commits you to nothing and gives you a clear-headed read on whether this is right for you and whether the timing makes sense. Our advisor's job is to help you make the right decision for you, not to push you into the wrong decision quickly. Sometimes after the session the answer is 'yes, now is the right time and this is the right course'; sometimes it is 'not yet, here are the things to think about, come back when this is sorted'; sometimes it is 'a different course or different timing would serve you better.' Either way, you will leave the session clearer than you came in. Our courses run regularly throughout the year."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 10,
+      "q": "What if I enrol and then realise I made the wrong choice?",
+      "a": "Honest answer: that is exactly why we put so much weight on the front-end Free Counselling Session — to reduce the chance of a wrong-fit enrolment in the first place, which is a much better outcome than dealing with regret after enrolment. Refund and transfer policies are governed by formal current terms which our admissions team walks through accurately in your session — we deliberately do not summarise them in chat because we would rather give you accurate current terms in writing than approximate them. The bigger insurance against making the wrong choice is the visit and proper conversation itself: students who do the full counselling session, walk the academy, meet the trainers and ask their hard questions before enrolling are overwhelmingly the ones who do not regret it later."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 11,
+      "q": "Why do you not just publish your prices online?",
+      "a": "Honest answer: because prices on a one-size-fits-all page often mislead more than they help. Fees vary by course, by current intake, by what is included in that particular intake (some intakes bundle additional materials or specialisations), by any current promotions, and by the payment plan structure that works for your situation. A single number on a website tends to either understate or overstate what a specific student would actually pay, and we would rather you have the correct verified current figure with the full inclusion list than a misleading round number. We share prices openly during your counselling session, in writing, with the full breakdown. The goal is clarity, not hiding. Many students assume the fee is far higher than it actually is, particularly once instalment options are considered."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 12,
+      "q": "I have seen mixed reviews online — how do I know which ones to trust?",
+      "a": "Honestly — every academy has mixed reviews, and you should be cautious of any institution that claims uniformly perfect reviews (those usually mean curated or manipulated reviews rather than genuine ones). What is most useful is visiting in person and forming your own judgement from direct exposure: walk the campus, meet the trainers, ask current students if you encounter them in the building, see the practical lab, observe how staff interact with students in passing, gauge the energy in the place. The 'review' you write for yourself based on your own visit will tell you more about whether this is right for you than any aggregated online rating. The Free Counselling Session is the best 'review' you can get of us — direct, unmediated, and judgable on your own terms."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 13,
+      "q": "Why should I pay more for CIDESCO when other certificates are cheaper?",
+      "a": "Honest answer: because the certificate that costs less often opens fewer doors, and the value of a beauty qualification is measured in what it lets you do, not what it cost you. CIDESCO is recognised internationally by serious employers and certain professional registration pathways across the GCC, Europe and parts of Asia — that recognition is what determines whether you can walk into a five-star spa interview, a respected aesthetic clinic, or a position in another country with the credential as your foundation. Cheaper certificates from less-recognised bodies may technically credential you to do the techniques, but they do not carry the same weight at hiring conversations, in salary negotiation, or in international mobility. Over a 10-year career the difference compounds enormously. Pay for the credential that travels. That is the long-term economics."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 14,
+      "q": "Can I see a sample of your students' work or get a tour before deciding?",
+      "a": "Absolutely — that is exactly what the Free Counselling Session and Academy Tour are for. You will see the practical lab and how it is set up, the classroom environment, sample materials, and our team will walk you through the syllabus and certifications in person. We genuinely want you to see us in person before deciding rather than rely on chat conversations or marketing materials alone — the in-person visit gives you a tangible read of the environment that nothing else can match. Bring questions, bring a notebook, bring a parent or partner if you would like a second opinion. The visit is unhurried and there is no pressure to enrol the same day. Many students take a couple of days to think after the visit before deciding."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 15,
+      "q": "What if I am not happy with the course after starting — what are my options?",
+      "a": "Honest answer: this question is governed by formal current terms which our admissions team walks through accurately in your counselling session — we deliberately do not summarise these in chat because we want to give you the correct current terms in writing rather than approximate them and risk being misleading. The much bigger insurance against this scenario happening is the proper Counselling Session and Academy Tour beforehand: students who do the front-end of the decision properly (visit, meet the trainers, see the practical lab, ask their hard questions, sleep on it) very rarely find themselves regretting their enrolment later."
+    },
+    {
+      "category": "I — Sales Objection FAQs",
+      "q_num": 16,
+      "q": "I am just researching — I am not ready to commit. Can I just get more information?",
+      "a": "Of course — researching properly before committing is exactly the right thing to do, and we genuinely respect students who take this seriously rather than rushing in. We are happy to keep sharing information without any pressure to book or commit. When you are ready to discuss your specific situation in depth, the Free Counselling Session is the deepest source of information available (and still requires no commitment from you). Until then, ask away — what aspect of our courses or the broader career landscape would you like to explore more right now? Courses, certifications, career paths, fees, schedule, anything specific to your situation — happy to keep the conversation going at your pace.\n \n \nEND OF DOCUMENT\nEBH Academy · Elite Body Home Academy · Dubai\nDiploma modules grounded in the official CIDESCO syllabus — cidesco.com"
+    }
+  ]
+}
