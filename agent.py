@@ -424,6 +424,12 @@ async def entrypoint(ctx: JobContext) -> None:
             voice=rt_voice,
             temperature=rt_temp,
             api_key=openai_key,
+            # Disable the input-audio transcription sidecar. The S2S model
+            # understands caller audio natively; the sidecar only produces a
+            # text copy for the transcript panel, and on gpt-realtime-mini it
+            # currently errors with request_headers_too_large. Re-enable with a
+            # working transcription model once that's sorted.
+            input_audio_transcription=None,
         )
         session = AgentSession(llm=realtime_model)
         logger.info("Stack: OpenAI Realtime (model=%s voice=%s temp=%.2f)", rt_model, rt_voice, rt_temp)
