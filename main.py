@@ -163,7 +163,7 @@ async def api_public_livekit_token(
     if lang not in {"en", "ar", "hi", "ur"}:
         lang = "en"
     stack = (request.query_params.get("stack") or "cascaded").strip().lower()
-    if stack not in {"cascaded", "ultravox"}:
+    if stack not in {"cascaded", "ultravox", "realtime"}:
         stack = "cascaded"
 
     try:

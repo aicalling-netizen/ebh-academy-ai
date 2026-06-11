@@ -81,6 +81,13 @@ try:
 except ImportError:
     _ELEVENLABS_AVAILABLE = False
 
+try:
+    # Bundled via livekit-agents[openai]; used for the speech-to-speech realtime stack.
+    from livekit.plugins import openai as lk_openai
+    _OPENAI_REALTIME_AVAILABLE = True
+except ImportError:
+    _OPENAI_REALTIME_AVAILABLE = False
+
 from livekit.agents.voice.agent_session import SessionConnectOptions
 from core.time_context import build_uae_time_context, now_uae
 
@@ -383,74 +390,96 @@ async def entrypoint(ctx: JobContext) -> None:
             if cand_lang in {"en", "ar", "hi", "ur"}:
                 lang = cand_lang
             cand_stack = (md.get("stack") or "").strip().lower()
-            if cand_stack in {"cascaded", "ultravox"}:
+            if cand_stack in {"cascaded", "ultravox", "realtime"}:
                 stack = cand_stack
     except Exception as me:
         logger.warning("Failed to parse job metadata, defaulting: %s", me)
     logger.info("Session lang=%s stack=%s", lang, stack)
 
-    stt_engine = _build_stt(lang)
-    tts_engine = _build_tts(lang, stack)
-
-    # LLM setup — Stack B uses Groq Llama-4-Scout; default (Arabic/Hindi/Urdu) uses Claude Haiku.
-    llm_temperature = float(os.getenv("LIVEKIT_TEMPERATURE", "0.3"))
-    llm_max_tokens = int(os.getenv("LIVEKIT_MAX_COMPLETION_TOKENS", "400"))
-    llm_max_tokens = max(64, min(llm_max_tokens, 2048))
-    llm_timeout_s = float(os.getenv("LIVEKIT_LLM_TIMEOUT_S", "25"))
-
-    if lang == "en" and stack == "cascaded":
-        if not _GROQ_AVAILABLE:
-            raise RuntimeError("livekit-plugins-groq not installed")
-        groq_key = os.getenv("GROQ_API_KEY", "").strip()
-        if not groq_key:
-            raise RuntimeError("GROQ_API_KEY not set — required for cascaded stack LLM")
-        groq_model = os.getenv("GROQ_LLM_MODEL", "meta-llama/llama-4-scout-17b-16e-instruct").strip()
-        llm_engine = lk_groq.LLM(
-            model=groq_model,
-            api_key=groq_key,
-            temperature=llm_temperature,
-            max_completion_tokens=llm_max_tokens,
-        )
-        logger.info("LLM: Groq %s", groq_model)
-    else:
-        anthropic_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
-        anthropic_model = os.getenv("ANTHROPIC_LLM_MODEL", "claude-haiku-4-5-20251001").strip()
-        llm_kwargs: dict[str, Any] = dict(
-            model=anthropic_model,
-            api_key=anthropic_key,
-            temperature=llm_temperature,
-            max_tokens=llm_max_tokens,
-        )
-        caching = os.getenv("ANTHROPIC_PROMPT_CACHING", "true").strip().lower() in ("1", "true", "yes")
-        if caching:
-            llm_kwargs["caching"] = "ephemeral"
-        llm_engine = lk_anthropic.LLM(**llm_kwargs)
-        logger.info("LLM: Anthropic %s", anthropic_model)
-
-    # Session connection options
-    session_conn_opts = SessionConnectOptions(
-        llm_conn_options=APIConnectOptions(
-            max_retry=1,
-            retry_interval=0.5,
-            timeout=max(5.0, llm_timeout_s),
-        ),
-        stt_conn_options=APIConnectOptions(max_retry=0, timeout=20.0),
-        tts_conn_options=APIConnectOptions(max_retry=0, timeout=30.0),
-    )
-
-    # Voice activity detection (matches PAM — defaults only)
-    vad = silero.VAD.load()
-
-    allow_interruptions = os.getenv("LIVEKIT_ALLOW_INTERRUPTIONS", "true").strip().lower() in ("1", "true", "yes")
-
     agent = ShakiraAgent(lang=lang)
-    session = AgentSession(
-        stt=stt_engine,
-        llm=llm_engine,
-        tts=tts_engine,
-        vad=vad,
-        conn_options=session_conn_opts,
-    )
+
+    if stack == "realtime" and lang == "en":
+        # ── Speech-to-speech: OpenAI Realtime (best phone-call experience) ──
+        # The model does STT + LLM + TTS in one connection with native
+        # turn-taking and barge-in — no separate engines, no Silero VAD.
+        # That fluid turn-taking is the whole reason to use this for phone.
+        if not _OPENAI_REALTIME_AVAILABLE:
+            raise RuntimeError("livekit-plugins-openai not installed — required for realtime stack")
+        openai_key = os.getenv("OPENAI_API_KEY", "").strip()
+        if not openai_key:
+            raise RuntimeError("OPENAI_API_KEY not set — required for realtime stack")
+        rt_model = os.getenv("OPENAI_REALTIME_MODEL", "gpt-realtime-mini").strip()
+        rt_voice = os.getenv("OPENAI_REALTIME_VOICE", "marin").strip()
+        # OpenAI Realtime requires temperature >= 0.6; clamp so a stray 0.3 won't 400.
+        rt_temp = max(0.6, float(os.getenv("OPENAI_REALTIME_TEMPERATURE", "0.7")))
+        realtime_model = lk_openai.realtime.RealtimeModel(
+            model=rt_model,
+            voice=rt_voice,
+            temperature=rt_temp,
+            api_key=openai_key,
+        )
+        session = AgentSession(llm=realtime_model)
+        logger.info("Stack: OpenAI Realtime (model=%s voice=%s temp=%.2f)", rt_model, rt_voice, rt_temp)
+    else:
+        # ── Cascaded: STT + LLM + TTS ──
+        # English → Groq Llama-4-Scout + ElevenLabs; Arabic/Hindi/Urdu → Claude Haiku + Inworld/Faseeh.
+        stt_engine = _build_stt(lang)
+        tts_engine = _build_tts(lang, stack)
+
+        llm_temperature = float(os.getenv("LIVEKIT_TEMPERATURE", "0.3"))
+        llm_max_tokens = int(os.getenv("LIVEKIT_MAX_COMPLETION_TOKENS", "400"))
+        llm_max_tokens = max(64, min(llm_max_tokens, 2048))
+        llm_timeout_s = float(os.getenv("LIVEKIT_LLM_TIMEOUT_S", "25"))
+
+        if lang == "en" and stack == "cascaded":
+            if not _GROQ_AVAILABLE:
+                raise RuntimeError("livekit-plugins-groq not installed")
+            groq_key = os.getenv("GROQ_API_KEY", "").strip()
+            if not groq_key:
+                raise RuntimeError("GROQ_API_KEY not set — required for cascaded stack LLM")
+            groq_model = os.getenv("GROQ_LLM_MODEL", "meta-llama/llama-4-scout-17b-16e-instruct").strip()
+            llm_engine = lk_groq.LLM(
+                model=groq_model,
+                api_key=groq_key,
+                temperature=llm_temperature,
+                max_completion_tokens=llm_max_tokens,
+            )
+            logger.info("LLM: Groq %s", groq_model)
+        else:
+            anthropic_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
+            anthropic_model = os.getenv("ANTHROPIC_LLM_MODEL", "claude-haiku-4-5-20251001").strip()
+            llm_kwargs: dict[str, Any] = dict(
+                model=anthropic_model,
+                api_key=anthropic_key,
+                temperature=llm_temperature,
+                max_tokens=llm_max_tokens,
+            )
+            caching = os.getenv("ANTHROPIC_PROMPT_CACHING", "true").strip().lower() in ("1", "true", "yes")
+            if caching:
+                llm_kwargs["caching"] = "ephemeral"
+            llm_engine = lk_anthropic.LLM(**llm_kwargs)
+            logger.info("LLM: Anthropic %s", anthropic_model)
+
+        session_conn_opts = SessionConnectOptions(
+            llm_conn_options=APIConnectOptions(
+                max_retry=1,
+                retry_interval=0.5,
+                timeout=max(5.0, llm_timeout_s),
+            ),
+            stt_conn_options=APIConnectOptions(max_retry=0, timeout=20.0),
+            tts_conn_options=APIConnectOptions(max_retry=0, timeout=30.0),
+        )
+
+        # Voice activity detection (matches PAM — defaults only)
+        vad = silero.VAD.load()
+
+        session = AgentSession(
+            stt=stt_engine,
+            llm=llm_engine,
+            tts=tts_engine,
+            vad=vad,
+            conn_options=session_conn_opts,
+        )
 
     # Greeting (language-specific)
     if lang == "ar":
