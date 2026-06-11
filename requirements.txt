@@ -13,13 +13,17 @@ anthropic==0.84.0
 supabase==2.28.0
 
 # ── LiveKit WebRTC voice transport ────────────────────────────────────────
-livekit-agents[openai,silero]==1.4.5
+# Bumped 1.4.5 → 1.5.x: the OpenAI Realtime stack needs the GA API shape.
+# 1.4.5's openai plugin uses the old beta shape (OpenAI-Beta: realtime=v1),
+# which OpenAI has DISABLED on GA accounts → beta_api_shape_disabled at runtime.
+# 1.5.18 uses openai.types.realtime (GA). All plugins must match the 1.5 core.
+livekit-agents[openai,silero]==1.5.17
 livekit-api==1.1.0
-livekit-plugins-deepgram==1.4.5
-livekit-plugins-inworld==1.4.5
-livekit-plugins-anthropic==1.4.5
-livekit-plugins-groq==1.4.5
-livekit-plugins-elevenlabs==1.4.5
+livekit-plugins-deepgram==1.5.18
+livekit-plugins-inworld==1.5.18
+livekit-plugins-anthropic==1.5.18
+livekit-plugins-groq==1.5.18
+livekit-plugins-elevenlabs==1.5.18
 
 # ── Semantic / vector search (course FAQ RAG) ─────────────────────────────
 sentence-transformers==5.2.3
