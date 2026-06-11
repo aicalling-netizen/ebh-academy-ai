@@ -37,7 +37,14 @@ from livekit.agents import (
     tts,
 )
 from livekit import rtc
-from livekit.plugins import silero
+try:
+    # Only needed for the cascaded stack's VAD; the realtime stack uses
+    # OpenAI's server-side turn detection, so silero (and its torch dep)
+    # is optional.
+    from livekit.plugins import silero
+    _SILERO_AVAILABLE = True
+except ImportError:
+    _SILERO_AVAILABLE = False
 
 try:
     from livekit.plugins import deepgram as lk_deepgram
@@ -471,6 +478,8 @@ async def entrypoint(ctx: JobContext) -> None:
         )
 
         # Voice activity detection (matches PAM — defaults only)
+        if not _SILERO_AVAILABLE:
+            raise RuntimeError("livekit-plugins-silero not installed — required for the cascaded stack VAD")
         vad = silero.VAD.load()
 
         session = AgentSession(
@@ -508,7 +517,14 @@ async def entrypoint(ctx: JobContext) -> None:
         room=ctx.room,
         room_input_options=RoomInputOptions(noise_cancellation=True),
     )
-    await session.say(greeting)
+    if stack == "realtime":
+        # A RealtimeSession has no separate TTS, so session.say() isn't
+        # available — have the model speak the greeting instead.
+        await session.generate_reply(
+            instructions=f"Greet the caller warmly as Shakira. Say exactly: {greeting}"
+        )
+    else:
+        await session.say(greeting)
     logger.info("Shakira agent started in room %s", ctx.room.name)
 
 
