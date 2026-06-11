@@ -613,9 +613,9 @@ audio.hidden-audio {
         <span class="feature-chip">Certifications & DHA</span>
       </div>
       <div class="stack-picker" role="radiogroup" aria-label="Voice stack">
-        <button id="stack-ultravox" type="button" class="stack-opt active" data-stack="ultravox">
-          <span class="stack-name">Ultravox</span>
-          <span class="stack-sub">Speech-to-speech · 1 vendor</span>
+        <button id="stack-realtime" type="button" class="stack-opt active" data-stack="realtime">
+          <span class="stack-name">Realtime</span>
+          <span class="stack-sub">OpenAI speech-to-speech</span>
         </button>
         <button id="stack-cascaded" type="button" class="stack-opt" data-stack="cascaded">
           <span class="stack-name">Cascaded</span>
@@ -728,7 +728,7 @@ audio.hidden-audio {
       micMuted: false,
       muteBusy: false,
       lang: 'en',
-      stack: 'ultravox',               // 'ultravox' | 'cascaded' (A/B test)
+      stack: 'realtime',               // 'realtime' | 'cascaded' (A/B test)
       callMode: null,                  // 'livekit' | 'ultravox' | null
       ultravox: null,                  // UltravoxSession instance (when English)
       lastUltravoxTranscriptCount: 0,  // de-dup transcript stream
@@ -1049,11 +1049,10 @@ audio.hidden-audio {
     }
 
     async function startCall() {
-      // Route by chosen stack — both English-only for now.
-      if (state.stack === 'cascaded') {
-        return startCallLiveKit();
-      }
-      return startCallUltravox();
+      // Both stacks (realtime, cascaded) run through the LiveKit agent —
+      // only the dispatched `stack` metadata differs, which getToken() forwards
+      // to the gateway and on to agent.py's entrypoint.
+      return startCallLiveKit();
     }
 
     async function startCallLiveKit() {
