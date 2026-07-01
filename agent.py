@@ -186,6 +186,28 @@ def _build_session_prompt(lang: str = "en") -> str:
     return f"{_SYSTEM_PROMPT_BASE}\n\n{lang_directive}\n\n--- LIVE CONTEXT ---\n{time_ctx}"
 
 
+# ── Production-parity realtime prompt: guardrails + inbound/outbound channel ──
+_RT_GUARDRAILS_FILE = Path(__file__).parent / "data" / "system_prompt_realtime_guardrails.txt"
+_RT_INBOUND_FILE = Path(__file__).parent / "data" / "system_prompt_realtime_inbound.txt"
+_RT_OUTBOUND_FILE = Path(__file__).parent / "data" / "system_prompt_realtime_outbound.txt"
+
+
+def _build_realtime_prompt(lang: str = "en", outbound: bool = False) -> str:
+    """Realtime instructions = CORE GUARDRAILS + the inbound/outbound channel
+    prompt, read FRESH from disk each call (no restart to change), with the live
+    Dubai datetime substituted. Falls back to the base prompt if files are missing.
+    Mirrors PAM's realtime_probe_agent.py prompt structure."""
+    try:
+        guardrails = _RT_GUARDRAILS_FILE.read_text(encoding="utf-8").strip()
+        channel = (_RT_OUTBOUND_FILE if outbound else _RT_INBOUND_FILE).read_text(encoding="utf-8").strip()
+    except Exception as e:
+        logger.warning("Realtime prompt files missing (%r) — falling back to base prompt", e)
+        return _build_session_prompt(lang)
+    channel = channel.replace("{CURRENT_UAE_DATETIME}", build_uae_time_context())
+    lang_line = "\n\nThe caller chose Arabic — reply in Arabic only." if lang == "ar" else ""
+    return f"{guardrails}\n\n{channel}{lang_line}"
+
+
 # ── STT / TTS builders ──────────────────────────────────────────────────
 
 # Nova-3 "multi" mode does NOT include Arabic — must use language=ar explicitly.
@@ -311,8 +333,8 @@ def _build_tts(lang: str = "en", stack: str = "cascaded"):
 class ShakiraAgent(Agent):
     """Shakira — EBH Academy AI Advisor (LiveKit transport)."""
 
-    def __init__(self, lang: str = "en") -> None:
-        super().__init__(instructions=_build_session_prompt(lang))
+    def __init__(self, lang: str = "en", instructions: "str | None" = None) -> None:
+        super().__init__(instructions=instructions or _build_session_prompt(lang))
         self._call_start = time.monotonic()
         self._tool_calls: list[dict] = []
         self._lang = lang
@@ -515,7 +537,12 @@ async def entrypoint(ctx: JobContext) -> None:
         logger.warning("Failed to parse job metadata, defaulting: %s", me)
     logger.info("Session lang=%s stack=%s", lang, stack)
 
-    agent = ShakiraAgent(lang=lang)
+    # Realtime uses the production-parity guardrails+inbound prompt structure
+    # (read fresh per call); other stacks use the base session prompt.
+    if stack == "realtime":
+        agent = ShakiraAgent(lang=lang, instructions=_build_realtime_prompt(lang, outbound=False))
+    else:
+        agent = ShakiraAgent(lang=lang)
 
     if stack == "realtime" and lang == "en":
         # ── Speech-to-speech: OpenAI Realtime (best phone-call experience) ──
