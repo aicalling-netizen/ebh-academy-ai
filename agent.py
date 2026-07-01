@@ -380,6 +380,118 @@ class ShakiraAgent(Agent):
 
 # ── Entrypoint ───────────────────────────────────────────────────────────
 
+# ── Silence watchdog: auto-hang-up on dead air / voicemail (ported from PAM realtime) ──
+def _wd_env_f(name: str, default: float) -> float:
+    try:
+        return float(os.getenv(name, "").strip() or default)
+    except Exception:
+        return default
+
+
+_SILENCE_WARN_S = _wd_env_f("REALTIME_SILENCE_WARNING_S", 12.0)   # dead air after caller spoke -> "still there?"
+_SILENCE_GRACE_S = _wd_env_f("REALTIME_SILENCE_GRACE_S", 10.0)    # more dead air after warning -> hang up
+_NOSPEAK_HANGUP_S = _wd_env_f("REALTIME_NOSPEAK_HANGUP_S", 30.0)  # caller never speaks -> hang up (0 = off)
+
+
+def _watchdog_action(*, now: float, mono_start: float, last_caller_ts: float, caller_turns: int,
+                     agent_speaking: bool, idle_warned_at: float) -> "str | None":
+    """Pure decision: None | 'warn' | 'reset' | 'hangup_silence' | 'hangup_nospeak'."""
+    # Caller never spoke (voicemail / dead line) -> hang up to stop burning realtime cost.
+    if _NOSPEAK_HANGUP_S > 0 and caller_turns == 0 and (now - mono_start) >= _NOSPEAK_HANGUP_S:
+        return "hangup_nospeak"
+    # Never act while Shakira is talking.
+    if agent_speaking:
+        return None
+    silent = now - last_caller_ts
+    if idle_warned_at <= 0:
+        if caller_turns > 0 and silent >= _SILENCE_WARN_S:
+            return "warn"
+        return None
+    if last_caller_ts > idle_warned_at:   # caller resumed after the warning
+        return "reset"
+    if (now - idle_warned_at) >= _SILENCE_GRACE_S:
+        return "hangup_silence"
+    return None
+
+
+async def _hangup_room(room_name: str, reason: str) -> None:
+    """Delete the LiveKit room to end the call. Used by the watchdog. Never raises."""
+    if not room_name:
+        return
+    try:
+        from livekit import api as _lkapi
+        lk = _lkapi.LiveKitAPI(
+            url=os.environ["LIVEKIT_URL"],
+            api_key=os.environ["LIVEKIT_API_KEY"],
+            api_secret=os.environ["LIVEKIT_API_SECRET"],
+        )
+        try:
+            await lk.room.delete_room(_lkapi.DeleteRoomRequest(room=room_name))
+        finally:
+            await lk.aclose()
+        logger.info("watchdog hangup: room closed (room=%s reason=%s)", room_name, reason)
+    except Exception as e:
+        logger.warning("watchdog hangup failed (room=%s reason=%s): %r", room_name, reason, e)
+
+
+def _install_silence_watchdog(session, ctx):
+    """Wire the dead-air auto-hangup watchdog onto a realtime session.
+
+    Tracks caller speech via user_state_changed (VAD-driven — fires without input
+    transcription or a local silero VAD). Returns a coroutine to spawn as a task.
+    """
+    wd = {
+        "mono_start": time.monotonic(), "last_caller_ts": time.monotonic(),
+        "caller_turns": 0, "agent_speaking": False, "idle_warned_at": 0.0, "ended": False,
+    }
+
+    @session.on("user_state_changed")
+    def _on_user_state(ev):
+        try:
+            if getattr(ev, "new_state", "") == "speaking":
+                wd["last_caller_ts"] = time.monotonic()
+                wd["caller_turns"] += 1
+                wd["idle_warned_at"] = 0.0
+        except Exception:
+            pass
+
+    @session.on("agent_state_changed")
+    def _on_agent_state(ev):
+        try:
+            speaking = getattr(ev, "new_state", "") == "speaking"
+            wd["agent_speaking"] = speaking
+            if speaking:
+                wd["idle_warned_at"] = 0.0
+        except Exception:
+            pass
+
+    async def _loop():
+        room_name = ctx.room.name
+        while not wd["ended"]:
+            await asyncio.sleep(1.0)
+            now = time.monotonic()
+            action = _watchdog_action(
+                now=now, mono_start=wd["mono_start"], last_caller_ts=wd["last_caller_ts"],
+                caller_turns=wd["caller_turns"], agent_speaking=wd["agent_speaking"],
+                idle_warned_at=wd["idle_warned_at"],
+            )
+            if action == "warn":
+                wd["idle_warned_at"] = now
+                try:
+                    await session.generate_reply(
+                        instructions="Gently check if the caller is still there, in one short sentence."
+                    )
+                except Exception:
+                    pass
+            elif action in ("hangup_silence", "hangup_nospeak"):
+                wd["ended"] = True
+                logger.info("watchdog: ending call (%s) room=%s", action, room_name)
+                await _hangup_room(room_name, action)
+                return
+
+    return _loop
+
+
 async def entrypoint(ctx: JobContext) -> None:
     """Called by LiveKit worker for each inbound web call."""
     await ctx.connect()
@@ -518,6 +630,10 @@ async def entrypoint(ctx: JobContext) -> None:
             "Hello and welcome to EBH Academy! I'm Shakira, your academy advisor. How can I help you today?",
         )
 
+    # Wire the dead-air auto-hangup watchdog (realtime only) before the session starts,
+    # so its event handlers are registered in time.
+    _watchdog_loop = _install_silence_watchdog(session, ctx) if stack == "realtime" else None
+
     await session.start(
         agent=agent,
         room=ctx.room,
@@ -531,6 +647,12 @@ async def entrypoint(ctx: JobContext) -> None:
         )
     else:
         await session.say(greeting)
+
+    if _watchdog_loop is not None:
+        asyncio.create_task(_watchdog_loop())
+        logger.info("Silence watchdog armed (warn=%.0fs grace=%.0fs nospeak=%.0fs)",
+                    _SILENCE_WARN_S, _SILENCE_GRACE_S, _NOSPEAK_HANGUP_S)
+
     logger.info("Shakira agent started in room %s", ctx.room.name)
 
 
