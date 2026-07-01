@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakira Admin | EBH Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1f393;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f4f0fa; --panel:#fff; --text:#1a1020; --muted:#7a6590; --line:rgba(100,50,150,.12);
+  --accent:#7c3aed; --accent-deep:#5b21b6; --accent-light:rgba(124,58,237,.08);
+  --ok:#2d7a50; --warn:#b5434b; --radius:16px; --shadow:0 10px 30px rgba(80,30,120,.08);
+  --font:'Outfit',system-ui,sans-serif; --display:'Cormorant',Georgia,serif;
+}
+body { font-family:var(--font); color:var(--text);
+  background:radial-gradient(ellipse at 20% 0%,rgba(124,58,237,.12),transparent 45%),linear-gradient(180deg,#f8f5fd,#ede6f7); min-height:100vh; }
+.wrap { max-width:1200px; margin:0 auto; padding:24px 18px 60px; }
+header { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:22px; }
+.brand { font-family:var(--display); font-weight:700; font-size:1.7rem; color:var(--accent-deep); }
+.brand small { font-family:var(--font); font-weight:500; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); display:block; margin-top:2px; }
+.toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+input[type=password],input[type=text]{ font-family:inherit; font-size:.9rem; padding:9px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; width:220px; }
+button { font-family:inherit; font-size:.88rem; font-weight:600; padding:9px 16px; border:none; border-radius:10px; background:var(--accent); color:#fff; cursor:pointer; transition:background .2s; }
+button:hover{ background:var(--accent-deep); }
+button.ghost{ background:#fff; color:var(--accent-deep); border:1px solid var(--line); }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-bottom:22px; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; box-shadow:var(--shadow); }
+.card .num { font-size:2rem; font-weight:700; color:var(--accent-deep); line-height:1; }
+.card .lbl { font-size:.8rem; color:var(--muted); margin-top:6px; text-transform:uppercase; letter-spacing:.05em; }
+.section { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:22px; overflow:hidden; }
+.section h2 { font-size:1rem; padding:16px 20px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:8px; }
+.section h2 .count { font-size:.75rem; background:var(--accent-light); color:var(--accent-deep); padding:2px 9px; border-radius:999px; font-weight:600; }
+table { width:100%; border-collapse:collapse; font-size:.88rem; }
+th,td { text-align:left; padding:11px 20px; border-bottom:1px solid var(--line); }
+th { font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); background:#faf8fe; position:sticky; top:0; }
+tr:last-child td{ border-bottom:none; }
+tr:hover td{ background:var(--accent-light); }
+.tbl-wrap { max-height:440px; overflow:auto; }
+.pill { font-size:.72rem; padding:2px 9px; border-radius:999px; font-weight:600; }
+.pill.new{ background:rgba(124,58,237,.12); color:var(--accent-deep); }
+.pill.ok{ background:rgba(45,122,80,.12); color:var(--ok); }
+.empty { padding:28px 20px; text-align:center; color:var(--muted); font-size:.9rem; }
+.status-line { font-size:.82rem; color:var(--muted); margin-bottom:14px; min-height:18px; }
+.status-line.err{ color:var(--warn); }
+a.link{ color:var(--accent-deep); text-decoration:none; font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">EBH Academy <small>Shakira &middot; Admin Dashboard</small></div>
+    <div class="toolbar">
+      <input id="apikey" type="password" placeholder="Gateway API key" autocomplete="off">
+      <button id="refresh">Refresh</button>
+      <a class="link" href="/">&larr; Talk to Shakira</a>
+    </div>
+  </header>
+
+  <div id="status" class="status-line">Enter the gateway API key and hit Refresh.</div>
+
+  <div class="stats">
+    <div class="card"><div class="num" id="stat-inq">–</div><div class="lbl">Enrollment inquiries</div></div>
+    <div class="card"><div class="num" id="stat-today">–</div><div class="lbl">Inquiries today</div></div>
+    <div class="card"><div class="num" id="stat-calls">–</div><div class="lbl">Call logs</div></div>
+  </div>
+
+  <div class="section">
+    <h2>Enrollment Inquiries <span class="count" id="inq-count">0</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Course interest</th><th>Status</th><th>When</th></tr></thead>
+        <tbody id="inq-body"><tr><td colspan="6" class="empty">No data loaded.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Call Logs <span class="count" id="calls-count">0</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Phone</th><th>Direction</th><th>Outcome</th><th>Duration</th><th>When</th></tr></thead>
+        <tbody id="calls-body"><tr><td colspan="5" class="empty">No data loaded.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const KEY_STORE = 'shakira_admin_key';
+$('#apikey').value = localStorage.getItem(KEY_STORE) || '';
+
+function esc(s){ return String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtWhen(v){ if(!v) return '–'; const d=new Date(v); return isNaN(d)? esc(v) : d.toLocaleString('en-GB',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); }
+function fmtDur(s){ if(s==null||s==='') return '–'; const n=Number(s); if(isNaN(n)) return esc(s); const m=Math.floor(n/60), r=Math.round(n%60); return `${m}m ${r}s`; }
+function setStatus(msg,err){ const el=$('#status'); el.textContent=msg; el.classList.toggle('err',!!err); }
+
+async function api(path){
+  const key = $('#apikey').value.trim();
+  if(!key) throw new Error('API key required');
+  const r = await fetch(path, { headers: { 'x-api-key': key } });
+  if(r.status===401) throw new Error('Invalid API key (401)');
+  if(!r.ok) throw new Error(`${path} → HTTP ${r.status}`);
+  return r.json();
+}
+
+function renderInquiries(items){
+  $('#inq-count').textContent = items.length;
+  $('#stat-inq').textContent = items.length;
+  const today = new Date().toDateString();
+  $('#stat-today').textContent = items.filter(i => i.created_at && new Date(i.created_at).toDateString()===today).length;
+  const body = $('#inq-body');
+  if(!items.length){ body.innerHTML = '<tr><td colspan="6" class="empty">No inquiries yet.</td></tr>'; return; }
+  body.innerHTML = items.map(i => `<tr>
+    <td>${esc(i.name)}</td><td>${esc(i.phone)}</td><td>${esc(i.email)||'–'}</td>
+    <td>${esc(i.course_interest)||'–'}</td>
+    <td><span class="pill ${i.status==='new'?'new':'ok'}">${esc(i.status)||'new'}</span></td>
+    <td>${fmtWhen(i.created_at)}</td></tr>`).join('');
+}
+
+function renderCalls(items){
+  $('#calls-count').textContent = items.length;
+  $('#stat-calls').textContent = items.length;
+  const body = $('#calls-body');
+  if(!items.length){ body.innerHTML = '<tr><td colspan="5" class="empty">No call logs yet.</td></tr>'; return; }
+  body.innerHTML = items.map(c => `<tr>
+    <td>${esc(c.phone_number||c.phone)||'–'}</td><td>${esc(c.direction)||'–'}</td>
+    <td>${esc(c.outcome||c.status)||'–'}</td><td>${fmtDur(c.duration_seconds ?? c.duration)}</td>
+    <td>${fmtWhen(c.created_at)}</td></tr>`).join('');
+}
+
+async function loadAll(){
+  const key = $('#apikey').value.trim();
+  if(!key){ setStatus('Enter the gateway API key first.', true); return; }
+  localStorage.setItem(KEY_STORE, key);
+  setStatus('Loading…');
+  try{
+    const [inq, calls] = await Promise.all([ api('/api/inquiries?limit=200'), api('/api/call-logs?limit=200').catch(()=>({items:[]})) ]);
+    renderInquiries(inq.items||[]);
+    renderCalls(calls.items||[]);
+    setStatus(`Loaded ${inq.items?.length||0} inquiries, ${calls.items?.length||0} call logs · ${new Date().toLocaleTimeString()}`);
+  }catch(e){ setStatus(e.message||String(e), true); }
+}
+
+$('#refresh').addEventListener('click', loadAll);
+$('#apikey').addEventListener('keydown', e => { if(e.key==='Enter') loadAll(); });
+if($('#apikey').value) loadAll();
+</script>
+</body>
+</html>
