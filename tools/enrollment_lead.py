@@ -36,6 +36,19 @@ async def _handle(arguments: dict) -> dict:
 
     saved = await save_inquiry(data)
 
+    # Best-effort mirror to the dashboard DB (academy_calling RDS). Never blocks/breaks
+    # the call — Supabase is the source of truth; this just feeds dashboard-v2.
+    try:
+        import asyncio as _asyncio
+        from core.mysql_writer import mirror_enrollment
+        await _asyncio.to_thread(
+            mirror_enrollment,
+            name=name, phone=phone, email=email,
+            course_interest=course_interest, notes=notes,
+        )
+    except Exception as _me:
+        logger.debug("RDS mirror skipped: %r", _me)
+
     if saved:
         logger.info("Enrollment lead captured: %s (%s) — %s", name, phone, course_interest)
         return {
