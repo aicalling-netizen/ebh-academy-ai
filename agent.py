@@ -30,6 +30,7 @@ from livekit.agents import (
     AgentSession,
     JobContext,
     RoomInputOptions,
+    RunContext,
     WorkerOptions,
     cli,
     function_tool,
@@ -375,29 +376,83 @@ class ShakiraAgent(Agent):
         return result
 
     @function_tool()
-    async def capture_enrollment_lead(
+    async def enroll(
         self,
+        context: RunContext,
         name: str,
         phone: str,
         email: str = "",
         course_interest: str = "",
         notes: str = "",
     ) -> dict:
-        """Capture a prospective student's details for admissions follow-up.
+        """Reserve a place / trial class / advisory session for a prospective student.
 
-        Call this after collecting the caller's name and phone number.
-        The admissions team will reach out to them.
+        Call this once you have the caller's name and phone number. Admissions
+        follows up to confirm. Blocked if a voicemail/machine was detected.
         """
+        st = getattr(context, "userdata", None) or {}
+        if isinstance(st, dict) and st.get("voicemail"):
+            logger.warning("enroll BLOCKED: voicemail/machine detected (phone=%s)", phone)
+            return {"status": "error", "message": "No live caller (voicemail detected) — no enrolment created."}
         from tools.enrollment_lead import _handle
         result = await _handle({
-            "name": name,
-            "phone": phone,
-            "email": email,
-            "course_interest": course_interest,
-            "notes": notes,
+            "name": name, "phone": phone, "email": email,
+            "course_interest": course_interest, "notes": notes,
         })
-        logger.info("Tool capture_enrollment_lead: %s — %s", name, result.get("status"))
+        logger.info("Tool enroll: %s — %s", name, result.get("status"))
         return result
+
+    @function_tool()
+    async def check_class_availability(self, date: str = "", course: str = "") -> dict:
+        """Check upcoming intakes / trial-class or advisory-session availability before reserving a place."""
+        logger.info("Tool check_class_availability(date=%s course=%s)", date, course)
+        return {
+            "status": "ok",
+            "message": "We have flexible intakes and trial sessions most weekdays, roughly ten to seven. "
+                       "Take the caller's preferred day and reserve a place with enroll — admissions confirms the exact time.",
+        }
+
+    @function_tool()
+    async def transfer_to_human(self, context: RunContext, reason: str = "", category: str = "OPS-ESC") -> dict:
+        """Escalate to the admissions team (caller asks for a person/manager, complaint, refund,
+        or an unresolved issue). Notifies the team to call back — never promise a live person now."""
+        st = getattr(context, "userdata", None) or {}
+        phone = str((st or {}).get("phone") or "").strip()
+        name = str((st or {}).get("caller_name") or "").strip()
+        url = os.getenv("N8N_ESCALATION_WEBHOOK_URL", "").strip()
+        try:
+            if url:
+                import httpx
+                async with httpx.AsyncClient(timeout=6.0) as c:
+                    await c.post(url, json={"reason": str(reason or "")[:200], "category": (category or "OPS-ESC").strip(),
+                                            "phone": phone, "name": name, "source": "realtime", "channel": "web"})
+                logger.info("transfer_to_human: escalation sent (phone=%s cat=%s)", phone, category)
+            else:
+                logger.warning("transfer_to_human: N8N_ESCALATION_WEBHOOK_URL not set — logged only")
+            if isinstance(st, dict):
+                st["escalated"] = True
+        except Exception as e:
+            logger.warning("transfer_to_human failed: %r", e)
+        return {"status": "callback_requested",
+                "message": "Our admissions team has been notified and will reach out to you very shortly."}
+
+    @function_tool()
+    async def end_call(self, context: RunContext, reason: str = "assistant_requested_end") -> dict:
+        """End the call after a brief closing line. Use when the conversation is complete
+        (a place is reserved, or the caller said goodbye). Say the closing sentence FIRST, then call this."""
+        st = getattr(context, "userdata", None) or {}
+        if isinstance(st, dict):
+            st["end_requested"] = True
+        room_name = str((st or {}).get("room_name") or "").strip()
+        if not room_name:
+            return {"status": "unavailable", "message": ""}
+
+        async def _delayed_hangup():
+            await asyncio.sleep(6)  # let the closing line finish playing
+            await _hangup_room(room_name, f"end_call:{reason}")
+
+        asyncio.create_task(_delayed_hangup())
+        return {"status": "scheduled", "message": "Call will end right after the closing sentence."}
 
 
 # ── Entrypoint ───────────────────────────────────────────────────────────
@@ -570,7 +625,11 @@ async def entrypoint(ctx: JobContext) -> None:
             # working transcription model once that's sorted.
             input_audio_transcription=None,
         )
-        session = AgentSession(llm=realtime_model)
+        session = AgentSession(
+            llm=realtime_model,
+            userdata={"room_name": ctx.room.name, "phone": "", "caller_name": "",
+                      "voicemail": False, "end_requested": False, "escalated": False},
+        )
         logger.info("Stack: OpenAI Realtime (model=%s voice=%s temp=%.2f)", rt_model, rt_voice, rt_temp)
     else:
         # ── Cascaded: STT + LLM + TTS ──
